@@ -26,7 +26,7 @@ export class ProductTypeController {
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: ProductTypeReqDto) {
-        return this.service.put(id, dto);
+        return this.service.update(id, dto);
     }
 
     @Delete(':id')

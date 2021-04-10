@@ -26,7 +26,7 @@ export class FormalityController {
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: FormalityReqDto) {
-        return this.service.put(id, dto);
+        return this.service.update(id, dto);
     }
 
     @Delete(':id')

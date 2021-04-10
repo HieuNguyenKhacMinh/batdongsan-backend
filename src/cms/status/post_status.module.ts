@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { PostController } from '../post/post.controller';
+import { PostStatusController } from './post_status.controller';
 
 @Module({
     imports: [],
-    controllers: [PostController],
+    controllers: [PostStatusController],
     providers: [],
 })
 export class PostStatusModule { }

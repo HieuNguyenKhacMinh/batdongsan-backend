@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { CategoryEntity } from "./category.entity";
 import { CommentEntity } from "./comment.entity";
+import { HashtagEntity } from "./hashtag.entity";
 import { WidgetEntity } from "./widget.entity";
 
 @Entity()
@@ -14,9 +15,10 @@ export class PostEntity {
 
     @Column({ name: "content", type: "text" })
     content: string;
- 
-    // @Column({ name: "hashtag_id", type: "uuid" })
-    // hashtagId: number;
+
+    @ManyToMany(() => HashtagEntity, { eager: true })
+    @JoinTable()
+    hashtags: HashtagEntity[];
 
     @Column({ name: "category_id", type: "uuid" })
     categoryId: string;
@@ -41,7 +43,7 @@ export class PostEntity {
     // @ManyToOne(() => PageEntity, f => f.posts)
     // page: PageEntity;
 
-    @OneToMany(() => CommentEntity, c => c.post)
+    @OneToMany(() => CommentEntity, c => c.post, {eager: true })
     comments: CommentEntity[];
     // /**
     //  * Name

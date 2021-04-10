@@ -26,7 +26,7 @@ export class DistrictController {
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: DistrictReqDto) {
-        return this.service.put(id, dto);
+        return this.service.update(id, dto);
     }
 
     @Delete(':id')

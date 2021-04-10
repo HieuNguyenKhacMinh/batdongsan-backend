@@ -6,7 +6,7 @@ export class GenericService {
     connection: Connection;
     TMapper: any;
     TEntity: any;
-    TDto: any;                          //Mapper      //req      //entity
+    TDto: any;
     constructor(connection: Connection, TMapper: any, TDto: any, TEntity: any) {
         this.connection = connection;
         this.TMapper = TMapper;
@@ -20,8 +20,9 @@ export class GenericService {
             return errors;
         }
         let entity: any = Mapper.getMapper(this.TMapper).mapReq(undefined, dto)
-        entity = await this.connection.manager.getRepository(this.TEntity).save(entity);
-        return Mapper.getMapper(this.TMapper).mapRes(undefined, entity)
+        console.log(entity)
+        const res = await this.connection.manager.getRepository(this.TEntity).save(entity);
+        return Mapper.getMapper(this.TMapper).mapRes(undefined, res)
     }
 
     async update(id: string, dto: any) {
@@ -49,9 +50,15 @@ export class GenericService {
         }
     }
 
-    async findAll() {
+    async findAll(condition?: any) {
+        if (!condition) {
+            condition = { relations: [], where: { deleteFlag: 0 } };
+        } else {
+            condition.where.deleteFlag = 0;
+        }
+        console.log(condition)
         const entities: any = await this.connection.manager.getRepository(this.TEntity)
-            .find({ deleteFlag: 0 });
+            .find({ relations: condition.relations, where: condition.where, });
         return entities.map(entity => Mapper.getMapper(this.TMapper).mapRes(undefined, entity))
     }
 

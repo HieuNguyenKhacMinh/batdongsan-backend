@@ -1,5 +1,5 @@
-import { PostStatusController } from './cms/status/poststatus.controller';
-import { PostStatusModule } from './cms/status/poststatus.module';
+import { PostStatusController } from './cms/status/post_status.controller';
+import { PostStatusModule } from './cms/status/post_status.module';
 import { PostModule } from './cms/post/post.module';
 import { CategoryModule } from './cms/category/category.module';
 import { Module } from '@nestjs/common';
@@ -17,18 +17,20 @@ import { NotificationTypeModule } from './cms/notification_type/notification_typ
 import { PageModule } from './cms/page/page.module';
 import { ProductTypeTypeModule } from './cms/product-type/product_type.module';
 import { DistrictModule } from './cms/district/district.module';
+import { CommentModule } from './cms/comment/comment.module';
 
 @Module({
   imports: [
     CategoryModule,
     PostStatusModule,
     PostModule,
+    HashtagModule,
+    CommentModule,
     DatabaseModule,
     DistrictModule,
     BalconydirectionTypeModule,
     FileModule,
     FormalityModule,
-    HashtagModule,
     HouseDirestionTypeModule,
     MenuTypeModule,
     NotificationModule,

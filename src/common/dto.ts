@@ -1,4 +1,5 @@
 import { CategoryReqDto } from "src/cms/category/dto/req-dto";
+import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
 import { PageReqDto } from "src/cms/page/dto/req-dto";
 import { PostReqDto } from "src/cms/post/dto/req-dto";
 import { StatusReqDto } from "src/cms/status/dto/req-dto";
@@ -17,9 +18,11 @@ export class DtoFactory {
             case StatusReqDto.name:
                 return new StatusReqDto;
             case WidgetReqDto.name:
-                 return new WidgetReqDto;
+                return new WidgetReqDto;
             case PageReqDto.name:
-                return new PageReqDto;    
+                return new PageReqDto;
+            case HashtagReqDto.name:
+                return new HashtagReqDto;
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }

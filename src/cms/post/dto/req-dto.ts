@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
 import { messageRequired } from "src/common/constant";
 import { IReqDtoFactory } from "src/common/interfaces/dto.interface";
 
@@ -32,6 +33,8 @@ export class PostReqDto implements IReqDtoFactory {
     public status_id: string;
     @ApiProperty()
     public page_id: string;
+    @ApiProperty()
+    public hashtags: HashtagReqDto[]
 
     validate(dto: PostReqDto) {
         var errors = [];

@@ -6,6 +6,7 @@ import { HashtagResDto } from "./res-dto";
 export class HashtagMapper implements IMapperFactory {
     mapReq(entity: HashtagEntity, req: HashtagResDto) {
         if (!entity) entity = new HashtagEntity();
+        entity.id = req.id;
         entity.name = req.name;
         entity.description = req.description;
         return entity;

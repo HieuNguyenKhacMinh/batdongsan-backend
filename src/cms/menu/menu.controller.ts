@@ -26,7 +26,7 @@ export class MenuController {
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: MenuReqDto) {
-        return this.service.put(id, dto);
+        return this.service.update(id, dto);
     }
 
     @Delete(':id')

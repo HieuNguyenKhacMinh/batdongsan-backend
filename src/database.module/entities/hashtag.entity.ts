@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { PostEntity } from ".";
 
 @Entity()
 export class HashtagEntity {
@@ -9,9 +10,8 @@ export class HashtagEntity {
     @Column({ name: "name", type: "varchar", length: 50 })
     name: string;
 
-    @Column({ name: "widget_id", type: "uuid" })
-    widgetId: number;
-
+    @ManyToMany(()=> PostEntity, p => p.hashtags)
+    posts: PostEntity[];
     // /**
     //  * Name
     //  */
