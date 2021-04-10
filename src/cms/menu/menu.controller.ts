@@ -1,0 +1,37 @@
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { GenericService } from 'src/common/generic.service';
+import { MenuEntity } from 'src/database.module/entities';
+import { CategoryEntity } from 'src/database.module/entities/category.entity';
+import { Connection } from 'typeorm';
+import { MenuMapper } from './dto/mapper';
+import { MenuReqDto} from './dto/req-dto';
+
+@ApiTags("CMS/Menu")
+@Controller('cms/menu')
+export class MenuController {
+    service
+    constructor(private connection: Connection) {
+        this.service = new GenericService(this.connection, MenuMapper, MenuReqDto, MenuEntity);
+     }
+
+    @Post()
+    async create(@Body() dto:MenuReqDto) {
+        return this.service.create(dto);
+    }
+
+    @Get()
+    async findAll() {
+        return this.service.findAll();
+    }
+
+    @Put(':id')
+    put(@Param("id") id: string, @Body() dto: MenuReqDto) {
+        return this.service.put(id, dto);
+    }
+
+    @Delete(':id')
+    delete(@Param("id") id: string) {
+        return this.service.delete(id);
+    }
+ }
