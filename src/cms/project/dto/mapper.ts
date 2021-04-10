@@ -1,6 +1,5 @@
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { ProjectEntity } from "src/database.module/entities";
-import { CategoryEntity } from "src/database.module/entities/category.entity";
 import { ProjectReqDto } from "./req-dto";
 import { ProjectResDto } from "./res-dto";
 

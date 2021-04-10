@@ -1,12 +1,11 @@
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { DistrictEntity } from "src/database.module/entities";
-import { CategoryEntity } from "src/database.module/entities/category.entity";
 import { DistrictReqDto } from "./req-dto";
 import { DistrictResDto } from "./res-dto";
 
 export class DistrictMapper implements IMapperFactory {
     mapReq(entity: DistrictEntity, req: DistrictReqDto) {
-        if (!entity) entity = new CategoryEntity();
+        if (!entity) entity = new DistrictEntity();
         entity.name = req.name;
         entity.description = req.description;
         return entity;

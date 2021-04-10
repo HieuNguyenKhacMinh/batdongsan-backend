@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { NotificationEntity } from 'src/database.module/entities';
-import { CategoryEntity } from 'src/database.module/entities/category.entity';
 import { Connection } from 'typeorm';
 import { NotificationMapper } from './dto/mapper';
 import { NotificationReqDto} from './dto/req-dto';

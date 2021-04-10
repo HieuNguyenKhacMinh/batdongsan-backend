@@ -1,6 +1,5 @@
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { CommentEntity } from "src/database.module/entities";
-import { CategoryEntity } from "src/database.module/entities/category.entity";
 import { CommentReqDto } from "./req-dto";
 import { CommentResDto } from "./res-dto";
 

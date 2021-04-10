@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { CategoryEntity } from 'src/database.module/entities/category.entity';
 import { ProvinceCityEntity } from 'src/database.module/entities/province_city.entity';
 import { Connection } from 'typeorm';
 import { ProvinceCityMapper } from './dto/mapper';

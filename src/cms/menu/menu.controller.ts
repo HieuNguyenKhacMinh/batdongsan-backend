@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { MenuEntity } from 'src/database.module/entities';
-import { CategoryEntity } from 'src/database.module/entities/category.entity';
 import { Connection } from 'typeorm';
 import { MenuMapper } from './dto/mapper';
 import { MenuReqDto} from './dto/req-dto';

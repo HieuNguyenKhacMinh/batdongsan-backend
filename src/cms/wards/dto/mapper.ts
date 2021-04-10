@@ -1,6 +1,5 @@
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { WardsEntity } from "src/database.module/entities";
-import { CategoryEntity } from "src/database.module/entities/category.entity";
 import { WardsReqDto } from "./req-dto";
 import { WardsResDto } from "./res-dto";
 

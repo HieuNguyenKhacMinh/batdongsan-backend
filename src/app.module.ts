@@ -37,7 +37,7 @@ import { DistrictModule } from './cms/district/district.module';
     ProductTypeTypeModule,
   ],
   controllers: [
-    PostStatusController, AppController],
-  providers: [AppService],
+    ],
+  providers: [],
 })
 export class AppModule { }
