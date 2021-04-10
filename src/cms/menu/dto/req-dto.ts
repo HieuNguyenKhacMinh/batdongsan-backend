@@ -13,6 +13,9 @@ export class MenuReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty({ required: false })
+    parent_id: string;
+
     validate(dto: MenuReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

@@ -21,7 +21,8 @@ export class MenuController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["children"], where: { parentId: null } }
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

@@ -12,16 +12,17 @@ export class CommentController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, CommentMapper, CommentReqDto, CommentEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: CommentReqDto) {
         return this.service.create(dto);
     }
 
-    @Get()
-    async findAll() {
-        return this.service.findAll();
+    @Get(":post_id")
+    async findAll(@Param("post_id") postId: string) {
+        const condition = { relations: ["children"], where: { postId, parentId: null } }
+        return this.service.findAll(condition);
     }
 
     @Put(':id')
@@ -33,4 +34,4 @@ export class CommentController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

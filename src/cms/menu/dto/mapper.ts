@@ -4,10 +4,11 @@ import { MenuReqDto } from "./req-dto";
 import { MenuResDto } from "./res-dto";
 
 export class MenuMapper implements IMapperFactory {
-    mapReq(entity: MenuEntity, req: MenuResDto) {
+    mapReq(entity: MenuEntity, req: MenuReqDto) {
         if (!entity) entity = new MenuEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.parentId = req.parent_id;
         return entity;
     }
     mapRes(res: MenuResDto, entity: MenuEntity) {
@@ -15,6 +16,7 @@ export class MenuMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.children = entity.children ? entity.children.map(c => new MenuMapper().mapRes(undefined, c)) : undefined;
         return res;
     }
 

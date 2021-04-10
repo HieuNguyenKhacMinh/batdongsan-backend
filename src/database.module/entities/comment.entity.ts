@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, Tree, TreeParent, TreeChildren } from "typeorm";
 import { PostEntity } from "./post.entity";
 
 @Entity()
@@ -7,28 +7,28 @@ export class CommentEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "user_id", type: "uuid" })
-    userId: number;
-
     @Column({ name: "content", type: "varchar", length: 1000 })
     content: string;
 
-    @Column({ name: "post_id", type: "uuid" })
-    postId: number;
+    @Column({ name: "post_id", type: "uuid", nullable: true })
+    postId: string;
 
-    @ManyToOne(() => PostEntity, f => f.comments)
+    @ManyToOne(() => PostEntity, f => f.comments, { eager: false })
     @JoinColumn({ name: "post_id" })
     post: PostEntity;
 
-    @Column({ name: "product_id", type: "uuid" })
-    productId: number;
+    @Column({ name: "product_id", type: "uuid", nullable: true })
+    productId: string;
+ 
+    @Column({ name: "parent_id", type: "uuid", nullable: true })
+    parentId: string;
 
-    // /**
-    //  * Name
-    //  */
-    // @Column({ name: 'name', type: 'varchar', length: 255, nullable: true })
-    // public Name: string;
+    @TreeChildren()
+    children: CommentEntity[];
 
+    @TreeParent()
+    @JoinColumn({ name: "parent_id" })
+    parent: CommentEntity;
     /**
      * Description
      */

@@ -1,6 +1,6 @@
 import { Connection } from "typeorm";
-import { DtoFactory } from "./dto";
-import { Mapper } from "./mapper";
+import { DtoFactory } from "./factory/dto.factory";
+import { Mapper } from "./factory/mapper.factory";
 
 export class GenericService {
     connection: Connection;
@@ -32,9 +32,9 @@ export class GenericService {
             if (errors) {
                 return errors;
             }
-            let entity: any = await this.connection.manager.getRepository(this.TEntity).findOne({ Id: id })
+            let entity: any = await this.connection.manager.getRepository(this.TEntity).findOne({ id: id })
             entity = Mapper.getMapper(this.TMapper).mapReq(entity, dto);
-            await this.connection.manager.getRepository(this.TEntity).update({ Id: id }, entity);
+            await this.connection.manager.getRepository(this.TEntity).update({ id: id }, entity);
             return Mapper.getMapper(this.TMapper).mapRes(undefined, entity)
         } catch (error) {
             return error
@@ -43,7 +43,7 @@ export class GenericService {
 
     async delete(id: string) {
         try {
-            await this.connection.manager.getRepository(this.TEntity).update({ Id: id }, { deleteFlag: 1 });
+            await this.connection.manager.getRepository(this.TEntity).update({ id: id }, { deleteFlag: 1 });
             return "deleted";
         } catch (error) {
             return error
