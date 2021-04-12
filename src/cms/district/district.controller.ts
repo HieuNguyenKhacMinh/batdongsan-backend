@@ -6,8 +6,8 @@ import { Connection } from 'typeorm';
 import { DistrictMapper } from './dto/mapper';
 import { DistrictReqDto } from './dto/req-dto';
 
-@ApiTags("CMS/Distric")
-@Controller('cms/distric')
+@ApiTags("CMS/District")
+@Controller('cms/district')
 export class DistrictController {
     service
     constructor(private connection: Connection) {

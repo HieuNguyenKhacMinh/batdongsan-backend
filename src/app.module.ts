@@ -18,6 +18,7 @@ import { PageModule } from './cms/page/page.module';
 import { ProductTypeTypeModule } from './cms/product-type/product_type.module';
 import { DistrictModule } from './cms/district/district.module';
 import { CommentModule } from './cms/comment/comment.module';
+import { TableConfigModule } from './cms/table_config/table_config.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { CommentModule } from './cms/comment/comment.module';
     NotificationTypeModule,
     PageModule,
     ProductTypeTypeModule,
+    TableConfigModule,
   ],
   controllers: [
     ],

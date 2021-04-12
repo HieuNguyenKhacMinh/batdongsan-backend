@@ -1,3 +1,4 @@
+import { PostMapper } from "src/cms/post/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { CategoryEntity } from "src/database.module/entities/category.entity";
 import { CategoryReqDto } from "./req-dto";
@@ -15,6 +16,7 @@ export class CategoryMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.posts = entity.posts ? entity.posts.map(p => new PostMapper().mapRes(undefined, p)): undefined;
         return res;
     }
 

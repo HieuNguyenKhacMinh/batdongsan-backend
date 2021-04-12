@@ -6,8 +6,8 @@ import { Connection } from 'typeorm';
 import { ReadStatusMapper } from './dto/mapper';
 import { ReadStatusReqDto} from './dto/req-dto';
 
-@ApiTags("CMS/Categories")
-@Controller('cms/ readStatus')
+@ApiTags("CMS/ReadStatus")
+@Controller('cms/readstatus')
 export class ReadStatusController {
     service
     constructor(private connection: Connection) {

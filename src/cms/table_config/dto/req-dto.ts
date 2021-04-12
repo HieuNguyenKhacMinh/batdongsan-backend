@@ -4,17 +4,17 @@ import { IReqDtoFactory } from "src/common/interfaces/dto.interface";
 
 export enum Fields {
     name = "name",
-    description = "description"
+    content ="content"
 }
 
-export class DistrictReqDto implements IReqDtoFactory {
+export class TableConfigReqDto implements IReqDtoFactory {
     @ApiProperty()
     id: string;
     @ApiProperty()
     name: string;
     @ApiProperty()
-    description: string;
-    validate(dto: DistrictReqDto) {
+    content: string;
+    validate(dto: TableConfigReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {
             errors.push({
@@ -22,10 +22,11 @@ export class DistrictReqDto implements IReqDtoFactory {
                 message: messageRequired(Fields.name)
             });
         }
-        if (!dto.description || dto.description.length == 0) {
+
+        if (!dto.content|| dto.content.length == 0) {
             errors.push({
-                field: Fields.description,
-                message: messageRequired(Fields.description)
+                field: Fields.content,
+                message: messageRequired(Fields.content)
             });
         }
            return errors.length > 0 ? errors : undefined;

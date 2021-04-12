@@ -7,7 +7,7 @@ import { StatusMapper } from './dto/mapper';
 import { StatusReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/PostStatus")
-@Controller("posts-status")
+@Controller("cms/posts-status")
 export class PostStatusController {
     service
     constructor(private connection: Connection) {

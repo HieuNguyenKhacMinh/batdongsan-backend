@@ -7,7 +7,7 @@ import { WardsMapper } from './dto/mapper';
 import { WardsReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/Wards")
-@Controller('cms/Wards')
+@Controller('cms/wards')
 export class WardsController {
     service
     constructor(private connection: Connection) {
