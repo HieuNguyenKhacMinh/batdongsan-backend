@@ -8,6 +8,7 @@ export class ProductTypeMapper implements IMapperFactory {
         if (!entity) entity = new ProductTypeEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.formalityId = req.formality_id;
         return entity;
     }
     mapRes(res: ProductTypeResDto, entity: ProductTypeEntity) {
@@ -15,6 +16,7 @@ export class ProductTypeMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.formality_id = entity.formalityId;
         return res;
     }
 

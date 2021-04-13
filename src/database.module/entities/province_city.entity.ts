@@ -12,7 +12,7 @@ export class ProvinceCityEntity {
 
 
     @Column({ name: "country_id", type: "uuid" })
-    country_id: string;
+    countryId: string;
 
    
     // /**

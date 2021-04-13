@@ -14,6 +14,9 @@ export class CommentReqDto implements IReqDtoFactory {
     @ApiProperty({ required: false })
     post_id: string;
 
+    @ApiProperty({ required: false })
+    product_id: string;
+
     @ApiProperty()
     content: string;
 

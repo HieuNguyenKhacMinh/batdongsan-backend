@@ -12,7 +12,7 @@ export class ProjectEntity {
     name: string;
 
     @Column({ name: "city_id", type: "uuid" })
-    cityId: number;
+    cityId: string;
 
     @ManyToOne(() => CityEntity, f => f.projects)
     city: CityEntity;

@@ -33,49 +33,49 @@ export class ProductEntity {
     videos: FileEntity[];
 
     @Column({ name: "formality_id", type: "uuid" })
-    formalityId: number;
+    formalityId: string;
 
     @ManyToOne(() => FormalityEntity, f => f.products)
     formality: FormalityEntity;
 
     @Column({ name: "address_id", type: "uuid" })
-    addressId: number;
+    addressId: string;
 
     @ManyToOne(() => AddressEntity, f => f.products)
     address: AddressEntity;
 
     @Column({ name: "ward_id", type: "uuid" })
-    wardsId: number;
+    wardsId: string;
 
     @ManyToOne(() => WardsEntity, f => f.products)
     wards: WardsEntity;
 
     @Column({ name: "city_id", type: "uuid" })
-    cityId: number;
+    cityId: string;
 
     @ManyToOne(() => CityEntity, f => f.products)
     city: CityEntity;
 
     @Column({ name: "product_type", type: "uuid" })
-    productTypeId: number;
+    productTypeId: string;
 
     @ManyToOne(() => ProductTypeEntity, f => f.products)
     productType: ProductTypeEntity;
 
     @Column({ name: "project_id", type: "uuid" })
-    projectId: number;
+    projectId: string;
 
     @ManyToOne(() => ProjectEntity, f => f.products)
     project: ProjectEntity;
 
     @Column({ name: "product_unit_id", type: "uuid" })
-    productUnitId: number;
+    productUnitId: string;
 
     @ManyToOne(() => ProductUnitTypeEntity, f => f.products)
     productUnitType: ProductUnitTypeEntity;
 
     @Column({ name: "house_direstion_id", type: "uuid" })
-    houseDirestionId: number;
+    houseDirestionId: string;
 
 
     @ManyToOne(() => HouseDirestionEntity, f => f.products)
@@ -91,7 +91,7 @@ export class ProductEntity {
     entryWidth: number;
 
     @Column({ name: "balcony_direction_id", type: "uuid" })
-    balconyDirectionId: number;
+    balconyDirectionId: string;
 
     @ManyToOne(() => BalconydirectionEntity, f => f.products)
     balconyDirection: BalconydirectionEntity;

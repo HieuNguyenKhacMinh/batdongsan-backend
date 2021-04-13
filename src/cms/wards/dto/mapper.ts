@@ -8,6 +8,7 @@ export class WardsMapper implements IMapperFactory {
         if (!entity) entity = new WardsEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.city_id = req.city_id;
         return entity;
     }
     mapRes(res:WardsResDto, entity: WardsEntity) {
@@ -15,6 +16,7 @@ export class WardsMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.city_id = entity.city_id;
         return res;
     }
 

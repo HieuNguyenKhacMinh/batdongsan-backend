@@ -8,6 +8,7 @@ export class NotificationMapper implements IMapperFactory {
         if (!entity) entity = new NotificationEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.notificationType = req.notification_type;
         return entity;
     }
     mapRes(res:NotificationResDto, entity: NotificationEntity) {
@@ -15,6 +16,7 @@ export class NotificationMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.notification_type = entity.notificationType;
         return res;
     }
 

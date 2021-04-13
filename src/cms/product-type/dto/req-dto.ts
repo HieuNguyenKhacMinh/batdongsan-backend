@@ -12,6 +12,8 @@ export class ProductTypeReqDto implements IReqDtoFactory {
     @ApiProperty()
     name: string;
     @ApiProperty()
+    formality_id: string;
+    @ApiProperty()
     description: string;
     validate(dto: ProductTypeReqDto) {
         var errors = [];

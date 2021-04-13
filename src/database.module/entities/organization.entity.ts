@@ -10,7 +10,7 @@ export class OrganizationEntity {
     name: string;
 
     @Column({ name: "phone_number", type: "int" })
-    phoneNumber: Date;
+    phoneNumber: string;
 
     @Column({ name: "email", type: "varchar", length: 100 })
     email: string;
@@ -19,7 +19,7 @@ export class OrganizationEntity {
     domain: string;
 
     @Column({ name: "address_id", type: "uuid" })
-    addressId:number;
+    addressId:string;
 
     // /**
     //  * Name

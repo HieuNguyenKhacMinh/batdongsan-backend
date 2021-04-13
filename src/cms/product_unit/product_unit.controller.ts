@@ -1,0 +1,36 @@
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { GenericService } from 'src/common/generic.service';
+import { ProductUnitTypeEntity } from 'src/database.module/entities/product_unit_type,.entity';
+import { Connection } from 'typeorm';
+import { ProductUnitMapper } from './dto/mapper';
+import { ProductUnitReqDto } from './dto/req-dto';
+
+@ApiTags("CMS/ProductUnit")
+@Controller('cms/ProductUnit')
+export class ProductUnitController {
+    service
+    constructor(private connection: Connection) {
+        this.service = new GenericService(this.connection, ProductUnitMapper, ProductUnitReqDto, ProductUnitTypeEntity);
+     }
+
+    @Post()
+    async create(@Body() dto: ProductUnitReqDto) {
+        return this.service.create(dto);
+    }
+
+    @Get()
+    async findAll() {
+        return this.service.findAll();
+    }
+
+    @Put(':id')
+    put(@Param("id") id: string, @Body() dto: ProductUnitReqDto) {
+        return this.service.update(id, dto);
+    }
+
+    @Delete(':id')
+    delete(@Param("id") id: string) {
+        return this.service.delete(id);
+    }
+ }

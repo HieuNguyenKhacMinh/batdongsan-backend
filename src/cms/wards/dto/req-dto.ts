@@ -13,6 +13,8 @@ export class WardsReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty()
+    city_id: string;
     validate(dto: WardsReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

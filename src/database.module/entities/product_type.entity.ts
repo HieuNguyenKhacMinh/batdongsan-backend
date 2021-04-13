@@ -11,7 +11,7 @@ export class ProductTypeEntity {
     name: string;
 
     @Column({ name: "formality_id", type: "uuid" })
-    formalityId: number;
+    formalityId: string;
     
     @OneToMany(() => ProductEntity, p => p.productType)
     products: ProductEntity[];

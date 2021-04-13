@@ -3,26 +3,30 @@ import { messageRequired } from "src/common/constant";
 import { IReqDtoFactory } from "src/common/interfaces/dto.interface";
 
 export enum Fields {
-    homenumber = "homenumber",
+    home_number = "home_number",
     stress = "stress",
-    description ="description"
 } 
 
 export class AddressReqDto implements IReqDtoFactory {
     @ApiProperty()
     id: string;
     @ApiProperty()
-    homenumbe: string;
+    home_number: string;
+    @ApiProperty()
     @ApiProperty()
     street: string;
     @ApiProperty()
-    description: string;
+    wards_id: string;
+    @ApiProperty()
+    city_id: string;
+    @ApiProperty()
+    district_id: string;
     validate(dto: AddressReqDto) {
         var errors = [];
-        if (!dto.homenumbe || dto.homenumbe.length == 0) {
+        if (!dto.home_number || dto.home_number.length == 0) {
             errors.push({
-                field: Fields.homenumber,
-                message: messageRequired(Fields.homenumber)
+                field: Fields.home_number,
+                message: messageRequired(Fields.home_number)
             });
         }
         if (!dto.street || dto.street.length == 0) {
@@ -31,14 +35,5 @@ export class AddressReqDto implements IReqDtoFactory {
                 message: messageRequired(Fields.stress)
             });
         }
-
-        if (!dto.description || dto.description.length == 0) {
-            errors.push({
-                field: Fields.stress,
-                message: messageRequired(Fields.description)
-            });
-        }
-           return errors.length > 0 ? errors : undefined;
     }
-
 }

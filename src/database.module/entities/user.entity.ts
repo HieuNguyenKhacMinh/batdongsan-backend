@@ -16,7 +16,7 @@ export class UserEntity {
     birthday: Date;
 
     @Column({ name: "phone_number", type: "int" })
-    phone_number: Date;
+    phone_number: string;
 
     @Column({ name: "email", type: "varchar", length: 100 })
     email: string;

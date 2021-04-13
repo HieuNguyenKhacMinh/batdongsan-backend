@@ -9,6 +9,8 @@ export class CommentMapper implements IMapperFactory {
         entity.postId = req.post_id;
         entity.content = req.content;
         entity.parentId = req.parent_id;
+        entity.productId = req.product_id;
+        
         return entity;
     }
     mapRes(res: CommentResDto, entity: CommentEntity) {
@@ -19,6 +21,7 @@ export class CommentMapper implements IMapperFactory {
         res.content = entity.content;
         res.post_id = entity.postId;
         res.created_date = entity.createdDate;
+        res.product_id = entity.productId;
         res.children = entity.children ? entity.children.map(c => new CommentMapper().mapRes(undefined, c)) : undefined;
         return res;
     }

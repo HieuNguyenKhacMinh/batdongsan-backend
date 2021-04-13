@@ -9,6 +9,7 @@ export class HashtagMapper implements IMapperFactory {
         entity.id = req.id;
         entity.name = req.name;
         entity.description = req.description;
+        
         return entity;
     }
     mapRes(res:HashtagResDto, entity: HashtagEntity) {

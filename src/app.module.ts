@@ -19,13 +19,26 @@ import { ProductTypeTypeModule } from './cms/product-type/product_type.module';
 import { DistrictModule } from './cms/district/district.module';
 import { CommentModule } from './cms/comment/comment.module';
 import { TableConfigModule } from './cms/table_config/table_config.module';
+import { ProvinceCityTypeModule } from './cms/province_city/province_city.module';
+import { ProductModule } from './cms/product/product.module';
+import { AddressModule } from './cms/address/address.module';
+import { LeadModule } from './cms/lead/lead.module';
+import { ReadStatusModule } from './cms/read_status/hashtag.module';
+import { WidgetModule } from './cms/widget/widget.module';
+import { OrganizationModule } from './cms/organization/organization.module';
+import { DashboardModule } from './cms/dashboard/dashboard.module';
+import { ReportWidgetModule } from './cms/report_widget/report_widget.module';
+import { MessageModule } from './cms/message/message.module';
+import { ProjectModule } from './cms/project/project.module';
+import { ProductUnitModule } from './cms/product_unit/product_unit.module';
+import { WardsModule } from './cms/wards/wards.module';
+import { CountryModule } from './cms/country/country.module';
 
 @Module({
   imports: [
     CategoryModule,
     PostStatusModule,
     PostModule,
-    HashtagModule,
     CommentModule,
     DatabaseModule,
     DistrictModule,
@@ -39,6 +52,24 @@ import { TableConfigModule } from './cms/table_config/table_config.module';
     PageModule,
     ProductTypeTypeModule,
     TableConfigModule,
+    ProvinceCityTypeModule,
+    ProductModule,
+    AddressModule,
+    LeadModule,
+    ReadStatusModule,
+    MenuTypeModule,
+    WidgetModule,
+    HashtagModule,
+    OrganizationModule,
+    CommentModule,
+    DashboardModule,
+    ReportWidgetModule,
+    MessageModule,
+    ProjectModule,
+    ProductUnitModule,
+    WardsModule,
+    ProvinceCityTypeModule,
+    CountryModule,
   ],
   controllers: [
     ],

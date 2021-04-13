@@ -8,6 +8,7 @@ export class ProjectMapper implements IMapperFactory {
         if (!entity) entity = new ProjectEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.cityId = req.city_id;
         return entity;
     }
     mapRes(res:ProjectResDto, entity: ProjectEntity) {
@@ -15,6 +16,7 @@ export class ProjectMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.city_id = entity.cityId;
         return res;
     }
 

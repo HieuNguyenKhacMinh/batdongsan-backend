@@ -11,6 +11,9 @@ export class PostMapper implements IMapperFactory {
         entity.content = req.content;
         entity.categoryId = req.category_id;
         entity.statusId = req.status_id;
+        entity.hashtagId = req.Hashtag_id;
+        entity.widgetId = req.widget_id;
+        entity.pageId = req.page_id;
         entity.hashtags = req.hashtags ? req.hashtags.map(tag => {
             return new HashtagMapper().mapReq(undefined, tag)
         }) : [];

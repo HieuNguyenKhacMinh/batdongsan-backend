@@ -7,16 +7,16 @@ export class MessageEntity {
     id: string;
 
     @Column({ name: "from", type: "uuid" })
-    from: number;
+    from: string;
 
     @Column({ name: "to", type: "uuid" })
-    to: number;
+    to: string;
 
     @Column({ name: "content_type", type: "varchar", length: 100 })
     contentType: string;
 
     @Column({ name: "forward_id", type: "uuid" })
-    forwardId: number;
+    forwardId: string;
 
    // /**
     //  * Name

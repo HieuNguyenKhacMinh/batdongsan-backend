@@ -23,6 +23,9 @@ export class PostEntity {
     @Column({ name: "category_id", type: "uuid" })
     categoryId: string;
 
+    @Column({ name: "hashtag_id", type: "uuid" })
+    hashtagId: string;
+
     @ManyToOne(() => CategoryEntity, f => f.posts)
     @JoinColumn({ name: "category_id" })
     category: CategoryEntity;
@@ -38,7 +41,7 @@ export class PostEntity {
     statusId: string;
 
     @Column({ name: "page_id", type: "uuid", nullable: true })
-    pageId: number;
+    pageId: string;
 
     // @ManyToOne(() => PageEntity, f => f.posts)
     // page: PageEntity;

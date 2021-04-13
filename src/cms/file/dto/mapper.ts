@@ -8,6 +8,7 @@ export class FileMapper implements IMapperFactory {
         if (!entity) entity = new FileEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.path = req.path;
         return entity;
     }
     mapRes(res:FileResDto, entity: FileEntity) {
@@ -15,6 +16,7 @@ export class FileMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.path = entity.path;
         return res;
     }
 

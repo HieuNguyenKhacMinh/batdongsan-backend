@@ -14,13 +14,13 @@ export class AddressEntity {
     street: string;
 
     @Column({ name: "wards_id", type: "uuid" })
-    wardsId: number;
+    wardsId: string;
 
     @Column({ name: "city_id", type: "uuid" })
-    cityId: number;
+    cityId: string;
 
     @Column({ name: "district_id", type: "uuid" })
-    districtid: string;
+    districtId: string;
 
     @OneToMany(() => ProductEntity, p => p.address)
     products: ProductEntity[];

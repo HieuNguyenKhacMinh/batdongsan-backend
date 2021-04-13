@@ -13,6 +13,8 @@ export class NotificationReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty()
+    notification_type: string;
     validate(dto: NotificationReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

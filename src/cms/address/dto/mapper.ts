@@ -6,16 +6,21 @@ import { AddressResDto } from "./res-dto";
 export class AddressMapper implements IMapperFactory {
     mapReq(entity: AddressEntity, req: AddressReqDto) {
         if (!entity) entity = new AddressEntity();
-        entity.homeNumber = req.homenumbe;
+        entity.homeNumber = req.home_number;
         entity.street = req.street;
-        entity.description = req.description;
+        entity.cityId = req.city_id;
+        entity.wardsId = req.wards_id;
+        entity.districtId = req.district_id;
         return entity;
     }
     mapRes(res:AddressResDto, entity: AddressEntity) {
         if (!res) res = new AddressResDto();
-        res.homenumber = entity.homeNumber;
-        res.description = entity.description;
-        res.stress = entity.street;
+        res.id = entity.id;
+        res.home_number = entity.homeNumber;
+        res.street = entity.street;
+        res.wards_id = entity.wardsId;
+        res.district_id = entity.districtId;
+        res.city_id = entity.cityId;
         return res;
     }
 

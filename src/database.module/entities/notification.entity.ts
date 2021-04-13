@@ -11,7 +11,7 @@ export class NotificationEntity {
 
 
     @Column({ name: "notification_type", type: "uuid" })
-    notificationType: number;
+    notificationType: string;
 
     // /**
     //  * Name

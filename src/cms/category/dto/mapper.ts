@@ -9,6 +9,7 @@ export class CategoryMapper implements IMapperFactory {
         if (!entity) entity = new CategoryEntity();
         entity.name = req.name;
         entity.description = req.description;
+        req.posts = entity.posts ? entity.posts.map(p => new PostMapper().mapRes(undefined, p)): undefined;
         return entity;
     }
     mapRes(res: CategoryResDto, entity: CategoryEntity) {

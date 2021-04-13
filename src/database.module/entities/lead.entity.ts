@@ -16,7 +16,7 @@ export class LeadEntity {
     otherDetails: string;
 
     @Column({ name: "organization_id", type: "uuid" })
-    organizationId: number;
+    organizationId: string;
 
    // /**
     //  * Name

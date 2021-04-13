@@ -3,5 +3,6 @@ export class CommentResDto {
     post_id: string;
     content: string;
     created_date: string;
+    product_id: string;
     children: CommentResDto[]
 }
