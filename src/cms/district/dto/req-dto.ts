@@ -14,6 +14,8 @@ export class DistrictReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty()
+    city_id: string;
     validate(dto: DistrictReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

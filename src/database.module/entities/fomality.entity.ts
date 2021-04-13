@@ -10,7 +10,6 @@ export class FormalityEntity {
     @Column({ name: "name", type: "varchar", length: 100 })
     name: string;
 
-
     @OneToMany(() => ProductEntity, p => p.formality)
     products: ProductEntity[];
 

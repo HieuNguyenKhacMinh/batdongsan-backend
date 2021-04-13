@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { OrganizationEntity } from "./organization.entity";
 
 @Entity()
 export class LeadEntity {
@@ -17,6 +18,10 @@ export class LeadEntity {
 
     @Column({ name: "organization_id", type: "uuid" })
     organizationId: string;
+
+    @ManyToOne(()=> OrganizationEntity, o => o.leads)
+    organization: OrganizationEntity;
+
 
    // /**
     //  * Name

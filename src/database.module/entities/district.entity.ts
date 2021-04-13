@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { AddressEntity } from ".";
+import { CityEntity } from "./city.entity";
+import { WardsEntity } from "./wards.entity";
 
+/**
+ * Quận/ Huyện/ Thị xã/ Thành phố thuộc tỉnh/ Thành phố thuộc thành phố trực thuộc trung ương
+ */
 @Entity()
 export class DistrictEntity {
 
@@ -11,6 +17,19 @@ export class DistrictEntity {
 
     @Column({ name: "description", type: "varchar", length: 1024 })
     description: string;
+
+    @Column({ name: "city_id", type: "uuid" })
+    cityId: string;
+
+    @ManyToOne(() => CityEntity, f => f.districts)
+    city: CityEntity;
+
+    @OneToMany(()=> WardsEntity, w => w.district)
+    wards: WardsEntity[];
+
+    @OneToMany(() => AddressEntity, a => a.district)
+    addresses: AddressEntity[]
+
 
     // /**
     //  * Name

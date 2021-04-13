@@ -10,14 +10,14 @@ export class NotificationEntity {
     name: string;
 
 
-    @Column({ name: "notification_type", type: "uuid" })
+    /**
+     * 0: 
+     * 1: 
+     * 2: 
+     */
+    @Column({ name: "notification_type", type: "int" })
     notificationType: string;
-
-    // /**
-    //  * Name
-    //  */
-    // @Column({ name: 'name', type: 'varchar', length: 255, nullable: true })
-    // public Name: string;
+ 
 
     /**
      * Description

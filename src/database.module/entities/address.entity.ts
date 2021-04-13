@@ -1,5 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne } from "typeorm";
 import { ProductEntity } from ".";
+import { CityEntity } from "./city.entity";
+import { DistrictEntity } from "./district.entity";
+import { OrganizationEntity } from "./organization.entity";
+import { WardsEntity } from "./wards.entity";
 
 @Entity()
 export class AddressEntity {
@@ -16,14 +20,26 @@ export class AddressEntity {
     @Column({ name: "wards_id", type: "uuid" })
     wardsId: string;
 
+    @ManyToOne(() => WardsEntity, w => w.addresses)
+    wards: WardsEntity;
+
     @Column({ name: "city_id", type: "uuid" })
     cityId: string;
+
+    @ManyToOne(() => CityEntity, c => c.addresses)
+    city: CityEntity;
 
     @Column({ name: "district_id", type: "uuid" })
     districtId: string;
 
+    @ManyToOne(() => DistrictEntity, d => d.addresses)
+    district: DistrictEntity;
+
     @OneToMany(() => ProductEntity, p => p.address)
     products: ProductEntity[];
+
+    @OneToOne(() => OrganizationEntity, o => o.address)
+    organization: OrganizationEntity;
 
     // /**
     //  * Name
@@ -34,38 +50,39 @@ export class AddressEntity {
     /**
      * Description
      */
-     @Column({ name: 'description', type: 'longtext', nullable: true })
-     public description: string;
- 
-     /**
-      * Delete Flag
-      */
-     @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
-     public deleteFlag: number;
- 
-     /**
-      * Created By
-      */
-     @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
-     public createdBy: string;
- 
-     /**
-      * Created Date
-      */
-     @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
-     public createdDate: string;
- 
-     /**
-      * Last Updated By
-      */
-     @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
-     public lastUpdatedBy: string;
- 
-     @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
-     public siteId: string;
-     /**
-      * Update Date
-      */
-     @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-     public lastUpdateDate: string;
+    @Column({ name: 'description', type: 'longtext', nullable: true })
+    public description: string;
+
+
+    /**
+     * Delete Flag
+     */
+    @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
+    public deleteFlag: number;
+
+    /**
+     * Created By
+     */
+    @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
+    public createdBy: string;
+
+    /**
+     * Created Date
+     */
+    @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
+    public createdDate: string;
+
+    /**
+     * Last Updated By
+     */
+    @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
+    public lastUpdatedBy: string;
+
+    @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
+    public siteId: string;
+    /**
+     * Update Date
+     */
+    @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+    public lastUpdateDate: string;
 }

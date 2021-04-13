@@ -7,7 +7,7 @@ import { ReadStatusMapper } from './dto/mapper';
 import { ReadStatusReqDto} from './dto/req-dto';
 
 @ApiTags("CMS/ReadStatus")
-@Controller('cms/readstatus')
+@Controller('cms/read-status')
 export class ReadStatusController {
     service
     constructor(private connection: Connection) {

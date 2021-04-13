@@ -13,10 +13,11 @@ import { MenuMapper } from "src/cms/menu/dto/mapper";
 import { NotificationMapper } from "src/cms/notification/dto/mapper";
 import { NotificationTypeMapper } from "src/cms/notification_type/dto/mapper";
 import { OrganizationMapper } from "src/cms/organization/dto/mapper";
+import { PageMapper } from "src/cms/page/dto/mapper";
 import { PostMapper } from "src/cms/post/dto/mapper";
 import { ProductMapper } from "src/cms/product/dto/mapper";
 import { ProvinceCityMapper } from "src/cms/province_city/dto/mapper";
-import { StatusMapper } from "src/cms/status/dto/mapper";
+import { StatusMapper } from "src/cms/post_status/dto/mapper";
 import { TableConfigMapper } from "src/cms/table_config/dto/mapper";
 import { WardsMapper } from "src/cms/wards/dto/mapper";
 import { ObjectType } from "typeorm";
@@ -94,10 +95,12 @@ export class Mapper {
 
             case DistrictMapper.name:
                 return new DistrictMapper;
-                
+
             case WardsMapper.name:
                 return new WardsMapper;
 
+            case PageMapper.name:
+                return new PageMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;

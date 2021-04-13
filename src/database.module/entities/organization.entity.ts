@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne } from "typeorm";
+import { AddressEntity } from "./address.entity";
+import { LeadEntity } from "./lead.entity";
 
 @Entity()
 export class OrganizationEntity {
@@ -21,6 +23,11 @@ export class OrganizationEntity {
     @Column({ name: "address_id", type: "uuid" })
     addressId:string;
 
+    @OneToOne(() => AddressEntity, a => a.organization)
+    address: AddressEntity;
+
+    @OneToMany(() => LeadEntity, l => l.organization)
+    leads: LeadEntity[]
     // /**
     //  * Name
     //  */

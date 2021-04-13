@@ -1,6 +1,6 @@
 
 import { Module } from '@nestjs/common';
-import { ReadStatusController } from './hashtag.controller';
+import { ReadStatusController } from './read_status.controller';
 
 @Module({
     imports: [],

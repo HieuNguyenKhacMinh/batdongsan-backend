@@ -77,7 +77,6 @@ export class ProductEntity {
     @Column({ name: "house_direstion_id", type: "uuid" })
     houseDirestionId: string;
 
-
     @ManyToOne(() => HouseDirestionEntity, f => f.products)
     houseDirestion: HouseDirestionEntity;
 

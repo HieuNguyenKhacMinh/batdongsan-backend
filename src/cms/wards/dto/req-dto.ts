@@ -14,7 +14,7 @@ export class WardsReqDto implements IReqDtoFactory {
     @ApiProperty()
     description: string;
     @ApiProperty()
-    city_id: string;
+    district_id: string;
     validate(dto: WardsReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

@@ -8,12 +8,14 @@ export class DistrictMapper implements IMapperFactory {
         if (!entity) entity = new DistrictEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.cityId = req.city_id;
         return entity;
     }
     mapRes(res:DistrictResDto, entity: DistrictEntity) {
         if (!res) res = new DistrictResDto();
         res.id = entity.id;
         res.name = entity.name;
+        res.city_id = entity.cityId;
         res.description = entity.description;
         return res;
     }

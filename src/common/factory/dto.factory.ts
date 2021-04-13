@@ -16,10 +16,11 @@ import { NotificationReqDto } from "src/cms/notification/dto/req-dto";
 import { NotificationTypeReqDto } from "src/cms/notification_type/dto/req-dto";
 import { OrganizationReqDto } from "src/cms/organization/dto/req-dto";
 import { PageReqDto } from "src/cms/page/dto/req-dto";
+import { PageResDto } from "src/cms/page/dto/res-dto";
 import { PostReqDto } from "src/cms/post/dto/req-dto";
 import { ProductReqDto } from "src/cms/product/dto/req-dto";
 import { ProvinceCityReqDto } from "src/cms/province_city/dto/req-dto";
-import { StatusReqDto } from "src/cms/status/dto/req-dto";
+import { StatusReqDto } from "src/cms/post_status/dto/req-dto";
 import { TableConfigReqDto } from "src/cms/table_config/dto/req-dto";
 import { WardsReqDto } from "src/cms/wards/dto/req-dto";
 import { WidgetReqDto } from "src/cms/widget/dto/req-dto";
@@ -84,8 +85,7 @@ export class DtoFactory {
                 return new DistrictReqDto;
             case WardsReqDto.name:
                 return new WardsReqDto;
-
-
+            
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }
