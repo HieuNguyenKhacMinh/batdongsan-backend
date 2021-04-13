@@ -52,7 +52,7 @@ export class PostReqDto implements IReqDtoFactory {
         }
         if (!dto.status_id || dto.status_id.length == 0) {
             errors.push({
-                field: Fields.category_id,
+                field: Fields.status_id,
                 message: messageRequired(Fields.status_id)
             });
         }

@@ -27,6 +27,8 @@ import { WidgetReqDto } from "src/cms/widget/dto/req-dto";
 import { WidgetModule } from "src/cms/widget/widget.module";
 import { ObjectType } from "typeorm";
 import { IReqDtoFactory } from "../interfaces/dto.interface";
+import { ProductTypeReqDto } from "src/cms/product_type/dto/req-dto";
+import { ProductUnitReqDto } from "src/cms/product_unit/dto/req-dto";
 
 export class DtoFactory {
     static getDto<TDto>(type: ObjectType<TDto>): IReqDtoFactory {
@@ -85,7 +87,13 @@ export class DtoFactory {
                 return new DistrictReqDto;
             case WardsReqDto.name:
                 return new WardsReqDto;
-            
+
+            case ProductTypeReqDto.name:
+                return new ProductTypeReqDto;
+
+            case ProductUnitReqDto.name:
+                return new ProductUnitReqDto;
+
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }

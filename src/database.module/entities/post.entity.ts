@@ -10,20 +10,20 @@ export class PostEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "title", type: "varchar", length: 250 })
+    @Column({ name: "title", type: "varchar", length: 250, nullable: true })
     title: string;
 
-    @Column({ name: "content", type: "text" })
+    @Column({ name: "content", type: "text", nullable: true })
     content: string;
 
     @ManyToMany(() => HashtagEntity, { eager: true })
     @JoinTable()
     hashtags: HashtagEntity[];
 
-    @Column({ name: "category_id", type: "uuid" })
+    @Column({ name: "category_id", type: "uuid", nullable: true })
     categoryId: string;
 
-    @Column({ name: "hashtag_id", type: "uuid" })
+    @Column({ name: "hashtag_id", type: "uuid", nullable: true })
     hashtagId: string;
 
     @ManyToOne(() => CategoryEntity, f => f.posts)
@@ -37,7 +37,7 @@ export class PostEntity {
     // @JoinColumn({ name: "widget_id" })
     // widget: WidgetEntity;
 
-    @Column({ name: "status_id", type: "uuid" })
+    @Column({ name: "status_id", type: "uuid", nullable: true })
     statusId: string;
 
     @Column({ name: "page_id", type: "uuid", nullable: true })

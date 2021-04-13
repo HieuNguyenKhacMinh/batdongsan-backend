@@ -22,6 +22,8 @@ import { TableConfigMapper } from "src/cms/table_config/dto/mapper";
 import { WardsMapper } from "src/cms/wards/dto/mapper";
 import { ObjectType } from "typeorm";
 import { IMapperFactory } from "../interfaces/mapper.interface";
+import { ProductTypeMapper } from "src/cms/product_type/dto/mapper";
+import { ProductUnitMapper } from "src/cms/product_unit/dto/mapper";
 
 export class Mapper {
     static getMapper<TMapper>(type: ObjectType<TMapper>): IMapperFactory {
@@ -101,6 +103,12 @@ export class Mapper {
 
             case PageMapper.name:
                 return new PageMapper;
+
+            case ProductTypeMapper.name:
+                return new ProductTypeMapper;
+
+            case ProductUnitMapper.name:
+                return new ProductUnitMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;

@@ -7,7 +7,7 @@ import { ProductUnitMapper } from './dto/mapper';
 import { ProductUnitReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/ProductUnit")
-@Controller('cms/ProductUnit')
+@Controller('cms/product-unit')
 export class ProductUnitController {
     service
     constructor(private connection: Connection) {
