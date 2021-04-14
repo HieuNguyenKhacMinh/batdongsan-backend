@@ -29,6 +29,8 @@ import { ObjectType } from "typeorm";
 import { IReqDtoFactory } from "../interfaces/dto.interface";
 import { ProductTypeReqDto } from "src/cms/product_type/dto/req-dto";
 import { ProductUnitReqDto } from "src/cms/product_unit/dto/req-dto";
+import { MessageReqDto } from "src/cms/message/dto/req-dto";
+import { ProjectReqDto } from "src/cms/project/dto/req-dto";
 
 export class DtoFactory {
     static getDto<TDto>(type: ObjectType<TDto>): IReqDtoFactory {
@@ -94,6 +96,12 @@ export class DtoFactory {
             case ProductUnitReqDto.name:
                 return new ProductUnitReqDto;
 
+            case MessageReqDto.name:
+                return new MessageReqDto;
+
+            case ProjectReqDto.name:
+                return new ProjectReqDto;
+                
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }

@@ -6,7 +6,7 @@ import { Connection } from 'typeorm';
 import { ProvinceCityMapper } from './dto/mapper';
 import { ProvinceCityReqDto} from './dto/req-dto';
 
-@ApiTags("CMS/Province City")
+@ApiTags("CMS/ProvinceCity")
 @Controller('cms/province-city')
 export class ProvinceCityController {
     service

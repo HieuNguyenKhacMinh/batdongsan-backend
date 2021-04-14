@@ -24,6 +24,9 @@ import { ObjectType } from "typeorm";
 import { IMapperFactory } from "../interfaces/mapper.interface";
 import { ProductTypeMapper } from "src/cms/product_type/dto/mapper";
 import { ProductUnitMapper } from "src/cms/product_unit/dto/mapper";
+import { MessageMapper } from "src/cms/message/dto/mapper";
+import { DashboardMapper } from "src/cms/dashboard/dto/mapper";
+import { ProjectMapper } from "src/cms/project/dto/mapper";
 
 export class Mapper {
     static getMapper<TMapper>(type: ObjectType<TMapper>): IMapperFactory {
@@ -109,6 +112,15 @@ export class Mapper {
 
             case ProductUnitMapper.name:
                 return new ProductUnitMapper;
+
+            case MessageMapper.name:
+                return new MessageMapper;
+
+            case DashboardMapper.name:
+                return new DashboardMapper;
+
+            case ProjectMapper.name:
+                return new ProjectMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;
