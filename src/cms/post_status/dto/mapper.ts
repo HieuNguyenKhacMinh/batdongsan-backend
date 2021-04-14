@@ -3,7 +3,7 @@ import { ReadStatusEntity } from "src/database.module/entities";
 import { StatusReqDto } from "./req-dto";
 import { StatusResDto } from "./res-dto";
 
-export class StatusMapper implements IMapperFactory {
+export class PostStatusMapper implements IMapperFactory {
     mapReq(entity: ReadStatusEntity, req: StatusReqDto) {
         if (!entity) entity = new ReadStatusEntity();
         entity.name = req.name;

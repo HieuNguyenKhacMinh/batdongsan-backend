@@ -19,7 +19,7 @@ import { PageReqDto } from "src/cms/page/dto/req-dto";
 import { PageResDto } from "src/cms/page/dto/res-dto";
 import { PostReqDto } from "src/cms/post/dto/req-dto";
 import { ProductReqDto } from "src/cms/product/dto/req-dto";
-import { ProvinceCityReqDto } from "src/cms/province_city/dto/req-dto";
+import { ProvinceCityReqDto } from "src/cms/city/dto/req-dto";
 import { StatusReqDto } from "src/cms/post_status/dto/req-dto";
 import { TableConfigReqDto } from "src/cms/table_config/dto/req-dto";
 import { WardsReqDto } from "src/cms/wards/dto/req-dto";

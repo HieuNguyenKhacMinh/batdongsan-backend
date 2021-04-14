@@ -20,8 +20,8 @@ export class GenericService {
             return errors;
         }
         let entity: any = Mapper.getMapper(this.TMapper).mapReq(undefined, dto)
-        console.log(entity)
         const res = await this.connection.manager.getRepository(this.TEntity).save(entity);
+        console.log(res);
         return Mapper.getMapper(this.TMapper).mapRes(undefined, res)
     }
 
@@ -34,7 +34,9 @@ export class GenericService {
             }
             let entity: any = await this.connection.manager.getRepository(this.TEntity).findOne({ id: id })
             entity = Mapper.getMapper(this.TMapper).mapReq(entity, dto);
-            await this.connection.manager.getRepository(this.TEntity).update({ id: id }, entity);
+            console.log(entity);
+
+            await this.connection.manager.getRepository(this.TEntity).save(entity);
             return Mapper.getMapper(this.TMapper).mapRes(undefined, entity)
         } catch (error) {
             return error

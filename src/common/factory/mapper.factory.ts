@@ -16,8 +16,8 @@ import { OrganizationMapper } from "src/cms/organization/dto/mapper";
 import { PageMapper } from "src/cms/page/dto/mapper";
 import { PostMapper } from "src/cms/post/dto/mapper";
 import { ProductMapper } from "src/cms/product/dto/mapper";
-import { ProvinceCityMapper } from "src/cms/province_city/dto/mapper";
-import { StatusMapper } from "src/cms/post_status/dto/mapper";
+import { ProvinceCityMapper } from "src/cms/city/dto/mapper";
+import { PostStatusMapper } from "src/cms/post_status/dto/mapper";
 import { TableConfigMapper } from "src/cms/table_config/dto/mapper";
 import { WardsMapper } from "src/cms/wards/dto/mapper";
 import { ObjectType } from "typeorm";
@@ -38,8 +38,8 @@ export class Mapper {
             case CategoryMapper.name:
                 return new CategoryMapper;
 
-            case StatusMapper.name:
-                return new StatusMapper;
+            case PostStatusMapper.name:
+                return new PostStatusMapper;
 
             case HashtagMapper.name:
                 return new HashtagMapper;

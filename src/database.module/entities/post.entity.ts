@@ -1,13 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable, PrimaryColumn } from "typeorm";
 import { CategoryEntity } from "./category.entity";
 import { CommentEntity } from "./comment.entity";
 import { HashtagEntity } from "./hashtag.entity";
-import { WidgetEntity } from "./widget.entity";
+import { PostStatusEntity } from "./post_status.entity";
 
 @Entity()
 export class PostEntity {
 
     @PrimaryGeneratedColumn("uuid")
+    @PrimaryColumn({ name: "id" })
     id: string;
 
     @Column({ name: "title", type: "varchar", length: 250, nullable: true })
@@ -40,13 +41,17 @@ export class PostEntity {
     @Column({ name: "status_id", type: "uuid", nullable: true })
     statusId: string;
 
+    @ManyToOne(() => PostStatusEntity, f => f.posts)
+    @JoinColumn({ name: "status_id" })
+    status: PostStatusEntity;
+
     @Column({ name: "page_id", type: "uuid", nullable: true })
     pageId: string;
 
     // @ManyToOne(() => PageEntity, f => f.posts)
     // page: PageEntity;
 
-    @OneToMany(() => CommentEntity, c => c.post, {eager: true })
+    @OneToMany(() => CommentEntity, c => c.post)
     comments: CommentEntity[];
     // /**
     //  * Name
@@ -84,7 +89,7 @@ export class PostEntity {
     @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
     public lastUpdatedBy: string;
 
-    @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
+    @Column({ name: 'site_id', type: 'char', length: 64, nullable: true })
     public siteId: string;
     /**
      * Update Date

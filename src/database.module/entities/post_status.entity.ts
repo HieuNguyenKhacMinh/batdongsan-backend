@@ -1,13 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { PostEntity } from ".";
 
 @Entity()
-export class ReadStatusEntity {
+export class PostStatusEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column({ name: "name", type: "varchar", length: 50 })
     name: string;
+
+    @OneToMany(() => PostEntity, p => p.category, { eager: true })
+    posts: PostEntity[];
 
     // /**
     //  * Name

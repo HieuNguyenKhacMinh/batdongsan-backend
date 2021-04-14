@@ -19,7 +19,7 @@ import { ProductTypeTypeModule } from './cms/product_type/product_type.module';
 import { DistrictModule } from './cms/district/district.module';
 import { CommentModule } from './cms/comment/comment.module';
 import { TableConfigModule } from './cms/table_config/table_config.module';
-import { ProvinceCityTypeModule } from './cms/province_city/province_city.module';
+import { ProvinceCityTypeModule } from './cms/city/city.module';
 import { ProductModule } from './cms/product/product.module';
 import { AddressModule } from './cms/address/address.module';
 import { LeadModule } from './cms/lead/lead.module';

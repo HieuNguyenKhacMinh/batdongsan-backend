@@ -1,3 +1,4 @@
+import { DistrictMapper } from "src/cms/district/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { WardsEntity } from "src/database.module/entities";
 import { WardsReqDto } from "./req-dto";
@@ -17,6 +18,7 @@ export class WardsMapper implements IMapperFactory {
         res.name = entity.name;
         res.description = entity.description;
         res.district_id = entity.districtId;
+        res.district = entity.district ? new DistrictMapper().mapRes(undefined, entity.district): undefined;
         return res;
     }
 

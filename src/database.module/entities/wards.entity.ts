@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { AddressEntity } from "./address.entity";
 import { DistrictEntity } from "./district.entity";
@@ -16,6 +16,7 @@ export class WardsEntity {
     districtId: string;
 
     @ManyToOne(() => DistrictEntity, d => d.wards)
+    @JoinColumn({ name: "district_id"})
     district: DistrictEntity;
 
     @OneToMany(() => ProductEntity, p => p.wards)

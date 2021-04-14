@@ -1,14 +1,19 @@
+import { CategoryReqDto } from "src/cms/category/dto/req-dto";
+import { CategoryResDto } from "src/cms/category/dto/res-dto";
 import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
 import { HashtagResDto } from "src/cms/hashtag/dto/res-dto";
+import { StatusResDto } from "src/cms/post_status/dto/res-dto";
 
 export class PostResDto {
     id: string;
     title: string;
     content: string;
-    Hashtag_id: string;
     category_id: string;
+    category: CategoryResDto;
     widget_id: string;
     status_id: string;
+    status: StatusResDto;
     page_id: string;
-    hashtags: HashtagResDto[]
+    hashtags: HashtagResDto[];
+
 }

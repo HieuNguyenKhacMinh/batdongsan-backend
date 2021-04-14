@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { ReadStatusEntity } from 'src/database.module/entities';
+import { PostStatusEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
-import { StatusMapper } from './dto/mapper';
+import { PostStatusMapper } from './dto/mapper';
 import { StatusReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/PostStatus")
@@ -11,8 +11,8 @@ import { StatusReqDto } from './dto/req-dto';
 export class PostStatusController {
     service
     constructor(private connection: Connection) {
-        this.service = new GenericService(this.connection, StatusMapper, StatusReqDto, ReadStatusEntity);
-     }
+        this.service = new GenericService(this.connection, PostStatusMapper, StatusReqDto, PostStatusEntity);
+    }
 
     @Post()
     async create(@Body() dto: StatusReqDto) {
@@ -20,7 +20,7 @@ export class PostStatusController {
     }
 
     @Get()
-    async findAll() {
+    async findAll() { 
         return this.service.findAll();
     }
 
@@ -33,5 +33,5 @@ export class PostStatusController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}
 

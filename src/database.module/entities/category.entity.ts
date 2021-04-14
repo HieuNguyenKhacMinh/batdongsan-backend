@@ -18,7 +18,6 @@ export class CategoryEntity {
     @OneToMany(() => PostEntity, p => p.category, { eager: true })
     posts: PostEntity[];
 
-
     // /**
     //  * Name
 

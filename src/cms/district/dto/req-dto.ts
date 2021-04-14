@@ -24,13 +24,8 @@ export class DistrictReqDto implements IReqDtoFactory {
                 message: messageRequired(Fields.name)
             });
         }
-        if (!dto.description || dto.description.length == 0) {
-            errors.push({
-                field: Fields.description,
-                message: messageRequired(Fields.description)
-            });
-        }
-           return errors.length > 0 ? errors : undefined;
+
+        return errors.length > 0 ? errors : undefined;
     }
 
 }

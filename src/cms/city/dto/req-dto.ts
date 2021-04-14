@@ -14,7 +14,6 @@ export class ProvinceCityReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
-
     @ApiProperty()
     country_id: string;
 

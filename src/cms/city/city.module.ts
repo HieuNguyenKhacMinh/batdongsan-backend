@@ -1,6 +1,6 @@
 
 import { Module } from '@nestjs/common';
-import { ProvinceCityController } from './province_city.controller';
+import { ProvinceCityController } from './city.controller';
 
 @Module({
     imports: [],

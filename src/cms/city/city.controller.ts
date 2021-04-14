@@ -1,27 +1,29 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { ProvinceCityEntity } from 'src/database.module/entities/province_city.entity';
+import { CityEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
 import { ProvinceCityMapper } from './dto/mapper';
-import { ProvinceCityReqDto} from './dto/req-dto';
+import { ProvinceCityReqDto } from './dto/req-dto';
 
+//  Tỉnh, thành phố trực thuộc trung ương
 @ApiTags("CMS/ProvinceCity")
 @Controller('cms/province-city')
 export class ProvinceCityController {
     service
     constructor(private connection: Connection) {
-        this.service = new GenericService(this.connection, ProvinceCityMapper, ProvinceCityReqDto, ProvinceCityEntity);
-     }
+        this.service = new GenericService(this.connection, ProvinceCityMapper, ProvinceCityReqDto, CityEntity);
+    }
 
     @Post()
-    async create(@Body() dto:ProvinceCityReqDto) {
+    async create(@Body() dto: ProvinceCityReqDto) {
         return this.service.create(dto);
     }
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["country"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')
@@ -33,4 +35,4 @@ export class ProvinceCityController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

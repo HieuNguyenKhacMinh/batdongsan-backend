@@ -21,7 +21,8 @@ export class WardsController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["district"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')
