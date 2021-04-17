@@ -21,7 +21,8 @@ export class ProjectController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["city"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

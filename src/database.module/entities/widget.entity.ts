@@ -7,7 +7,7 @@ export class WidgetEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "Subject", type: "varchar", length: 50 })
+    @Column({ name: "Subject", type: "varchar", length: 1000 })
     name: string;
 
 

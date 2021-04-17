@@ -21,7 +21,8 @@ export class AddressController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["wards","district","city"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

@@ -12,7 +12,7 @@ export class ContactEntity {
     @Column({ name: "contact_address", type: "varchar", length: 100 })
     address: string;
 
-    @Column({ name: "otherdetails", type: "varchar", length: 100 })
+    @Column({ name: "otherdetails", type: "varchar", length: 100,nullable: true })
     otherDetails: string;
 
     @Column({ name: "contact_details", type: "varchar", length: 100})

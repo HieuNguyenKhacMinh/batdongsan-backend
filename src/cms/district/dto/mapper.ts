@@ -17,7 +17,7 @@ export class DistrictMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.city_id = entity.cityId;
-        res.city = entity.city? new ProvinceCityMapper().mapRes(undefined, entity.city): undefined;;
+        res.city = entity.city? new ProvinceCityMapper().mapRes(undefined, entity.city): undefined;
         res.description = entity.description;
         return res;
     }

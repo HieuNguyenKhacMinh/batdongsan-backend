@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { ProductEntity } from ".";
+import { ProductTypeEntity } from "./product_type.entity";
+import { ProjectTypeEntity } from "./project_type.entity";
 
 @Entity()
 export class FormalityEntity {
@@ -13,6 +15,11 @@ export class FormalityEntity {
     @OneToMany(() => ProductEntity, p => p.formality)
     products: ProductEntity[];
 
+    @OneToMany(() => ProductTypeEntity, a => a.formality)
+    productType: ProductTypeEntity[]
+
+    @OneToMany(() => ProjectTypeEntity, a => a.formality)
+    projectType: ProjectTypeEntity[]
     // /**
     //  * Name
     //  */

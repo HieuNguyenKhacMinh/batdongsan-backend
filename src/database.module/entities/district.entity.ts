@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { AddressEntity } from ".";
 import { CityEntity } from "./city.entity";
+import { ProductEntity } from "./product.entity";
 import { WardsEntity } from "./wards.entity";
 
 /**
@@ -29,6 +30,8 @@ export class DistrictEntity {
     addresses: AddressEntity[]
 
 
+    @OneToMany(() => ProductEntity, p => p.district)
+    products: ProductEntity[];
     // /**
     //  * Name
     //  */

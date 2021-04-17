@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
 import { DistrictEntity } from "./district.entity";
@@ -21,18 +21,21 @@ export class AddressEntity {
     wardsId: string;
 
     @ManyToOne(() => WardsEntity, w => w.addresses)
+    @JoinColumn({ name: "wards_id" })
     wards: WardsEntity;
 
     @Column({ name: "city_id", type: "uuid" })
     cityId: string;
 
     @ManyToOne(() => CityEntity, c => c.addresses)
+    @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
     @Column({ name: "district_id", type: "uuid" })
     districtId: string;
 
     @ManyToOne(() => DistrictEntity, d => d.addresses)
+    @JoinColumn({ name: "district_id" })
     district: DistrictEntity;
 
     @OneToMany(() => ProductEntity, p => p.address)

@@ -1,3 +1,4 @@
+import { ProvinceCityMapper } from "src/cms/city/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { ProjectEntity } from "src/database.module/entities";
 import { ProjectReqDto } from "./req-dto";
@@ -17,6 +18,7 @@ export class ProjectMapper implements IMapperFactory {
         res.name = entity.name;
         res.description = entity.description;
         res.city_id = entity.cityId;
+        res.city = entity.city? new ProvinceCityMapper().mapRes(undefined, entity.city): undefined;
         return res;
     }
 

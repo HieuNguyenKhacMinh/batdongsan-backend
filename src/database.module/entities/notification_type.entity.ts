@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { NotificationEntity } from "./notification.entity";
 
 @Entity()
 export class NotificationTypeEntity {
@@ -9,6 +10,8 @@ export class NotificationTypeEntity {
     @Column({ name: "name", type: "varchar", length: 50 })
     name: string;
 
+    @OneToMany(() => NotificationEntity, a => a.notificationType)
+    notifications: NotificationEntity[]
 
     // /**
     //  * Name

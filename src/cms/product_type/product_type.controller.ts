@@ -20,8 +20,10 @@ export class ProductTypeController {
     }
 
     @Get()
-    async findAll() {
-        return this.service.findAll();
+   
+    async findAll() { 
+        const condition = { relations: ["formality"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 
 @Entity()
@@ -13,11 +13,15 @@ export class FileEntity {
     @Column({ name: "path", type: "varchar", length: 100 })
     path: string;
 
+    @Column({ name: "product_id", type: "varchar", length: 100 })
+    productId: string;
 
     @ManyToOne(() => ProductEntity, p => p.files)
+    @JoinColumn({name: "product_id"})
     productFile: ProductEntity;
 
     @ManyToOne(() => ProductEntity, p => p.videos)
+    @JoinColumn({name: "product_id"})
     productVideo: ProductEntity;
 
     // /**

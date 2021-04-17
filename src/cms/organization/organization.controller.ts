@@ -21,7 +21,8 @@ export class OrganizationController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["address"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

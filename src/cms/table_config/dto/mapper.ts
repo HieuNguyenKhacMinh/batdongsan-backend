@@ -13,8 +13,6 @@ export class TableConfigMapper implements IMapperFactory {
         return entity;
     }
     mapRes(res: TableConfigResDto, entity: TableConfigEntity) {
-        console.log(entity);
-        
         if (!res) res = new TableConfigResDto();
         res.id = entity.id;
         res.name = entity.name;

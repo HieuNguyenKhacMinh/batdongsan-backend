@@ -21,7 +21,8 @@ export class LeadController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["organization"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

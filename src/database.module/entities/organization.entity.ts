@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { AddressEntity } from "./address.entity";
 import { LeadEntity } from "./lead.entity";
+import { OpportunityEntity } from "./Opportunity.entity";
 
 @Entity()
 export class OrganizationEntity {
@@ -24,10 +25,15 @@ export class OrganizationEntity {
     addressId:string;
 
     @OneToOne(() => AddressEntity, a => a.organization)
+    @JoinColumn({name: "address_id"})
     address: AddressEntity;
+    
 
     @OneToMany(() => LeadEntity, l => l.organization)
-    leads: LeadEntity[]
+    leads: LeadEntity[];
+
+    @OneToMany(() => OpportunityEntity, l => l.organization)
+    Opportunitys: OpportunityEntity[]
     // /**
     //  * Name
     //  */

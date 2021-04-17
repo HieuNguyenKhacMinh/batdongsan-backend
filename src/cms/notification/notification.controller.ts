@@ -21,7 +21,8 @@ export class NotificationController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["notificationType"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

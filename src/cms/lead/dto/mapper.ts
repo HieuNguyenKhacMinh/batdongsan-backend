@@ -1,3 +1,4 @@
+import { OrganizationMapper } from "src/cms/organization/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import {  LeadEntity } from "src/database.module/entities";
 import { LeadReqDto } from "./req-dto";
@@ -19,6 +20,7 @@ export class LeadMapper implements IMapperFactory {
         res.surename = entity.sureName;
         res.otherdetails = entity.otherDetails;
         res.organization_id = entity.organizationId;
+        res.organization = entity.organization? new OrganizationMapper().mapRes(undefined, entity.organization): undefined;
         return res;
     }
 

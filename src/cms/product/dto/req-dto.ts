@@ -9,48 +9,58 @@ export enum Fields {
 
 export class ProductReqDto implements IReqDtoFactory {
     @ApiProperty()
-    id : string ;    sub_title :string;
+    id: string; sub_title: string;
     @ApiProperty()
-    title	:string;
+    title: string;
     @ApiProperty()
-    sub_description	:string;
+    sub_description: string;
     @ApiProperty()
-    description	:string;
+    description: string;
     @ApiProperty()
-    price	 :number;
+    price: number;
     @ApiProperty()
-    files	: FileEntity[];
+    files: FileEntity[];
     @ApiProperty()
-    videos	 : FileEntity[];
+    videos: FileEntity[];
     @ApiProperty()
-    formality_id	:string;
+    formality_id: string;
     @ApiProperty()
-    address_id	:string;
+    address_id: string;
+    // addres info
+    // home number
     @ApiProperty()
-    ward_id	:string;
+    home_number: string;
+    // street
     @ApiProperty()
-    city_id	:string;
+    street: string;
+    // district
     @ApiProperty()
-    product_type	:string;
+    district_id: string;
+
     @ApiProperty()
-    project_id	:string;
+    wards_id: string;
     @ApiProperty()
-    product_unit_id	:string;
+    city_id: string;
     @ApiProperty()
-    house_direstion_id	:string;
+    product_type: string;
     @ApiProperty()
-    acreage	:number;
+    project_id: string;
     @ApiProperty()
-    facade	:number;
+    product_unit_id: string;
     @ApiProperty()
-    entry_width	:number;
+    house_direstion_id: string;
     @ApiProperty()
-    balcony_direction_id : string;	
+    acreage: number;
     @ApiProperty()
-    no_of_bedroom	:number;
+    facade: number;
     @ApiProperty()
-    no_of_toilet	:number;
-   
+    entry_width: number;
+    @ApiProperty()
+    balcony_direction_id: string;
+    @ApiProperty()
+    no_of_bedroom: number;
+    @ApiProperty()
+    no_of_toilet: number;
     validate(dto: ProductReqDto) {
         var errors = [];
         if (!dto.title || dto.title.length == 0) {
@@ -59,7 +69,7 @@ export class ProductReqDto implements IReqDtoFactory {
                 message: messageRequired(Fields.title)
             });
         }
-           return errors.length > 0 ? errors : undefined;
+        return errors.length > 0 ? errors : undefined;
     }
 
 }

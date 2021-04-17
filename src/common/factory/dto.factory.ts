@@ -31,6 +31,9 @@ import { ProductTypeReqDto } from "src/cms/product_type/dto/req-dto";
 import { ProductUnitReqDto } from "src/cms/product_unit/dto/req-dto";
 import { MessageReqDto } from "src/cms/message/dto/req-dto";
 import { ProjectReqDto } from "src/cms/project/dto/req-dto";
+import { OpportunityResDto } from "src/cms/opportunity/dto/res-dto";
+import { OpportunityReqDto } from "src/cms/opportunity/dto/req-dto";
+import { ContactReqDto } from "src/cms/contact/dto/req-dto";
 
 export class DtoFactory {
     static getDto<TDto>(type: ObjectType<TDto>): IReqDtoFactory {
@@ -101,7 +104,17 @@ export class DtoFactory {
 
             case ProjectReqDto.name:
                 return new ProjectReqDto;
-                
+
+            case OpportunityReqDto.name:
+                return new OpportunityReqDto;
+
+            case ContactReqDto.name:
+                return new ContactReqDto;
+
+            case WidgetReqDto.name:
+                return new WidgetReqDto;
+
+
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }

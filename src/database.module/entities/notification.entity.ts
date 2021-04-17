@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { NotificationTypeEntity } from "./notification_type.entity";
 
 @Entity()
 export class NotificationEntity {
@@ -15,10 +16,12 @@ export class NotificationEntity {
      * 1: 
      * 2: 
      */
-    @Column({ name: "notification_type", type: "int" })
-    notificationType: string;
+    @Column({ name: "notification_type_id", type: "uuid" })
+    notificationTypeId: string;
  
-
+    @ManyToOne(() => NotificationTypeEntity, d => d.notifications)
+    @JoinColumn({name: "notification_type_id"})
+    notificationType: NotificationTypeEntity;
     /**
      * Description
      */

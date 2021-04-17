@@ -33,6 +33,8 @@ import { ProjectModule } from './cms/project/project.module';
 import { ProductUnitModule } from './cms/product_unit/product_unit.module';
 import { WardsModule } from './cms/wards/wards.module';
 import { CountryModule } from './cms/country/country.module';
+import { OpportunityModule } from './cms/opportunity/lead.module';
+import { ContactModule } from './cms/contact/contact.module';
 
 @Module({
   imports: [
@@ -70,6 +72,8 @@ import { CountryModule } from './cms/country/country.module';
     WardsModule,
     ProvinceCityTypeModule,
     CountryModule,
+    OpportunityModule,
+    ContactModule,
   ],
   controllers: [
     ],

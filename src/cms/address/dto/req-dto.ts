@@ -13,7 +13,6 @@ export class AddressReqDto implements IReqDtoFactory {
     @ApiProperty()
     home_number: string;
     @ApiProperty()
-    @ApiProperty()
     street: string;
     @ApiProperty()
     wards_id: string;

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
+import { FormalityEntity } from "./fomality.entity";
 
 @Entity()
 export class ProductTypeEntity {
@@ -9,9 +10,16 @@ export class ProductTypeEntity {
 
     @Column({ name: "name", type: "varchar", length: 100 })
     name: string;
+    
+    @Column({ name: "order", type: "int", default: 0 })
+    order: number;
 
     @Column({ name: "formality_id", type: "uuid" })
     formalityId: string;
+
+    @ManyToOne(() => FormalityEntity, d => d.productType)
+    @JoinColumn({name: "formality_id"})
+    formality: FormalityEntity;
     
     @OneToMany(() => ProductEntity, p => p.productType)
     products: ProductEntity[];

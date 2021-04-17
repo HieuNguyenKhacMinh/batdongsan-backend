@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
+import { ProjectTypeEntity } from "./project_type.entity";
 
 @Entity()
 export class ProjectEntity {
@@ -15,11 +16,18 @@ export class ProjectEntity {
     cityId: string;
 
     @ManyToOne(() => CityEntity, f => f.projects)
+    @JoinColumn({name: "city_id"})
     city: CityEntity;
     
     @OneToMany(() => ProductEntity, p => p.project)
     products: ProductEntity[];
 
+    @Column({ name: "project_type_id", type: "uuid", nullable: true })
+    projectTypeId: string;
+
+    @ManyToOne(() => ProjectTypeEntity, f => f.projects)
+    @JoinColumn({name: "project_type_id"})
+    projectType: ProjectTypeEntity;
     /**
      * Description
      */
