@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { AddressEntity } from "./address.entity";
 import { LeadEntity } from "./lead.entity";
-import { OpportunityEntity } from "./Opportunity.entity";
+import { OpportunityEntity } from "./opportunity.entity";
 
 @Entity()
 export class OrganizationEntity {

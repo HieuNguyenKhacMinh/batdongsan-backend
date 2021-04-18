@@ -1,38 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { CompanyEntity } from "./company.entity";
-import { OrganizationEntity } from "./organization.entity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { PostEntity } from ".";
 
 @Entity()
-export class OpportunityEntity {
+export class HashtagEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "firsname", type: "varchar", length: 100 })
-    firsName: string;
+    @Column({ name: "name", type: "varchar", length: 50 })
+    name: string;
 
-    @Column({ name: "surename", type: "varchar", length: 100 })
-    sureName: string;
+    @Column({ name: "user_id", type: "uuid" })
+    userId: string;
 
-    @Column({ name: "otherdetails", type: "varchar", length: 100 })
-    otherDetails: string;
-
-    @Column({ name: "organization_id", type: "uuid" })
-    organizationId: string;
-
-    @Column({ name: "company_id", type: "uuid" })
-    companyId: string;
-
-    @ManyToOne(()=> OrganizationEntity, o => o.Opportunitys)
-    @JoinColumn({name: "organization_id"})
-    organization: OrganizationEntity;
+    @Column({ name: "product_id", type: "uuid" })
+    productId: string;
 
 
-    @ManyToOne(()=> CompanyEntity, o => o.opportunities)
-    @JoinColumn({name: "company_id"})
-    company: CompanyEntity;
-
-   // /**
+    @ManyToMany(()=> PostEntity, p => p.hashtags)
+    posts: PostEntity[];
+    // /**
     //  * Name
     //  */
     // @Column({ name: 'name', type: 'varchar', length: 255, nullable: true })
@@ -76,14 +63,3 @@ export class OpportunityEntity {
      @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
      public lastUpdateDate: string;
 }
-
-
-
-
-
-
-
-
-
-
-

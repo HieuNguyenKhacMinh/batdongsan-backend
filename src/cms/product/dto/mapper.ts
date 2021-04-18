@@ -21,7 +21,7 @@ export class ProductMapper implements IMapperFactory {
     mapReq(entity: ProductEntity, req: ProductReqDto) {
         if (!entity) entity = new ProductEntity();
         entity.id = req.id;
-        entity.sub_title = req.sub_title;
+        entity.subTitle = req.sub_title;
         entity.title = req.title;
         entity.description = req.description;
         entity.price = req.price;
@@ -30,7 +30,7 @@ export class ProductMapper implements IMapperFactory {
         entity.formalityId = req.formality_id;
         entity.productTypeId = req.product_type;
         entity.productUnitId = req.product_unit_id;
-        entity.sub_description = req.sub_description;
+        entity.subDescription = req.sub_description;
         entity.wardsId = req.wards_id;
         entity.addressId = req.address_id;
         entity.houseDirestionId = req.house_direstion_id;
@@ -46,8 +46,9 @@ export class ProductMapper implements IMapperFactory {
     mapRes(res: ProductResDto, entity: ProductEntity) {
         if (!res) res = new ProductResDto();
         res.id = entity.id;
-        res.sub_title = entity.sub_title;
+        res.sub_title = entity.subTitle;
         res.title = entity.title;
+        res.sub_description = entity.subDescription;
         res.description = entity.description;
         res.price = entity.price;
         res.formality_id = res.formality_id;

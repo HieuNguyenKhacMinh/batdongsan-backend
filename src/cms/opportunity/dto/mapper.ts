@@ -1,6 +1,6 @@
 import { OrganizationMapper } from "src/cms/organization/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
-import { OpportunityEntity } from "src/database.module/entities/Opportunity.entity";
+import { OpportunityEntity } from "src/database.module/entities/opportunity.entity";
 import { OpportunityReqDto } from "./req-dto";
 import { OpportunityResDto } from "./res-dto";
 

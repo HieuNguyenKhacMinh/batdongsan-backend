@@ -1,4 +1,7 @@
-﻿import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+﻿import { UserEntity } from '../entities/User.entity';
+import { LeadEntity, ContactEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { OpportunityEntity } from './opportunity.entity';
 
 @Entity()
 export class CompanyEntity {
@@ -21,6 +24,18 @@ export class CompanyEntity {
     @Column({ name: "email", type: "varchar", length: 100 })
     email: string;
     
+    @OneToMany(() => LeadEntity, l => l.company)
+    leads: LeadEntity[];
+
+    @OneToMany(() => OpportunityEntity, l => l.company)
+    opportunities: OpportunityEntity[];
+
+    @OneToMany(() => UserEntity, l => l.company)
+    users: UserEntity[];
+
+    @OneToMany(() => ContactEntity, l => l.company)
+    contacts: ContactEntity[];
+
     // /**
     //  * Name
     //  */

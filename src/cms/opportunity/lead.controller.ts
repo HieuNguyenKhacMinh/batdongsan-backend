@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { OpportunityEntity } from 'src/database.module/entities/Opportunity.entity';
+import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { Connection } from 'typeorm';
 import { OpportunityMapper } from './dto/mapper';
 import { OpportunityReqDto } from './dto/req-dto';

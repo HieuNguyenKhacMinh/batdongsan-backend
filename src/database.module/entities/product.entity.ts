@@ -16,13 +16,13 @@ export class ProductEntity {
     id: string;
 
     @Column({ name: "sub_title", type: "varchar", length: 100 })
-    sub_title: string;
+    subTitle: string;
 
     @Column({ name: "title", type: "varchar", length: 512 })
     title: string;
 
     @Column({ name: "sub_description", type: "varchar", length: 255 })
-    sub_description: string;
+    subDescription: string;
 
     @Column({ name: "price", type: "decimal" })
     price: number;

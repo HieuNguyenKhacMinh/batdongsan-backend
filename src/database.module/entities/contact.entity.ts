@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { CompanyEntity } from './company.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity()
 export class ContactEntity {
@@ -18,6 +19,14 @@ export class ContactEntity {
     @Column({ name: "contact_details", type: "varchar", length: 100})
     contactDetails: string;
 
+    @Column({ name: "company_id", type: "uuid" })
+    companyId: string;
+
+    @ManyToOne(()=> CompanyEntity, o => o.contacts)
+    @JoinColumn({name: "company_id"})
+    company: CompanyEntity;
+
+   
    // /**
     //  * Name
     //  */
