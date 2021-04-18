@@ -1,9 +1,9 @@
 import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
 
-export class ProjectResDto {
+export class DistrictResDto {
     id: string;
     name: string;
-    city_id: string;
-    city:ProvinceCityResDto;
     description: string;
+    city_id: string;
+    city: ProvinceCityResDto;
 }

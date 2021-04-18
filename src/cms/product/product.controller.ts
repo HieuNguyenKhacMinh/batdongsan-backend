@@ -3,8 +3,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { AddressEntity, ProductEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
-import { AddressMapper } from '../address/dto/mapper';
-import { AddressReqDto } from '../address/dto/req-dto';
+import { AddressMapper } from '../../master-data/address/dto/mapper';
+import { AddressReqDto } from '../../master-data/address/dto/req-dto';
 import { ProductMapper } from './dto/mapper';
 import { ProductReqDto } from './dto/req-dto';
 

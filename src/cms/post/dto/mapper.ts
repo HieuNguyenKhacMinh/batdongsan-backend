@@ -1,7 +1,7 @@
 import { CategoryMapper } from "src/cms/category/dto/mapper";
 import { CategoryResDto } from "src/cms/category/dto/res-dto";
 import { HashtagMapper } from "src/cms/hashtag/dto/mapper";
-import { PostStatusMapper } from "src/cms/post_status/dto/mapper";
+import { PostStatusMapper } from "src/master-data/post_status/dto/mapper";
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { PostEntity } from "src/database.module/entities";
 import { PostReqDto } from "./req-dto";

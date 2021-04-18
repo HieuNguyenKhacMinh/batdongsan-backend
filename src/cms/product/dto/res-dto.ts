@@ -1,14 +1,13 @@
-import { AddressResDto } from "src/cms/address/dto/res-dto";
-import { ProvinceCityResDto } from "src/cms/city/dto/res-dto";
-import { DistrictResDto } from "src/cms/district/dto/res-dto";
-import { FormalityResDto } from "src/cms/formality/dto/res-dto";
-import { HouseDirestionResDto } from "src/cms/house_direstion/dto/res-dto";
-import { ProductTypeResDto } from "src/cms/product_type/dto/res-dto";
-import { ProductUnitReqDto } from "src/cms/product_unit/dto/req-dto";
-import { ProductUnitResDto } from "src/cms/product_unit/dto/res-dto";
+import { AddressResDto } from "src/master-data/address/dto/res-dto";
+import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
+import { DistrictResDto } from "src/master-data/district/dto/res-dto";
+import { FormalityResDto } from "src/master-data/formality/dto/res-dto";
+import { HouseDirestionResDto } from "src/master-data/house_direstion/dto/res-dto";
+import { ProductTypeResDto } from "src/master-data/product_type/dto/res-dto";
+import { ProductUnitResDto } from "src/master-data/product_unit/dto/res-dto";
 import { ProjectResDto } from "src/cms/project/dto/res-dto";
-import { WardsResDto } from "src/cms/wards/dto/res-dto";
-import { FileEntity } from "src/database.module/entities";
+import { WardsResDto } from "src/master-data/wards/dto/res-dto";
+
 
 export class ProductResDto {
     id: string

@@ -2,7 +2,7 @@ import { CategoryReqDto } from "src/cms/category/dto/req-dto";
 import { CategoryResDto } from "src/cms/category/dto/res-dto";
 import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
 import { HashtagResDto } from "src/cms/hashtag/dto/res-dto";
-import { StatusResDto } from "src/cms/post_status/dto/res-dto";
+import { StatusResDto } from "src/master-data/post_status/dto/res-dto";
 
 export class PostResDto {
     id: string;

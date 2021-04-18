@@ -14,12 +14,13 @@ export class CountryEntity {
     @Column({ name: "name", type: "varchar", length: 50 })
     name: string;
 
-    @OneToMany(() => ProductEntity, p => p.city)
+    @OneToMany(() => ProductEntity, p => p.country)
     products: ProductEntity[];
 
     @OneToMany(() => CityEntity, c => c.country)
     cities: CityEntity[];
 
+   
     // /**
     //  * Name
     //  */

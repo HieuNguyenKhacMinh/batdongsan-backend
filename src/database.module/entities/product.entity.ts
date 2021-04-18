@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { CountryEntity } from 'src/database.module/entities/country.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, TreeLevelColumn } from "typeorm";
 import { AddressEntity, FileEntity, ProductTypeEntity } from ".";
 import { BalconydirectionEntity } from "./balcony_direction.entity";
 import { CityEntity } from "./city.entity";
@@ -37,63 +38,70 @@ export class ProductEntity {
     formalityId: string;
 
     @ManyToOne(() => FormalityEntity, f => f.products)
-    @JoinColumn({name: "formality_id"})
+    @JoinColumn({ name: "formality_id" })
     formality: FormalityEntity;
 
     @Column({ name: "address_id", type: "uuid" })
     addressId: string;
 
     @ManyToOne(() => AddressEntity, f => f.products)
-    @JoinColumn({name: "address_id"})
+    @JoinColumn({ name: "address_id" })
     address: AddressEntity;
 
     @Column({ name: "district_id", type: "uuid" })
     districtId: string;
 
+    @Column({ name: "country_id", type: "uuid" })
+    countryId: string;
+
+    @ManyToOne(() => CountryEntity, f => f.products)
+    @JoinColumn({ name: "country_id" })
+    country: DistrictEntity;
+
     @ManyToOne(() => DistrictEntity, f => f.products)
-    @JoinColumn({name: "district_id"})
+    @JoinColumn({ name: "district_id" })
     district: DistrictEntity;
 
     @Column({ name: "ward_id", type: "uuid" })
     wardsId: string;
 
     @ManyToOne(() => WardsEntity, f => f.products)
-     @JoinColumn({name: "ward_id"})
+    @JoinColumn({ name: "ward_id" })
     wards: WardsEntity;
 
     @Column({ name: "city_id", type: "uuid" })
     cityId: string;
 
     @ManyToOne(() => CityEntity, f => f.products)
-    @JoinColumn({name: "city_id"})
+    @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
     @Column({ name: "product_type", type: "uuid" })
     productTypeId: string;
 
     @ManyToOne(() => ProductTypeEntity, f => f.products)
-    @JoinColumn({name: "product_type"})
+    @JoinColumn({ name: "product_type" })
     productType: ProductTypeEntity;
 
     @Column({ name: "project_id", type: "uuid" })
     projectId: string;
 
     @ManyToOne(() => ProjectEntity, f => f.products)
-    @JoinColumn({name: "project_id"})
+    @JoinColumn({ name: "project_id" })
     project: ProjectEntity;
 
     @Column({ name: "product_unit_id", type: "uuid" })
     productUnitId: string;
 
     @ManyToOne(() => ProductUnitTypeEntity, f => f.products)
-    @JoinColumn({name: "product_unit_id"})
+    @JoinColumn({ name: "product_unit_id" })
     productUnitType: ProductUnitTypeEntity;
 
     @Column({ name: "house_direstion_id", type: "uuid" })
     houseDirestionId: string;
 
     @ManyToOne(() => HouseDirestionEntity, f => f.products)
-    @JoinColumn({name: "house_direstion_id"})
+    @JoinColumn({ name: "house_direstion_id" })
     houseDirestion: HouseDirestionEntity;
 
     @Column({ name: "acreage", type: "decimal" })
@@ -109,7 +117,7 @@ export class ProductEntity {
     balconyDirectionId: string;
 
     @ManyToOne(() => BalconydirectionEntity, f => f.products)
-    @JoinColumn({name: "balcony_direction_id"})
+    @JoinColumn({ name: "balcony_direction_id" })
     balconyDirection: BalconydirectionEntity;
 
     @Column({ name: "no_of_bedroom", type: "int" })
@@ -117,7 +125,7 @@ export class ProductEntity {
 
     @Column({ name: "no_of_toilet", type: "int" })
     noOfToilet: number;
-    
+
     /**
      * Description
      */
