@@ -16,13 +16,13 @@ export class ProductEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "sub_title", type: "varchar", length: 100 })
+    @Column({ name: "sub_title", type: "varchar", length: 250 })
     subTitle: string;
 
     @Column({ name: "title", type: "varchar", length: 512 })
     title: string;
 
-    @Column({ name: "sub_description", type: "varchar", length: 255 })
+    @Column({ name: "sub_description", type: "varchar", length: 500 })
     subDescription: string;
 
     @Column({ name: "price", type: "decimal" })
@@ -56,7 +56,7 @@ export class ProductEntity {
 
     @ManyToOne(() => CountryEntity, f => f.products)
     @JoinColumn({ name: "country_id" })
-    country: DistrictEntity;
+    country: CountryEntity;
 
     @ManyToOne(() => DistrictEntity, f => f.products)
     @JoinColumn({ name: "district_id" })
@@ -76,14 +76,14 @@ export class ProductEntity {
     @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
-    @Column({ name: "product_type", type: "uuid" })
+    @Column({ name: "product_type_id", type: "uuid" })
     productTypeId: string;
 
     @ManyToOne(() => ProductTypeEntity, f => f.products)
-    @JoinColumn({ name: "product_type" })
+    @JoinColumn({ name: "product_type_id" })
     productType: ProductTypeEntity;
 
-    @Column({ name: "project_id", type: "uuid" })
+    @Column({ name: "project_id", type: "uuid", nullable: true  })
     projectId: string;
 
     @ManyToOne(() => ProjectEntity, f => f.products)

@@ -30,6 +30,9 @@ export class MenuEntity {
     @Column({ name: 'description', type: 'longtext', nullable: true })
     public description: string;
 
+    @Column({ name: 'path', type: 'varchar', length: 64, })
+    public path: string;
+
     /**
      * Delete Flag
      */

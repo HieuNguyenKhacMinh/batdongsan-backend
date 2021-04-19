@@ -28,6 +28,12 @@ export class PostController {
         return this.service.findAll(condition);
     }
 
+    @Get(":id")
+    async findOne(@Param("id") id: string) {
+        const condition: any = { relations: ["category", "status"], where: { id } };
+        return this.service.findOne(condition);
+    }
+
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: PostReqDto) {
         return this.service.update(id, dto);

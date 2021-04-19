@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColum
 import { AddressEntity } from ".";
 import { CityEntity } from "./city.entity";
 import { ProductEntity } from "./product.entity";
+import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
 
 /**
@@ -32,6 +33,11 @@ export class DistrictEntity {
 
     @OneToMany(() => ProductEntity, p => p.district)
     products: ProductEntity[];
+
+    @OneToMany(() => ProjectEntity, p => p.district)
+    projects: ProjectEntity[];
+
+
     // /**
     //  * Name
     //  */

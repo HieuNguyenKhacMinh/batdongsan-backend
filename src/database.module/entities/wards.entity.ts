@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColum
 import { ProductEntity } from ".";
 import { AddressEntity } from "./address.entity";
 import { DistrictEntity } from "./district.entity";
+import { ProjectEntity } from "./project.entity";
 
 @Entity()
 export class WardsEntity {
@@ -24,6 +25,9 @@ export class WardsEntity {
 
     @OneToMany(() => AddressEntity, a => a.wards)
     addresses: AddressEntity[]
+
+    @OneToMany(() => ProjectEntity, a => a.wards)
+    projects: ProjectEntity[]
 
     // /**
     //  * Name

@@ -1,3 +1,4 @@
+import { CountryMapper } from 'src/master-data/country/dto/mapper';
 import { Req } from "@nestjs/common";
 import { emit } from "process";
 import { AddressMapper } from "src/master-data/address/dto/mapper";
@@ -39,6 +40,7 @@ export class ProductMapper implements IMapperFactory {
         entity.noOfToilet = req.no_of_toilet;
         entity.noOfBedroom = req.no_of_bedroom;
         entity.districtId = req.district_id;
+        entity.countryId =req.country_id;
         return entity;
     }
     mapRes(res: ProductResDto, entity: ProductEntity) {
@@ -74,6 +76,8 @@ export class ProductMapper implements IMapperFactory {
         res.no_of_bedroom = entity.noOfBedroom;
         res.no_of_toilet = entity.noOfToilet;
         res.acreage = entity.acreage;
+        res.country_id = entity.countryId;
+        res.country = entity.country? new CountryMapper().mapRes(undefined, entity.country): undefined;
         res.district_id = entity.districtId;
         res.district = entity.district? new DistrictMapper().mapRes(undefined, entity.district): undefined;
         return res;

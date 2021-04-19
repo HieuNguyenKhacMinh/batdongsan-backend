@@ -7,6 +7,7 @@ import { ProductTypeResDto } from "src/master-data/product_type/dto/res-dto";
 import { ProductUnitResDto } from "src/master-data/product_unit/dto/res-dto";
 import { ProjectResDto } from "src/cms/project/dto/res-dto";
 import { WardsResDto } from "src/master-data/wards/dto/res-dto";
+import { CountryResDto } from "src/master-data/country/dto/res-dto";
 
 
 export class ProductResDto {
@@ -41,4 +42,6 @@ export class ProductResDto {
     balcony_direstion: HouseDirestionResDto;
     no_of_bedroom: number;
     no_of_toilet: number;
+    country_id:string;
+    country:CountryResDto;
 }

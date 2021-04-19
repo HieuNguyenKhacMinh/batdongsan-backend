@@ -33,7 +33,7 @@ export class PostMapper implements IMapperFactory {
         res.hashtags = entity.hashtags ? entity.hashtags.map(tag => {
             return new HashtagMapper().mapRes(undefined, tag)
         }) : [];
-
+      
         return res;
     }
 

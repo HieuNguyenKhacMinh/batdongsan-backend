@@ -10,7 +10,7 @@ export class ProjectTypeEntity {
 
     @Column({ name: "name", type: "varchar", length: 100 })
     name: string;
-
+   
     @Column({ name: "formality_id", type: "uuid" })
     formalityId: string;
 

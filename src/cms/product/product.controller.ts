@@ -35,6 +35,17 @@ export class ProductController {
         return this.service.findAll(condition);
     }
 
+
+    @Get(":id")
+    async findOne(@Param("id") id: string) {
+        const condition = {
+            relations: ["formality", "houseDirestion",
+                "productUnitType", "project", "wards", "address",
+                "balconyDirection", "city", "productType"], where: { id }
+        };
+        return this.service.findOne(condition);
+    }
+
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: ProductReqDto) {
         return this.service.update(id, dto);

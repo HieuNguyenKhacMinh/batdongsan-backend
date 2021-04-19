@@ -61,6 +61,8 @@ export class ProductReqDto implements IReqDtoFactory {
     no_of_bedroom: number;
     @ApiProperty()
     no_of_toilet: number;
+    @ApiProperty()
+    country_id: string;
     validate(dto: ProductReqDto) {
         var errors = [];
         if (!dto.title || dto.title.length == 0) {

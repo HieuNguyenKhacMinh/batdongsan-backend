@@ -12,7 +12,37 @@ export class ProjectReqDto implements IReqDtoFactory {
     @ApiProperty()
     name: string;
     @ApiProperty()
+    coutry_id:string;
+    @ApiProperty()
     city_id: string;
+    @ApiProperty()
+    district_id: string;
+    @ApiProperty()
+    wards_id : string;
+    @ApiProperty()
+    address_id : string;
+    @ApiProperty()
+    distribution_unit:string; // Đơn vị phân phối
+    @ApiProperty()
+    total_area: number;  // Tổng diện tích
+    @ApiProperty()
+    street: string;
+    @ApiProperty()
+    home_number:number;
+    @ApiProperty()
+    latitude: number;   // tọa độ x
+    @ApiProperty()
+    longitude: number;  // tọa độ y
+    @ApiProperty()
+    overview: string;   // tổng quan
+    @ApiProperty()
+    infrastructure_location : string;  //Vị trí mặt bằng
+    @ApiProperty()
+    infrastructure_design: string;   // Thiết kế mặt bằng
+    @ApiProperty()
+    photoLibrary: string;
+    @ApiProperty()
+    project_type_id: string;
     @ApiProperty()
     description: string;
     validate(dto: ProjectReqDto) {

@@ -21,7 +21,8 @@ export class ProjectController {
 
     @Get()
     async findAll() {
-        const condition = { relations: ["city"], where: {} };
+        const condition = { relations: ["city","country","district","wards","address"
+    ,"projectType"], where: {} };
         return this.service.findAll(condition);
     }
 

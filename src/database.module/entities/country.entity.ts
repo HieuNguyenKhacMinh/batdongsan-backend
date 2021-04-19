@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
+import { ProjectEntity } from "./project.entity";
 
 /**
  * Quốc gia
@@ -19,6 +20,9 @@ export class CountryEntity {
 
     @OneToMany(() => CityEntity, c => c.country)
     cities: CityEntity[];
+
+    @OneToMany(() => ProjectEntity, c => c.country)
+    projects: ProjectEntity[];
 
    
     // /**

@@ -8,6 +8,7 @@ export class MenuMapper implements IMapperFactory {
         if (!entity) entity = new MenuEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.path = req.path;
         entity.parentId = req.parent_id;
         return entity;
     }
@@ -16,6 +17,7 @@ export class MenuMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.path = entity.path;
         res.children = entity.children ? entity.children.map(c => new MenuMapper().mapRes(undefined, c)) : undefined;
         return res;
     }

@@ -13,6 +13,8 @@ export class MenuReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty()
+    path: string;
     @ApiProperty({ required: false })
     parent_id: string;
 

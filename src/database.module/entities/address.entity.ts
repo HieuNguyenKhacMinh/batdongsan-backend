@@ -3,6 +3,7 @@ import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
 import { DistrictEntity } from "./district.entity";
 import { OrganizationEntity } from "./organization.entity";
+import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
 
 @Entity()
@@ -40,6 +41,10 @@ export class AddressEntity {
 
     @OneToMany(() => ProductEntity, p => p.address)
     products: ProductEntity[];
+
+    @OneToMany(() => ProjectEntity, p => p.address)
+    projects: ProductEntity[];
+
 
     @OneToOne(() => OrganizationEntity, o => o.address)
     organization: OrganizationEntity;
