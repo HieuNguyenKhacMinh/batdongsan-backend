@@ -1,3 +1,4 @@
+import { ProjectTypeModule } from './master-data/project_type/project_type.module';
 
 import { PostStatusModule } from './master-data/post_status/post_status.module';
 import { PostModule } from './cms/post/post.module';
@@ -72,6 +73,7 @@ import { ContactModule } from './crm/contact/contact.module';
     CountryModule,
     OpportunityModule,
     ContactModule,
+    ProjectTypeModule,
   ],
   controllers: [
     ],

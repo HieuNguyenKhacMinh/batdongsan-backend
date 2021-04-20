@@ -18,8 +18,6 @@ export class FormalityEntity {
     @OneToMany(() => ProductTypeEntity, a => a.formality)
     productType: ProductTypeEntity[]
 
-    @OneToMany(() => ProjectTypeEntity, a => a.formality)
-    projectType: ProjectTypeEntity[]
     // /**
     //  * Name
     //  */

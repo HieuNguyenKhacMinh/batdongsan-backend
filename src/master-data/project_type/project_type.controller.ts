@@ -7,7 +7,7 @@ import { ProjectTypeMapper } from './dto/mapper';
 import { ProjectTypeReqDto} from './dto/req-dto';
 
 @ApiTags("CMS/ProjectType")
-@Controller('cms/product-type')
+@Controller('cms/project-type')
 export class ProjectTypeController {
     service
     constructor(private connection: Connection) {
@@ -21,7 +21,8 @@ export class ProjectTypeController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = { relations: ["projects"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

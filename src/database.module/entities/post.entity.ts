@@ -48,6 +48,9 @@ export class PostEntity {
     @Column({ name: "page_id", type: "uuid", nullable: true })
     pageId: string;
 
+
+    @Column({ name: "sub_content", type: "varchar", nullable: true })
+    subContent: string;
     // @ManyToOne(() => PageEntity, f => f.posts)
     // page: PageEntity;
 

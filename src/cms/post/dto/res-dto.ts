@@ -16,5 +16,5 @@ export class PostResDto {
     status: StatusResDto;
     page_id: string;
     hashtags: HashtagResDto[];
-  
+    sub_content: string;
 }

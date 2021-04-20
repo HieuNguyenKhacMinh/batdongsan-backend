@@ -1,3 +1,4 @@
+import { ProjectTypeReqDto } from './../../master-data/project_type/dto/req-dto';
 import { AddressReqDto } from "src/master-data/address/dto/req-dto";
 import { BalconydirectionReqDto } from "src/master-data/balcony-direction/dto/req-dto";
 import { CategoryReqDto } from "src/cms/category/dto/req-dto";
@@ -110,6 +111,9 @@ export class DtoFactory {
 
             case WidgetReqDto.name:
                 return new WidgetReqDto;
+
+            case ProjectTypeReqDto.name:
+                return new ProjectTypeReqDto;
 
 
             default:

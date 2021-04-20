@@ -34,7 +34,7 @@ export class PostReqDto implements IReqDtoFactory {
     @ApiProperty()
     public page_id: string;
     @ApiProperty()
-
+    sub_content: string;
     public hashtags: HashtagReqDto[]
 
     validate(dto: PostReqDto) {

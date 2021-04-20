@@ -64,25 +64,25 @@ export class ProjectEntity {
     @Column({ name: "address_id", type: "uuid" })
     addressId: string;
 
-    @ManyToOne(() => CountryEntity, f => f.projects)
-    @JoinColumn({ name: "country_id"})
+    @ManyToOne(() => CountryEntity, f => f.projects, { eager: true })
+    @JoinColumn({ name: "country_id" })
     country: CountryEntity;
 
-    @ManyToOne(() => CityEntity, f => f.projects)
+    @ManyToOne(() => CityEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
-    @ManyToOne(() => WardsEntity, w => w.projects)
+    @ManyToOne(() => WardsEntity, w => w.projects, { eager: true })
     @JoinColumn({ name: "wards_id" })
     wards: WardsEntity;
 
-    @ManyToOne(() => DistrictEntity, d => d.projects)
+    @ManyToOne(() => DistrictEntity, d => d.projects, { eager: true })
     @JoinColumn({ name: "district_id" })
     district: DistrictEntity;
 
 
 
-    @ManyToOne(() => AddressEntity, f => f.projects)
+    @ManyToOne(() => AddressEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "address_id" })
     address: AddressEntity;
 
@@ -92,7 +92,7 @@ export class ProjectEntity {
     @Column({ name: "project_type_id", type: "uuid", nullable: true })
     projectTypeId: string;
 
-    @ManyToOne(() => ProjectTypeEntity, f => f.projects)
+    @ManyToOne(() => ProjectTypeEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "project_type_id" })
     projectType: ProjectTypeEntity;
     /**

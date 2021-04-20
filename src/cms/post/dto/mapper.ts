@@ -16,6 +16,7 @@ export class PostMapper implements IMapperFactory {
         entity.statusId = req.status_id;
         entity.widgetId = req.widget_id;
         entity.pageId = req.page_id;
+        entity.subContent = req.sub_content;
         entity.hashtags = req.hashtags ? req.hashtags.map(tag => {
             return new HashtagMapper().mapReq(undefined, tag)
         }) : [];
@@ -29,6 +30,7 @@ export class PostMapper implements IMapperFactory {
         res.category_id = entity.categoryId;
         res.category = entity.category ? new CategoryMapper().mapRes(undefined, entity.category) : undefined;
         res.status_id = entity.statusId;
+        res.sub_content = entity.subContent;
         res.status = entity.status ? new PostStatusMapper().mapRes(undefined, entity.status) : undefined;
         res.hashtags = entity.hashtags ? entity.hashtags.map(tag => {
             return new HashtagMapper().mapRes(undefined, tag)

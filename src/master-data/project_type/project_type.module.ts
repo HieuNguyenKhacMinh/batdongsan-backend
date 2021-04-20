@@ -8,4 +8,4 @@ import { ProjectTypeController } from './project_type.controller';
         ProjectTypeController, ],
     providers: [],
 })
-export class ProjectTypeTypeModule {}
+export class ProjectTypeModule {}

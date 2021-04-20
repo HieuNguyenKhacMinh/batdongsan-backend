@@ -1,3 +1,4 @@
+import { ProjectTypeMapper } from './../../master-data/project_type/dto/mapper';
 
 import { PostStatusMapper } from 'src/master-data/post_status/dto/mapper';
 import { AddressMapper } from "src/master-data/address/dto/mapper";
@@ -134,6 +135,9 @@ export class Mapper {
 
             case WidgetMapper.name:
                 return new WidgetMapper;
+
+            case ProjectTypeMapper.name:
+                return new ProjectTypeMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;

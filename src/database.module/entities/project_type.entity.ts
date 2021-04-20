@@ -11,13 +11,6 @@ export class ProjectTypeEntity {
     @Column({ name: "name", type: "varchar", length: 100 })
     name: string;
    
-    @Column({ name: "formality_id", type: "uuid" })
-    formalityId: string;
-
-    @ManyToOne(() => FormalityEntity, d => d.projectType)
-    @JoinColumn({name: "formality_id"})
-    formality: FormalityEntity;
-    
     @OneToMany(() => ProjectEntity, p => p.projectType)
     projects: ProjectEntity[];
 

@@ -12,8 +12,6 @@ export class ProjectTypeReqDto implements IReqDtoFactory {
     @ApiProperty()
     name: string;
     @ApiProperty()
-    formality_id: string;
-    @ApiProperty()
     description: string;
     validate(dto: ProjectTypeReqDto) {
         var errors = [];
