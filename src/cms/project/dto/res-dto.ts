@@ -4,6 +4,7 @@ import { DistrictResDto } from "src/master-data/district/dto/res-dto";
 import { WardsResDto } from "src/master-data/wards/dto/res-dto";
 import { AddressResDto } from 'src/master-data/address/dto/res-dto';
 import { ProjectTypeResDto } from 'src/master-data/project_type/dto/res-dto';
+import { ProductResDto } from 'src/cms/product/dto/res-dto';
 
 export class ProjectResDto {
     id: string;
@@ -30,4 +31,5 @@ export class ProjectResDto {
     project_type_id: string;
     projectType: ProjectTypeResDto;
     description: string;
+    products: ProductResDto[];
 }

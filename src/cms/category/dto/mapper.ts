@@ -5,11 +5,10 @@ import { CategoryReqDto } from "./req-dto";
 import { CategoryResDto } from "./res-dto";
 
 export class CategoryMapper implements IMapperFactory {
-    mapReq(entity: CategoryEntity, req: CategoryResDto) {
+    mapReq(entity: CategoryEntity, req: CategoryReqDto) {
         if (!entity) entity = new CategoryEntity();
         entity.name = req.name;
         entity.description = req.description;
-        req.posts = entity.posts ? entity.posts.map(p => new PostMapper().mapRes(undefined, p)): undefined;
         return entity;
     }
     mapRes(res: CategoryResDto, entity: CategoryEntity) {

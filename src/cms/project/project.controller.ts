@@ -9,10 +9,10 @@ import { ProjectReqDto } from './dto/req-dto';
 @ApiTags("CMS/Project")
 @Controller('cms/project')
 export class ProjectController {
-    service
+    service: GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, ProjectMapper, ProjectReqDto, ProjectEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: ProjectReqDto) {
@@ -21,9 +21,20 @@ export class ProjectController {
 
     @Get()
     async findAll() {
-        const condition = { relations: ["city","country","district","wards","address"
-    ,"projectType"], where: {} };
+        const condition = {
+            relations: ["city", "country", "district", "wards", "address"
+                , "projectType"], where: {}
+        };
         return this.service.findAll(condition);
+    }
+
+
+    @Get(":id")
+    async findOne(@Param("id") id: string) {
+        const condition = {
+            where: { id }
+        };
+        return this.service.findOne(condition);
     }
 
     @Put(':id')
@@ -35,4 +46,4 @@ export class ProjectController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

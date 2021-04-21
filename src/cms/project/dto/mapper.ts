@@ -9,6 +9,7 @@ import { EntityRepository } from "typeorm";
 import { CountryMapper } from 'src/master-data/country/dto/mapper';
 import { WardsMapper } from 'src/master-data/wards/dto/mapper';
 import { ProjectTypeMapper } from 'src/master-data/project_type/dto/mapper';
+import { ProductMapper } from 'src/cms/product/dto/mapper';
 
 export class ProjectMapper implements IMapperFactory {
     mapReq(entity: ProjectEntity, req: ProjectReqDto) {
@@ -58,6 +59,8 @@ export class ProjectMapper implements IMapperFactory {
         res.latitude = entity.latitude;
         res.longitude = entity.longitude;
         res.infrastructure_design = entity.infrastructureDesign;
+        res.products = entity.products ? entity.products.map(p =>
+            new ProductMapper().mapRes(undefined, p)) : undefined;
         return res;
     }
 

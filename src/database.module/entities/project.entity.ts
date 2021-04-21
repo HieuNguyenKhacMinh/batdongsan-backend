@@ -49,51 +49,51 @@ export class ProjectEntity {
     @Column({ name: 'description', type: 'longtext', nullable: true })
     description: string;
 
-    @Column({ name: "country_id", type: "uuid" })
-    countryId: string;
-
-    @Column({ name: "city_id", type: "uuid" })
+    @Column({ name: "p_city_id", type: "uuid" })
     cityId: string;
 
-    @Column({ name: "district_id", type: "uuid", nullable: true })
+    @Column({ name: "p_district_id", type: "uuid", nullable: true })
     districtId: string;
 
-    @Column({ name: "wards_id", type: "uuid" })
+    @Column({ name: "p_wards_id", type: "uuid" })
     wardsId: string;
 
-    @Column({ name: "address_id", type: "uuid" })
+    @Column({ name: "p_address_id", type: "uuid" })
     addressId: string;
 
-    @ManyToOne(() => CountryEntity, f => f.projects, { eager: true })
-    @JoinColumn({ name: "country_id" })
+    @Column({ name: "p_country_id", type: "uuid" })
+    countryId: string;
+
+    @ManyToOne(() => CountryEntity, f => f.projects)
+    @JoinColumn({ name: "p_country_id" })
     country: CountryEntity;
 
     @ManyToOne(() => CityEntity, f => f.projects, { eager: true })
-    @JoinColumn({ name: "city_id" })
+    @JoinColumn({ name: "p_city_id" })
     city: CityEntity;
 
     @ManyToOne(() => WardsEntity, w => w.projects, { eager: true })
-    @JoinColumn({ name: "wards_id" })
+    @JoinColumn({ name: "p_wards_id" })
     wards: WardsEntity;
 
     @ManyToOne(() => DistrictEntity, d => d.projects, { eager: true })
-    @JoinColumn({ name: "district_id" })
+    @JoinColumn({ name: "p_district_id" })
     district: DistrictEntity;
 
 
 
     @ManyToOne(() => AddressEntity, f => f.projects, { eager: true })
-    @JoinColumn({ name: "address_id" })
+    @JoinColumn({ name: "p_address_id" })
     address: AddressEntity;
 
-    @OneToMany(() => ProductEntity, p => p.project)
+    @OneToMany(() => ProductEntity, p => p.project, { eager: true })
     products: ProductEntity[];
 
-    @Column({ name: "project_type_id", type: "uuid", nullable: true })
+    @Column({ name: "p_project_type_id", type: "uuid", nullable: true })
     projectTypeId: string;
 
     @ManyToOne(() => ProjectTypeEntity, f => f.projects, { eager: true })
-    @JoinColumn({ name: "project_type_id" })
+    @JoinColumn({ name: "p_project_type_id" })
     projectType: ProjectTypeEntity;
     /**
      * Description
