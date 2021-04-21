@@ -12,7 +12,7 @@ export class AddressController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, AddressMapper, AddressReqDto, AddressEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: AddressReqDto) {
@@ -21,7 +21,7 @@ export class AddressController {
 
     @Get()
     async findAll() {
-        const condition = { relations: ["wards","district","city"], where: {} };
+        const condition = { relations: ["wards", "district", "city"], where: {} };
         return this.service.findAll(condition);
     }
 
@@ -34,4 +34,4 @@ export class AddressController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

@@ -12,8 +12,8 @@ import { OrganizationReqDto } from './dto/req-dto';
 @ApiTags("CMS/Organization")
 @Controller('cms/organization')
 export class OrganizationController {
-    service:GenericService;
-    addressService:GenericService;
+    service: GenericService;
+    addressService: GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, OrganizationMapper, OrganizationReqDto, OrganizationEntity);
         this.addressService = new GenericService(this.connection, AddressMapper, AddressReqDto, AddressEntity);
@@ -28,7 +28,7 @@ export class OrganizationController {
 
     @Get()
     async findAll() {
-        const condition = { relations: ["address"], where: {} };
+        const condition = { relations: ["address", "address.wards", "address.district", "address.city"], where: {} };
         return this.service.findAll(condition);
     }
 
@@ -41,4 +41,4 @@ export class OrganizationController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}
