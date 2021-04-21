@@ -1,3 +1,4 @@
+import { AddressEntity } from 'src/database.module/entities';
 import { CompanyEntity } from './company.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 
@@ -10,21 +11,25 @@ export class ContactEntity {
     @Column({ name: "contact_account", type: "varchar", length: 100 })
     contactAccount: string;
 
-    @Column({ name: "contact_address", type: "varchar", length: 100 })
-    address: string;
-
     @Column({ name: "otherdetails", type: "varchar", length: 100,nullable: true })
     otherDetails: string;
 
     @Column({ name: "contact_details", type: "varchar", length: 100})
     contactDetails: string;
 
-    @Column({ name: "company_id", type: "uuid", nullable: true })
+    @Column({ name: "company_id", type: "uuid",nullable: true })
     companyId: string;
 
     @ManyToOne(()=> CompanyEntity, o => o.contacts)
     @JoinColumn({name: "company_id"})
     company: CompanyEntity;
+
+    @Column({ name: "address_id", type: "uuid",nullable: true })
+    addressId: string;
+
+    @ManyToOne(()=> AddressEntity, o => o.contacts)
+    @JoinColumn({name: "address_id"})
+    address: AddressEntity;
 
    
    // /**

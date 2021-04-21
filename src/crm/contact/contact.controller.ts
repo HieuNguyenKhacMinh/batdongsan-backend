@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { ContactEntity } from 'src/database.module/entities';
+import { AddressEntity, ContactEntity } from 'src/database.module/entities';
+import { AddressMapper } from 'src/master-data/address/dto/mapper';
+import { AddressReqDto } from 'src/master-data/address/dto/req-dto';
 import { Connection } from 'typeorm';
 import { ContactMapper } from './dto/mapper';
 import { ContactReqDto } from './dto/req-dto';
@@ -9,13 +11,17 @@ import { ContactReqDto } from './dto/req-dto';
 @ApiTags("CMS/Contact")
 @Controller('cms/contact')
 export class ContactController {
-    service
+    service:GenericService;
+    addressService:GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, ContactMapper, ContactReqDto, ContactEntity);
-     }
+        this.addressService = new GenericService(this.connection, AddressMapper, AddressReqDto, AddressEntity);
+    }
 
     @Post()
-    async create(@Body() dto: ContactReqDto) {
+    async create(@Body() dto: ContactReqDto, @Body() addressDto: AddressReqDto) {
+        const address = await this.addressService.create(addressDto);
+        dto.address_id = address.id;
         return this.service.create(dto);
     }
 

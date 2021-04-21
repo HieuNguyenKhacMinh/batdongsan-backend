@@ -24,7 +24,7 @@ export class OrganizationMapper implements IMapperFactory {
         res.name = entity.name;
         res.description = entity.description;
         res.address_id = entity.addressId;
-        res.address = entity.address? new AddressMapper().mapRes(undefined, entity.address): undefined;;
+        res.address = entity.address? new AddressMapper().mapRes(undefined, entity.address): undefined;
         return res;
     }
 

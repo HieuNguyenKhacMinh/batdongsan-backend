@@ -1,3 +1,4 @@
+import { ContractEntity } from './contract.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
@@ -5,6 +6,7 @@ import { DistrictEntity } from "./district.entity";
 import { OrganizationEntity } from "./organization.entity";
 import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
+import { ContactEntity } from './contact.entity';
 
 @Entity()
 export class AddressEntity {
@@ -48,6 +50,9 @@ export class AddressEntity {
 
     @OneToOne(() => OrganizationEntity, o => o.address)
     organization: OrganizationEntity;
+
+    @OneToOne(() => ContactEntity, o => o.address)
+    contacts: ContactEntity;
 
     // /**
     //  * Name

@@ -12,7 +12,7 @@ export class ContactReqDto implements IReqDtoFactory {
     @ApiProperty()
     contact_account: string;
     @ApiProperty()
-    contact_address: string;
+    address_id: string;
     @ApiProperty()
     contact_details: string;
     validate(dto: ContactReqDto) {
