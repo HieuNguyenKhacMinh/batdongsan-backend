@@ -19,7 +19,7 @@ export class ContactEntity {
     @Column({ name: "contact_details", type: "varchar", length: 100})
     contactDetails: string;
 
-    @Column({ name: "company_id", type: "uuid" })
+    @Column({ name: "company_id", type: "uuid", nullable: true })
     companyId: string;
 
     @ManyToOne(()=> CompanyEntity, o => o.contacts)
