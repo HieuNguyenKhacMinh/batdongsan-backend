@@ -6,18 +6,21 @@ import { OpportunityEntity } from './opportunity.entity';
 export class PipelineEntity {
 
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
-    @Column({ name: "name", type: "uuid" })
-    name: number;
+    @Column({ name: "varchar", type: "uuid" })
+    name: string;
 
+
+    @Column({ name: "order", type: "int", default: 0 })
+    order: number;
 
     @Column({ name: "organization_id", type: "varchar"})
     organizationId: string;
 
 
     @ManyToOne(() => OrganizationEntity, f => f.pipelines)
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({name: "organization_id" })
     organization: OrganizationEntity;
 
 

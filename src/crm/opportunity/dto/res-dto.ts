@@ -7,4 +7,5 @@ export class OpportunityResDto {
     otherdetails: string;
     organization_id: string;
     organization:OrganizationResDto;
+    pipeline_id: string;
 }

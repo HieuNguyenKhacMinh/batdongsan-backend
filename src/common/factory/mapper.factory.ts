@@ -35,6 +35,7 @@ import { ContactMapper } from "src/crm/contact/dto/mapper";
 import { WidgetMapper } from "src/cms/widget/dto/mapper";
 import { UserMapper } from 'src/crm/user/dto/mapper';
 import { OrderMapper } from 'src/cms/order/dto/mapper';
+import { PipelineMapper } from 'src/crm/pipeline/dto/mapper';
 
 export class Mapper {
     static getMapper<TMapper>(type: ObjectType<TMapper>): IMapperFactory {
@@ -150,6 +151,9 @@ export class Mapper {
 
             case WishlistMapper.name:
                 return new WishlistMapper;
+
+            case PipelineMapper.name:
+                return new PipelineMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;

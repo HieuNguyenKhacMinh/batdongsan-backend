@@ -11,6 +11,8 @@ export class OpportunityMapper implements IMapperFactory {
         entity.sureName = req.surename;
         entity.otherDetails = req.otherdetails;
         entity.organizationId = req.organization_id;
+        entity.pipelineId = req.pipeline_id;
+        
         return entity;
     }
     mapRes(res:OpportunityResDto, entity: OpportunityEntity) {
@@ -18,6 +20,7 @@ export class OpportunityMapper implements IMapperFactory {
         res.id = entity.id;
         res.firsname = entity.firsName;
         res.surename = entity.sureName;
+        res.pipeline_id = entity.pipelineId;
         res.otherdetails = entity.otherDetails;
         res.organization_id = entity.organizationId;
         res.organization = entity.organization? new OrganizationMapper().mapRes(undefined, entity.organization): undefined;

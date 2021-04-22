@@ -17,7 +17,7 @@ export class ContactMapper implements IMapperFactory {
         if (!res) res = new ContactResDto();
         res.id = entity.id;
         res.address_id = entity.addressId;
-        res.address = entity.address? new AddressMapper().mapRes(undefined, entity.address): undefined;;
+        res.address = entity.address? new AddressMapper().mapRes(undefined, entity.address): undefined;
         res.contact_account = entity.contactAccount;
         res.contact_details = entity.contactDetails;
         return res;

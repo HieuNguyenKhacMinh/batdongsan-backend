@@ -1,3 +1,4 @@
+import { PipelineModule } from './crm/pipeline/pipeline.module';
 import { WishlistModule } from './master-data/wishlist/wishlist.module';
 import { UserModule } from './crm/user/user.module';
 import { ProjectTypeModule } from './master-data/project_type/project_type.module';
@@ -80,6 +81,7 @@ import { OrderModule } from './cms/order/order.module';
     UserModule,
     OrderModule,
     WishlistModule,
+    PipelineModule,
   ],
   controllers: [
     ],

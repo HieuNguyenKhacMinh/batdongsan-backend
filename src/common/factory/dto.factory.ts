@@ -1,3 +1,4 @@
+import { PipelineReqDto } from './../../crm/pipeline/dto/req-dto';
 import { WishlistReqDto } from './../../master-data/wishlist/dto/req-dto';
 import { OrderReqDto } from './../../cms/order/dto/req-dto';
 import { ProjectTypeReqDto } from './../../master-data/project_type/dto/req-dto';
@@ -126,6 +127,10 @@ export class DtoFactory {
 
             case WishlistReqDto.name:
                 return new WishlistReqDto;
+
+            case PipelineReqDto.name:
+                return new PipelineReqDto;
+
 
             default:
                 throw `DtoFactory ${type.name} does not exist`;

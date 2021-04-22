@@ -9,7 +9,7 @@ import { OpportunityReqDto } from './dto/req-dto';
 @ApiTags("CMS/Opportunity")
 @Controller('cms/opportunity')
 export class OpportunityController {
-    service
+    service:GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, OpportunityMapper, OpportunityReqDto, OpportunityEntity);
      }

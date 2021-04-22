@@ -17,6 +17,9 @@ export class OpportunityReqDto implements IReqDtoFactory {
     otherdetails: string;
     @ApiProperty()
     organization_id: string;
+    @ApiProperty()
+    pipeline_id: string;
+    
     validate(dto: OpportunityReqDto) {
         var errors = [];
         if (!dto.firsname || dto.firsname.length == 0) {
