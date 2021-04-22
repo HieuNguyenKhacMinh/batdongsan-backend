@@ -8,6 +8,8 @@ export enum Fields {
 
 export class UserReqDto implements IReqDtoFactory {
     @ApiProperty()
+    organization_id: string;
+    @ApiProperty()
     id: string;
     @ApiProperty()
     full_name: string;

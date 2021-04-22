@@ -1,7 +1,6 @@
 export * from "./balcony_direction.entity";
 export * from "./address.entity";
 export * from "./comment.entity";
-export * from "./company.entity";
 export * from "./contact.entity";
 export * from "./contract.entity";
 export * from "./district.entity";

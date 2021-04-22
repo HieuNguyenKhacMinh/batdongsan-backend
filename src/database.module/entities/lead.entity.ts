@@ -1,4 +1,3 @@
-import { CompanyEntity } from './company.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { OrganizationEntity } from "./organization.entity";
 
@@ -20,16 +19,16 @@ export class LeadEntity {
     @Column({ name: "organization_id", type: "uuid" })
     organizationId: string;
 
-    @Column({ name: "company_id", type: "uuid" })
-    companyId: string;
+    // @Column({ name: "company_id", type: "uuid" })
+    // companyId: string;
 
     @ManyToOne(()=> OrganizationEntity, o => o.leads)
     @JoinColumn({name: "organization_id"})
     organization: OrganizationEntity;
 
-    @ManyToOne(()=> CompanyEntity, o => o.leads)
-    @JoinColumn({name: "company_id"})
-    company: CompanyEntity;
+    // @ManyToOne(()=> OrganizationEntity, o => o.leads)
+    // @JoinColumn({name: "company_id"})
+    // company: OrganizationEntity;
 
    // /**
     //  * Name

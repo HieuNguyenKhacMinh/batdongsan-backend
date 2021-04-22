@@ -1,19 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { OrganizationEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { OpportunityEntity } from './opportunity.entity';
 
 @Entity()
 export class PipelineEntity {
 
     @PrimaryGeneratedColumn("uuid")
-    contractId: number;
+    id: number;
 
-    @Column({ name: "acconunt_id", type: "uuid" })
-    acconuntId: number;
+    @Column({ name: "name", type: "uuid" })
+    name: number;
 
-    @Column({ name: "contract_status", type: "varchar", length: 100 })
-    contractStatus: string;
 
-    @Column({ name: "contract_approval", type: "varchar", length: 100 })
-    contractApproval: string;
+    @Column({ name: "organization_id", type: "varchar"})
+    organizationId: string;
+
+
+    @ManyToOne(() => OrganizationEntity, f => f.pipelines)
+    @JoinColumn({ name: "product_id" })
+    organization: OrganizationEntity;
+
+
+    @OneToMany(() => OpportunityEntity, l => l.pipeline)
+    opportunities: OpportunityEntity[]
 
   // /**
     //  * Name

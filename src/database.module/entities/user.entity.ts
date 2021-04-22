@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { CompanyEntity } from "./company.entity";
+import { WishlistEntity } from './wishlist.entity';
+import { OrganizationEntity } from './organization.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { OrderEntity } from './order.entity';
 
 @Entity()
 export class UserEntity {
@@ -13,7 +15,7 @@ export class UserEntity {
     @Column({ name: "gender", type: "varchar", length: 25 })
     gender: string;
 
-    @Column({ name: "birthday", type: "date" })
+    @Column({ name: "birthday", type: "date" ,nullable:true})
     birthday: Date;
 
     @Column({ name: "phone_number", type: "int" })
@@ -28,12 +30,26 @@ export class UserEntity {
     @Column({ name: "password", type: "varchar", length: 100 })
     password: string;
 
-    @Column({ name: "company_id", type: "uuid" })
-    companyId: string;
+    @Column({ name: "organizition_id", type: "varchar", length: 100 })
+    organizationId: string;
 
-    @ManyToOne(()=> CompanyEntity, o => o.users)
-    @JoinColumn({name: "company_id"})
-    company: CompanyEntity;
+    @ManyToOne(()=> OrganizationEntity, o => o.users)
+    @JoinColumn({name: "organizition_id"})
+    organization: OrganizationEntity;
+
+    @OneToMany(() =>  OrderEntity, p => p.user)
+    orders: OrderEntity[];
+
+    @OneToMany(() =>  WishlistEntity, p => p.user)
+    wishlists: WishlistEntity[];
+
+
+    // @Column({ name: "company_id", type: "uuid" })
+    // companyId: string;
+
+    // @ManyToOne(()=> CompanyEntity, o => o.users)
+    // @JoinColumn({name: "company_id"})
+    // company: CompanyEntity;
 
    
     // /**

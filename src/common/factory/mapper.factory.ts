@@ -1,3 +1,4 @@
+import { WishlistMapper } from './../../master-data/wishlist/dto/mapper';
 import { ProjectTypeMapper } from './../../master-data/project_type/dto/mapper';
 
 import { PostStatusMapper } from 'src/master-data/post_status/dto/mapper';
@@ -32,6 +33,8 @@ import { ProjectMapper } from "src/cms/project/dto/mapper";
 import { OpportunityMapper } from "src/crm/opportunity/dto/mapper";
 import { ContactMapper } from "src/crm/contact/dto/mapper";
 import { WidgetMapper } from "src/cms/widget/dto/mapper";
+import { UserMapper } from 'src/crm/user/dto/mapper';
+import { OrderMapper } from 'src/cms/order/dto/mapper';
 
 export class Mapper {
     static getMapper<TMapper>(type: ObjectType<TMapper>): IMapperFactory {
@@ -138,6 +141,15 @@ export class Mapper {
 
             case ProjectTypeMapper.name:
                 return new ProjectTypeMapper;
+
+            case UserMapper.name:
+                return new UserMapper;
+
+            case OrderMapper.name:
+                return new OrderMapper;
+
+            case WishlistMapper.name:
+                return new WishlistMapper;
 
             default:
                 throw `IMapperFactory ${type.name} does not exist`;

@@ -1,3 +1,5 @@
+import { WishlistEntity } from './wishlist.entity';
+import { UserEntity } from 'src/database.module/entities/User.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, TreeLevelColumn } from "typeorm";
 import { AddressEntity, FileEntity, ProductTypeEntity } from ".";
@@ -9,6 +11,7 @@ import { HouseDirestionEntity } from "./house_direstion.entity";
 import { ProductUnitTypeEntity } from "./product_unit_type,.entity";
 import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
+import { OrderEntity } from './order.entity';
 
 @Entity()
 export class ProductEntity {
@@ -104,6 +107,9 @@ export class ProductEntity {
     @JoinColumn({ name: "house_direstion_id" })
     houseDirestion: HouseDirestionEntity;
 
+    @OneToMany(() =>   OrderEntity, p => p.product)
+    orders: UserEntity[];
+
     @Column({ name: "acreage", type: "decimal" })
     acreage: number;
 
@@ -119,6 +125,9 @@ export class ProductEntity {
     @ManyToOne(() => BalconydirectionEntity, f => f.products)
     @JoinColumn({ name: "balcony_direction_id" })
     balconyDirection: BalconydirectionEntity;
+
+    @OneToMany(() =>  WishlistEntity, p => p.product)
+    wishlists: WishlistEntity[];
 
     @Column({ name: "no_of_bedroom", type: "int" })
     noOfBedroom: number;

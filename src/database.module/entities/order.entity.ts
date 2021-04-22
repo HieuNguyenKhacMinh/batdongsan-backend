@@ -1,41 +1,42 @@
-﻿import { UserEntity } from '../entities/User.entity';
-import { LeadEntity, ContactEntity } from 'src/database.module/entities';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { OpportunityEntity } from './opportunity.entity';
+import { UserEntity } from 'src/database.module/entities/User.entity';
+import { ProductEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity()
-export class CompanyEntity {
+export class OrderEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "company_name", type: "varchar", length: 100 })
-    companyName: string;
+    @Column({ name: "user_id", type: "varchar"})
+    userId: string;
 
-    @Column({ name: "company_descrition_status", type: "varchar", length: 1024 })
-    companyDescritionStatus: string;
+    @Column({ name: "product_id", type: "uuid"})
+    productId: string;
 
-    @Column({ name: "phone_number", type: "varchar", length: 50 })
-    phoneNumber: string;
+    @Column({ name: "NgayBan", type: "varchar", length: 1024 })
+    ngayBan: string;
 
-    @Column({ name: "address", type: "varchar", length: 255})
-    address: string;
+    @Column({ name: "GiaTien", type: "decimal" })
+    giaTien: number;
 
-    @Column({ name: "email", type: "varchar", length: 100 })
-    email: string;
-    
-    @OneToMany(() => LeadEntity, l => l.company)
-    leads: LeadEntity[];
+    @Column({ name: "Vat", type: "decimal", nullable : true }) // Thuế
+    vat: number;
 
-    @OneToMany(() => OpportunityEntity, l => l.company)
-    opportunities: OpportunityEntity[];
+    @Column({ name: "Thành tiền", type: "decimal", nullable:true })
+    thanhTien: number;
 
-    @OneToMany(() => UserEntity, l => l.company)
-    users: UserEntity[];
+    @ManyToOne(() => ProductEntity, f => f.orders)
+    @JoinColumn({ name: "product_id" })
+    product: ProductEntity;
 
-    @OneToMany(() => ContactEntity, l => l.company)
-    contacts: ContactEntity[];
+    @ManyToOne(() => UserEntity, f => f.orders)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
 
+
+
+   
     // /**
     //  * Name
     //  */
@@ -79,9 +80,8 @@ export class CompanyEntity {
       */
      @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
      public lastUpdateDate: string;
+
 }
-
-
 
 
 

@@ -1,3 +1,5 @@
+import { WishlistReqDto } from './../../master-data/wishlist/dto/req-dto';
+import { OrderReqDto } from './../../cms/order/dto/req-dto';
 import { ProjectTypeReqDto } from './../../master-data/project_type/dto/req-dto';
 import { AddressReqDto } from "src/master-data/address/dto/req-dto";
 import { BalconydirectionReqDto } from "src/master-data/balcony-direction/dto/req-dto";
@@ -32,6 +34,7 @@ import { MessageReqDto } from "src/cms/message/dto/req-dto";
 import { ProjectReqDto } from "src/cms/project/dto/req-dto";
 import { OpportunityReqDto } from "src/crm/opportunity/dto/req-dto";
 import { ContactReqDto } from "src/crm/contact/dto/req-dto";
+import { UserReqDto } from 'src/crm/user/dto/req-dto';
 
 export class DtoFactory {
     static getDto<TDto>(type: ObjectType<TDto>): IReqDtoFactory {
@@ -115,6 +118,14 @@ export class DtoFactory {
             case ProjectTypeReqDto.name:
                 return new ProjectTypeReqDto;
 
+            case UserReqDto.name:
+                return new UserReqDto;
+
+            case OrderReqDto.name:
+                return new OrderReqDto;
+
+            case WishlistReqDto.name:
+                return new WishlistReqDto;
 
             default:
                 throw `DtoFactory ${type.name} does not exist`;

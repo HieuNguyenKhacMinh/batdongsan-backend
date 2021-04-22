@@ -1,5 +1,4 @@
-import { AddressEntity } from 'src/database.module/entities';
-import { CompanyEntity } from './company.entity';
+import { AddressEntity, OrganizationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity()
@@ -17,12 +16,20 @@ export class ContactEntity {
     @Column({ name: "contact_details", type: "varchar", length: 100})
     contactDetails: string;
 
-    @Column({ name: "company_id", type: "uuid",nullable: true })
-    companyId: string;
+    // @Column({ name: "company_id", type: "uuid",nullable: true })
+    // companyId: string;
 
-    @ManyToOne(()=> CompanyEntity, o => o.contacts)
+    @Column({ name: "organization_id", type: "uuid",nullable: true })
+    organizationId: string;
+
+    // @ManyToOne(()=> CompanyEntity, o => o.contacts)
+    // @JoinColumn({name: "company_id"})
+    // company: CompanyEntity;
+
+    @ManyToOne(()=> OrganizationEntity, o => o.contacts)
     @JoinColumn({name: "company_id"})
-    company: CompanyEntity;
+    organization: OrganizationEntity;
+
 
     @Column({ name: "address_id", type: "uuid",nullable: true })
     addressId: string;

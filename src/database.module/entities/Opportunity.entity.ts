@@ -1,5 +1,5 @@
+import { PipelineEntity } from './pipeline.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { CompanyEntity } from "./company.entity";
 import { OrganizationEntity } from "./organization.entity";
 
 @Entity()
@@ -20,17 +20,24 @@ export class OpportunityEntity {
     @Column({ name: "organization_id", type: "uuid" })
     organizationId: string;
 
-    @Column({ name: "company_id", type: "uuid" })
-    companyId: string;
+    @Column({ name: "pipeline_id", type: "uuid" })
+    pipelineId: string;
 
-    @ManyToOne(()=> OrganizationEntity, o => o.Opportunitys)
+    // @Column({ name: "company_id", type: "uuid" })
+    // companyId: string;
+
+    @ManyToOne(()=> OrganizationEntity, o => o.opportunities)
     @JoinColumn({name: "organization_id"})
     organization: OrganizationEntity;
 
 
-    @ManyToOne(()=> CompanyEntity, o => o.opportunities)
-    @JoinColumn({name: "company_id"})
-    company: CompanyEntity;
+    @ManyToOne(()=> PipelineEntity, o => o.opportunities)
+    @JoinColumn({name: "pipeline_id"})
+    pipeline: PipelineEntity;
+
+    // @ManyToOne(()=> CompanyEntity, o => o.opportunities)
+    // @JoinColumn({name: "company_id"})
+    // company: CompanyEntity;
 
    // /**
     //  * Name

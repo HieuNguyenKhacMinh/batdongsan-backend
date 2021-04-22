@@ -1,3 +1,5 @@
+import { WishlistModule } from './master-data/wishlist/wishlist.module';
+import { UserModule } from './crm/user/user.module';
 import { ProjectTypeModule } from './master-data/project_type/project_type.module';
 
 import { PostStatusModule } from './master-data/post_status/post_status.module';
@@ -34,6 +36,7 @@ import { WardsModule } from './master-data/wards/wards.module';
 import { CountryModule } from './master-data/country/country.module';
 import { OpportunityModule } from './crm/opportunity/lead.module';
 import { ContactModule } from './crm/contact/contact.module';
+import { OrderModule } from './cms/order/order.module';
 
 @Module({
   imports: [
@@ -74,6 +77,9 @@ import { ContactModule } from './crm/contact/contact.module';
     OpportunityModule,
     ContactModule,
     ProjectTypeModule,
+    UserModule,
+    OrderModule,
+    WishlistModule,
   ],
   controllers: [
     ],

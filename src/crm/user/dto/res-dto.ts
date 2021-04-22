@@ -1,3 +1,4 @@
+import { OrganizationResDto } from 'src/crm/organization/dto/res-dto';
 export class UserResDto {
     id: string;
     full_name: string;
@@ -7,6 +8,7 @@ export class UserResDto {
     phone_number: string;;
     email: string;
     user_name: string;
-    password: string;
-
+    organization_id: string;
+    organization:OrganizationResDto;
+    password:string;
 }

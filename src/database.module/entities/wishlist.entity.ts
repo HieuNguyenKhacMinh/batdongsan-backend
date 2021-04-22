@@ -1,14 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { UserEntity } from 'src/database.module/entities/User.entity';
+import { ProductEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, JoinColumn } from "typeorm";
 import { PostEntity } from ".";
 
 @Entity()
-export class HashtagEntity {
+export class WishlistEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
-
-    @Column({ name: "name", type: "varchar", length: 50 })
-    name: string;
 
     @Column({ name: "user_id", type: "uuid" })
     userId: string;
@@ -16,6 +15,13 @@ export class HashtagEntity {
     @Column({ name: "product_id", type: "uuid" })
     productId: string;
 
+    @ManyToOne(() => ProductEntity, f => f.wishlists)
+    @JoinColumn({ name: "product_id" })
+    product: ProductEntity;
+
+    @ManyToOne(() => UserEntity, f => f.wishlists)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
 
     @ManyToMany(()=> PostEntity, p => p.hashtags)
     posts: PostEntity[];

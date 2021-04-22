@@ -1,5 +1,8 @@
+import { PipelineEntity } from './pipeline.entity';
+import { UserEntity } from 'src/database.module/entities/User.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { AddressEntity } from "./address.entity";
+import { ContactEntity } from './contact.entity';
 import { LeadEntity } from "./lead.entity";
 import { OpportunityEntity } from "./opportunity.entity";
 
@@ -33,7 +36,16 @@ export class OrganizationEntity {
     leads: LeadEntity[];
 
     @OneToMany(() => OpportunityEntity, l => l.organization)
-    Opportunitys: OpportunityEntity[]
+    opportunities: OpportunityEntity[]
+
+    @OneToMany(() => UserEntity, l => l.organization)
+    users: UserEntity[]
+
+    @OneToMany(() => ContactEntity, l => l.organization)
+    contacts: ContactEntity[]
+
+    @OneToMany(() => PipelineEntity, l => l.organization)
+    pipelines: PipelineEntity[]
     // /**
     //  * Name
     //  */

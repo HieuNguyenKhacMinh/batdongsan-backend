@@ -31,6 +31,14 @@ export class OrganizationController {
         const condition = { relations: ["address", "address.wards", "address.district", "address.city"], where: {} };
         return this.service.findAll(condition);
     }
+    @Get(':id')
+    async findOne(@Param("id") id: string) {
+        const condition = {
+            relations: ["address", "address.wards", "address.district", "address.city"],
+            where: { id }
+        };
+        return this.service.findOne(condition);
+    }
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: OrganizationReqDto) {
