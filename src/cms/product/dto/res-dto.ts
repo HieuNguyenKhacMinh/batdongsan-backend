@@ -16,7 +16,7 @@ export class ProductResDto {
     title: string;
     sub_description: string;
     description: string;
-    price: number;
+    price: string;
     formality_id: string;
     formality : FormalityResDto;
     address_id: string;
@@ -44,4 +44,13 @@ export class ProductResDto {
     no_of_toilet: number;
     country_id:string;
     country:CountryResDto;
+    no_of_floor: number;   // số tầng
+    juridical: number;    // pháp lý 0: sổ đỏ
+    contact_name: string;
+    phone_number:string;
+    email: string;
+    street: string;
+    home_number: string;
+    is_buy_hire:number;
+    
 }

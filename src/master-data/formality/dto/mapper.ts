@@ -8,6 +8,7 @@ export class FormalityMapper implements IMapperFactory {
         if (!entity) entity = new FormalityEntity();
         entity.name = req.name;
         entity.description = req.description;
+        entity.isBuyHire = req.is_buy_hire;
         return entity;
     }
     mapRes(res:FormalityResDto, entity: FormalityEntity) {
@@ -15,6 +16,7 @@ export class FormalityMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        res.is_buy_hire = entity.isBuyHire;
         return res;
     }
 

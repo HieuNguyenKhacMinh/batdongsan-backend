@@ -19,17 +19,21 @@ export class ProductEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "sub_title", type: "varchar", length: 250 })
+    @Column({ name: "sub_title", type: "varchar", length: 250, nullable: true })
     subTitle: string;
 
-    @Column({ name: "title", type: "varchar", length: 512 })
+    @Column({ name: "title", type: "varchar", length: 512, nullable: true })
     title: string;
 
-    @Column({ name: "sub_description", type: "varchar", length: 500 })
+    @Column({ name: "sub_description", type: "varchar", length: 500, nullable: true })
     subDescription: string;
 
-    @Column({ name: "price", type: "decimal" })
-    price: number;
+    @Column({ name: "price", type: "varchar", nullable: true })
+    price: string;
+
+    @Column({ name: "is_buy_hire", type: "int", default: 0, nullable: true })
+    isBuyHire: number;
+
 
     @OneToMany(() => FileEntity, f => f.productFile)
     files: FileEntity[];
@@ -37,24 +41,24 @@ export class ProductEntity {
     @OneToMany(() => FileEntity, f => f.productVideo)
     videos: FileEntity[];
 
-    @Column({ name: "formality_id", type: "uuid" })
+    @Column({ name: "formality_id", type: "uuid", nullable: true })
     formalityId: string;
 
     @ManyToOne(() => FormalityEntity, f => f.products)
     @JoinColumn({ name: "formality_id" })
     formality: FormalityEntity;
 
-    @Column({ name: "address_id", type: "uuid" })
+    @Column({ name: "address_id", type: "uuid", nullable: true })
     addressId: string;
 
     @ManyToOne(() => AddressEntity, f => f.products)
     @JoinColumn({ name: "address_id" })
     address: AddressEntity;
 
-    @Column({ name: "district_id", type: "uuid" })
+    @Column({ name: "district_id", type: "uuid", nullable: true })
     districtId: string;
 
-    @Column({ name: "country_id", type: "uuid" })
+    @Column({ name: "country_id", type: "uuid", nullable: true })
     countryId: string;
 
     @ManyToOne(() => CountryEntity, f => f.products)
@@ -65,75 +69,98 @@ export class ProductEntity {
     @JoinColumn({ name: "district_id" })
     district: DistrictEntity;
 
-    @Column({ name: "ward_id", type: "uuid" })
+    @Column({ name: "ward_id", type: "uuid", nullable: true })
     wardsId: string;
 
     @ManyToOne(() => WardsEntity, f => f.products)
     @JoinColumn({ name: "ward_id" })
     wards: WardsEntity;
 
-    @Column({ name: "city_id", type: "uuid" })
+    @Column({ name: "city_id", type: "uuid", nullable: true })
     cityId: string;
 
     @ManyToOne(() => CityEntity, f => f.products)
     @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
-    @Column({ name: "product_type_id", type: "uuid" })
+    @Column({ name: "product_type_id", type: "uuid", nullable: true })
     productTypeId: string;
 
     @ManyToOne(() => ProductTypeEntity, f => f.products)
     @JoinColumn({ name: "product_type_id" })
     productType: ProductTypeEntity;
 
-    @Column({ name: "project_id", type: "uuid", nullable: true  })
+    @Column({ name: "project_id", type: "uuid", nullable: true })
     projectId: string;
 
     @ManyToOne(() => ProjectEntity, f => f.products)
     @JoinColumn({ name: "project_id" })
     project: ProjectEntity;
 
-    @Column({ name: "product_unit_id", type: "uuid" })
+    @Column({ name: "product_unit_id", type: "uuid", nullable: true })
     productUnitId: string;
 
     @ManyToOne(() => ProductUnitTypeEntity, f => f.products)
     @JoinColumn({ name: "product_unit_id" })
     productUnitType: ProductUnitTypeEntity;
 
-    @Column({ name: "house_direstion_id", type: "uuid" })
+    @Column({ name: "house_direstion_id", type: "uuid", nullable: true })
     houseDirestionId: string;
 
     @ManyToOne(() => HouseDirestionEntity, f => f.products)
     @JoinColumn({ name: "house_direstion_id" })
     houseDirestion: HouseDirestionEntity;
 
-    @OneToMany(() =>   OrderEntity, p => p.product)
+    @OneToMany(() => OrderEntity, p => p.product)
     orders: UserEntity[];
 
-    @Column({ name: "acreage", type: "decimal" })
+    @Column({ name: "acreage", type: "decimal", nullable: true })
     acreage: number;
 
-    @Column({ name: "facade", type: "decimal" })
+    @Column({ name: "facade", type: "decimal", nullable: true })
     facade: number;
 
-    @Column({ name: "entry_width", type: "decimal" })
+    @Column({ name: "entry_width", type: "decimal", nullable: true })
     entryWidth: number;
 
-    @Column({ name: "balcony_direction_id", type: "uuid" })
+    @Column({ name: "balcony_direction_id", type: "uuid", nullable: true })
     balconyDirectionId: string;
 
     @ManyToOne(() => BalconydirectionEntity, f => f.products)
     @JoinColumn({ name: "balcony_direction_id" })
     balconyDirection: BalconydirectionEntity;
 
-    @OneToMany(() =>  WishlistEntity, p => p.product)
+    @OneToMany(() => WishlistEntity, p => p.product)
     wishlists: WishlistEntity[];
 
-    @Column({ name: "no_of_bedroom", type: "int" })
+    @Column({ name: "no_of_bedroom", type: "int", nullable: true })
     noOfBedroom: number;
 
-    @Column({ name: "no_of_toilet", type: "int" })
+    @Column({ name: "no_of_toilet", type: "int", nullable: true })
     noOfToilet: number;
+
+    @Column({ name: "no_of_floor", type: "int", nullable: true })
+    noOfFloors: number;
+
+    @Column({ name: "juridical", type: "int", nullable: true })
+    juridical: number;
+
+    @Column({ name: "contact_name", type: "varchar", nullable: true })
+    contactName: string;
+
+
+    @Column({ name: "phone_number", type: "varchar", nullable: true })
+    phoneNumber: string;
+
+    @Column({ name: "Email", type: "varchar", nullable: true })
+    email: string;
+
+    @Column({ name: "home_number", type: "varchar", nullable: true })
+    homeNumber: string;
+
+    @Column({ name: "street", type: "varchar", nullable: true })
+    street: string;
+
 
     /**
      * Description

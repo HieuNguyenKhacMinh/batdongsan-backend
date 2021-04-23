@@ -14,27 +14,27 @@ export class AddressEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "home_number", type: "varchar", length: 100 })
+    @Column({ name: "home_number", type: "varchar", length: 100 ,nullable:true })
     homeNumber: string;
 
-    @Column({ name: "street", type: "varchar", length: 100 })
+    @Column({ name: "street", type: "varchar", length: 100 ,nullable:true })
     street: string;
 
-    @Column({ name: "wards_id", type: "uuid" })
+    @Column({ name: "wards_id", type: "uuid"  ,nullable:true})
     wardsId: string;
 
     @ManyToOne(() => WardsEntity, w => w.addresses)
     @JoinColumn({ name: "wards_id" })
     wards: WardsEntity;
 
-    @Column({ name: "city_id", type: "uuid" })
+    @Column({ name: "city_id", type: "uuid" ,nullable:true })
     cityId: string;
 
     @ManyToOne(() => CityEntity, c => c.addresses)
     @JoinColumn({ name: "city_id" })
     city: CityEntity;
 
-    @Column({ name: "district_id", type: "uuid" })
+    @Column({ name: "district_id", type: "uuid" ,nullable:true})
     districtId: string;
 
     @ManyToOne(() => DistrictEntity, d => d.addresses)

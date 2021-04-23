@@ -17,7 +17,7 @@ export class ProductReqDto implements IReqDtoFactory {
     @ApiProperty()
     description: string;
     @ApiProperty()
-    price: number;
+    price: string;
     @ApiProperty()
     files: FileEntity[];
     @ApiProperty()
@@ -63,6 +63,19 @@ export class ProductReqDto implements IReqDtoFactory {
     no_of_toilet: number;
     @ApiProperty()
     country_id: string;
+    @ApiProperty()
+    no_of_floor: number;    
+    @ApiProperty() // số tầng
+    juridical: number; 
+    @ApiProperty()
+    contact_name: string;
+    @ApiProperty()
+    phone_number:string;
+    @ApiProperty()
+    email: string;
+    @ApiProperty()
+    is_buy_hire:number;
+
     validate(dto: ProductReqDto) {
         var errors = [];
         if (!dto.title || dto.title.length == 0) {

@@ -12,6 +12,8 @@ export class FormalityReqDto implements IReqDtoFactory {
     @ApiProperty()
     name: string;
     @ApiProperty()
+    is_buy_hire: number;
+    @ApiProperty()
     description: string;
     validate(dto: FormalityReqDto) {
         var errors = [];

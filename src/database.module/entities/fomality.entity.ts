@@ -12,6 +12,9 @@ export class FormalityEntity {
     @Column({ name: "name", type: "varchar", length: 100 })
     name: string;
 
+    @Column({ name:"is_buy_hire", type: "int",default: 0 })
+    isBuyHire: number;
+
     @OneToMany(() => ProductEntity, p => p.formality)
     products: ProductEntity[];
 

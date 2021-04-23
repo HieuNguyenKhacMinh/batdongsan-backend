@@ -25,13 +25,18 @@ export class ProductController {
         return this.service.create(dto);
     }
 
-    @Get()
-    async findAll() {
+    @Get("all/:isBuy")
+    async findAll(@Param("isBuy") isBuy: number) {
+
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
                 "balconyDirection", "city", "productType"], where: {}
         };
+        if (isBuy != 2) {
+            const isBuyHire = isBuy || 0;
+            condition.where = { isBuyHire };
+        }
         return this.service.findAll(condition);
     }
 

@@ -15,6 +15,7 @@ import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { ProductEntity } from "src/database.module/entities";
 import { ProductReqDto } from "./req-dto";
 import { ProductResDto } from "./res-dto";
+import { reverse } from 'dns';
 
 export class ProductMapper implements IMapperFactory {
     mapReq(entity: ProductEntity, req: ProductReqDto) {
@@ -41,6 +42,14 @@ export class ProductMapper implements IMapperFactory {
         entity.noOfBedroom = req.no_of_bedroom;
         entity.districtId = req.district_id;
         entity.countryId =req.country_id;
+        entity.noOfFloors = req.no_of_floor;
+        entity.juridical = req.juridical;
+        entity.contactName = req.contact_name;
+        entity.phoneNumber = req.phone_number;
+        entity.email = req.email;
+        entity.homeNumber = req.home_number;
+        entity.street = req.street;
+        entity.isBuyHire = req.is_buy_hire;
         return entity;
     }
     mapRes(res: ProductResDto, entity: ProductEntity) {
@@ -80,6 +89,14 @@ export class ProductMapper implements IMapperFactory {
         res.country = entity.country? new CountryMapper().mapRes(undefined, entity.country): undefined;
         res.district_id = entity.districtId;
         res.district = entity.district? new DistrictMapper().mapRes(undefined, entity.district): undefined;
+        res.juridical = entity.juridical;
+        res.no_of_floor = entity.noOfFloors;
+        res.email = entity.email;
+        res.phone_number = entity.phoneNumber;
+        res.contact_name = entity.contactName;
+        res.street = entity.street;
+        res.home_number = entity.homeNumber;
+        res.is_buy_hire = entity.isBuyHire;
         return res;
     }
 

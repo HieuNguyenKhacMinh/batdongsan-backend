@@ -12,16 +12,24 @@ export class FormalityController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, FormalityMapper, FormalityReqDto, FormalityEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: FormalityReqDto) {
         return this.service.create(dto);
     }
 
-    @Get()
-    async findAll() {
-        return this.service.findAll();
+    @Get(":isBuy")
+    async findAll(@Param("isBuy") isBuy: number) {
+        const condition = { where: {} };
+        if (isBuy != 2) {
+            const isBuyHire = isBuy == 1 ? 1 : 0;
+            condition.where = { isBuyHire }
+        }
+        console.log(isBuy);
+        console.log(condition);
+        
+        return this.service.findAll(condition);
     }
 
     @Put(':id')
@@ -33,4 +41,4 @@ export class FormalityController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}
