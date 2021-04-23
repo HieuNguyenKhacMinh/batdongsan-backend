@@ -1,4 +1,5 @@
-import { AddressEntity, OrganizationEntity } from 'src/database.module/entities';
+import { CountryEntity } from 'src/database.module/entities/country.entity';
+import { AddressEntity, OrganizationEntity, DistrictEntity, WardsEntity, CityEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity()
@@ -9,6 +10,51 @@ export class ContactEntity {
 
     @Column({ name: "contact_account", type: "varchar", length: 100 })
     contactAccount: string;
+
+    @Column({ name: "name", type: "varchar", length: 100 })
+    name: string;
+
+    @Column({ name: "phone_number", type: "varchar", length: 100 })
+    phoneNumber: string;
+
+    @Column({ name: "email", type: "varchar", length: 100 })
+    email: string;
+
+    @Column({ name: "address_id", type: "uuid", nullable: true })
+    addressId: string;
+
+    @ManyToOne(() => AddressEntity, f => f.contacts)
+    @JoinColumn({ name: "address_id" })
+    address: AddressEntity;
+
+    @Column({ name: "district_id", type: "uuid", nullable: true })
+    districtId: string;
+
+    @Column({ name: "country_id", type: "uuid", nullable: true })
+    countryId: string;
+
+    @ManyToOne(() => CountryEntity, f => f.contacts)
+    @JoinColumn({ name: "country_id" })
+    country: CountryEntity;
+
+    @ManyToOne(() => DistrictEntity, f => f.contacts)
+    @JoinColumn({ name: "district_id" })
+    district: DistrictEntity;
+
+    @Column({ name: "ward_id", type: "uuid", nullable: true })
+    wardsId: string;
+
+    @ManyToOne(() => WardsEntity, f => f.contacts)
+    @JoinColumn({ name: "ward_id" })
+    wards: WardsEntity;
+
+    @Column({ name: "city_id", type: "uuid", nullable: true })
+    cityId: string;
+
+    @ManyToOne(() => CityEntity, f => f.contacts)
+    @JoinColumn({ name: "city_id" })
+    city: CityEntity;
+
 
     @Column({ name: "otherdetails", type: "varchar", length: 100,nullable: true })
     otherDetails: string;
@@ -30,13 +76,6 @@ export class ContactEntity {
     @JoinColumn({name: "company_id"})
     organization: OrganizationEntity;
 
-
-    @Column({ name: "address_id", type: "uuid",nullable: true })
-    addressId: string;
-
-    @ManyToOne(()=> AddressEntity, o => o.contacts)
-    @JoinColumn({name: "address_id"})
-    address: AddressEntity;
 
    
    // /**

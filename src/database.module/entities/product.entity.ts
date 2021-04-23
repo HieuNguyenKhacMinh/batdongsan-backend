@@ -12,6 +12,7 @@ import { ProductUnitTypeEntity } from "./product_unit_type,.entity";
 import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
 import { OrderEntity } from './order.entity';
+import { OpportunityEntity } from './opportunity.entity';
 
 @Entity()
 export class ProductEntity {
@@ -34,6 +35,8 @@ export class ProductEntity {
     @Column({ name: "is_buy_hire", type: "int", default: 0, nullable: true })
     isBuyHire: number;
 
+    @OneToMany(() => OpportunityEntity, l => l.product)
+    opportunities: OpportunityEntity[]
 
     @OneToMany(() => FileEntity, f => f.productFile)
     files: FileEntity[];

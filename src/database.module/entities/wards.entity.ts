@@ -1,3 +1,4 @@
+import { ContactEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { AddressEntity } from "./address.entity";
@@ -28,6 +29,9 @@ export class WardsEntity {
 
     @OneToMany(() => ProjectEntity, a => a.wards)
     projects: ProjectEntity[]
+
+    @OneToMany(() => ContactEntity, c => c.wards)
+    contacts: ContactEntity[];
 
     // /**
     //  * Name

@@ -35,7 +35,7 @@ import { ProjectModule } from './cms/project/project.module';
 import { ProductUnitModule } from './master-data/product_unit/product_unit.module';
 import { WardsModule } from './master-data/wards/wards.module';
 import { CountryModule } from './master-data/country/country.module';
-import { OpportunityModule } from './crm/opportunity/lead.module';
+import { OpportunityModule } from './crm/opportunity/opportunity.module';
 import { ContactModule } from './crm/contact/contact.module';
 import { OrderModule } from './cms/order/order.module';
 

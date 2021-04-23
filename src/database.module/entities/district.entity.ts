@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { AddressEntity } from ".";
 import { CityEntity } from "./city.entity";
+import { ContactEntity } from "./contact.entity";
 import { ProductEntity } from "./product.entity";
 import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
@@ -37,6 +38,8 @@ export class DistrictEntity {
     @OneToMany(() => ProjectEntity, p => p.district)
     projects: ProjectEntity[];
 
+    @OneToMany(() => ContactEntity, p => p.district)
+    contacts: ContactEntity[];
 
     // /**
     //  * Name

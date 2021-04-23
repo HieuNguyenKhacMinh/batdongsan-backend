@@ -27,7 +27,12 @@ export class ContactController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition = {
+            relations: [
+                "wards", "address",
+                , "city", "district","country"], where: { } 
+        };
+        return this.service.findOne(condition);
     }
 
     @Put(':id')

@@ -1,3 +1,4 @@
+import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { DistrictEntity, WardsEntity, AddressEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
@@ -80,8 +81,6 @@ export class ProjectEntity {
     @JoinColumn({ name: "p_district_id" })
     district: DistrictEntity;
 
-
-
     @ManyToOne(() => AddressEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "p_address_id" })
     address: AddressEntity;
@@ -95,6 +94,11 @@ export class ProjectEntity {
     @ManyToOne(() => ProjectTypeEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "p_project_type_id" })
     projectType: ProjectTypeEntity;
+
+    @OneToMany(() => OpportunityEntity, l => l.project)
+    opportunities: OpportunityEntity[]
+
+
     /**
      * Description
      */

@@ -1,3 +1,4 @@
+import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, Tree, TreeParent, TreeChildren } from "typeorm";
 import { PostEntity } from "./post.entity";
 
@@ -19,7 +20,15 @@ export class CommentEntity {
 
     @Column({ name: "product_id", type: "uuid", nullable: true })
     productId: string;
- 
+
+
+    @Column({ name: "opportunity_id", type: "uuid", nullable: true })
+    opportunityId: string;
+
+    @ManyToOne(() => OpportunityEntity, f => f.comments)
+    @JoinColumn({ name: "opportunity_id" })
+    opportunity: OpportunityEntity;
+
     @Column({ name: "parent_id", type: "uuid", nullable: true })
     parentId: string;
 

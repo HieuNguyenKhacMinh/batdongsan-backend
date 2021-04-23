@@ -1,6 +1,6 @@
 
 import { Module } from '@nestjs/common';
-import { OpportunityController } from './lead.controller';
+import { OpportunityController } from './opportunity.controller';
 
 @Module({
     imports: [],

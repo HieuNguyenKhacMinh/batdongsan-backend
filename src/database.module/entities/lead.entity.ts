@@ -19,6 +19,12 @@ export class LeadEntity {
     @Column({ name: "organization_id", type: "uuid" })
     organizationId: string;
 
+    // @Column({ name: "organization_id", type: "uuid" })
+    // organizationId: string;
+
+
+    
+
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;
 

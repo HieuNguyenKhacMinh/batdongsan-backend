@@ -131,7 +131,7 @@ export class DtoFactory {
             case PipelineReqDto.name:
                 return new PipelineReqDto;
 
-
+    
             default:
                 throw `DtoFactory ${type.name} does not exist`;
         }

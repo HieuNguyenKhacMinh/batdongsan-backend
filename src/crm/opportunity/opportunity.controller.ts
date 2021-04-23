@@ -21,7 +21,7 @@ export class OpportunityController {
 
     @Get()
     async findAll() {
-        const condition = { relations: ["organization"], where: {} };
+        const condition = { relations: ["organization", "product", "project", "pipeline", "comments"], where: {} };
         return this.service.findAll(condition);
     }
 

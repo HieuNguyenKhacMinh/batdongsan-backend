@@ -15,6 +15,20 @@ export class ContactReqDto implements IReqDtoFactory {
     address_id: string;
     @ApiProperty()
     contact_details: string;
+    @ApiProperty()
+    phone_number: string;
+    @ApiProperty()
+    name:string;
+    @ApiProperty()
+    email:string;
+    @ApiProperty()
+    country_id:string;
+    @ApiProperty()
+    city_id:string;
+    @ApiProperty()
+    district_id:string;
+    @ApiProperty()
+    wards_id:string;
     validate(dto: ContactReqDto) {
         var errors = [];
     }

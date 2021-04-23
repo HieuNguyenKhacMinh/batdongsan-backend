@@ -28,7 +28,7 @@ export class PipelineController {
         if (!organizationId) {
             throw new HttpException("organizationId is required", HttpStatus.BAD_REQUEST);
         }
-        const condition = { relations: ["organization", "opportunities"], where: { organizationId } };
+        const condition = { relations: ["organization", "opportunities", "opportunities.product", "opportunities.project", "opportunities.pipeline", "opportunities.comments"], where: { organizationId } };
         return this.service.findAll(condition);
     }
 

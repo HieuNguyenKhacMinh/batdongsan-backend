@@ -2,6 +2,7 @@ import { WishlistEntity } from './wishlist.entity';
 import { OrganizationEntity } from './organization.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { OrderEntity } from './order.entity';
+import { OpportunityEntity } from './opportunity.entity';
 
 @Entity()
 export class UserEntity {
@@ -15,7 +16,7 @@ export class UserEntity {
     @Column({ name: "gender", type: "varchar", length: 25 })
     gender: string;
 
-    @Column({ name: "birthday", type: "date" ,nullable:true})
+    @Column({ name: "birthday", type: "date", nullable: true })
     birthday: Date;
 
     @Column({ name: "phone_number", type: "int" })
@@ -33,16 +34,18 @@ export class UserEntity {
     @Column({ name: "organizition_id", type: "varchar", length: 100 })
     organizationId: string;
 
-    @ManyToOne(()=> OrganizationEntity, o => o.users)
-    @JoinColumn({name: "organizition_id"})
+    @ManyToOne(() => OrganizationEntity, o => o.users)
+    @JoinColumn({ name: "organizition_id" })
     organization: OrganizationEntity;
 
-    @OneToMany(() =>  OrderEntity, p => p.user)
+    @OneToMany(() => OrderEntity, p => p.user)
     orders: OrderEntity[];
 
-    @OneToMany(() =>  WishlistEntity, p => p.user)
+    @OneToMany(() => WishlistEntity, p => p.user)
     wishlists: WishlistEntity[];
 
+    @OneToMany(() => OpportunityEntity, l => l.assignee)
+    opportunities: OpportunityEntity[]
 
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;
@@ -51,7 +54,7 @@ export class UserEntity {
     // @JoinColumn({name: "company_id"})
     // company: CompanyEntity;
 
-   
+
     // /**
     //  * Name
     //  */
@@ -61,40 +64,40 @@ export class UserEntity {
     /**
      * Description
      */
-     @Column({ name: 'description', type: 'longtext', nullable: true })
-     public description: string;
- 
-     /**
-      * Delete Flag
-      */
-     @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
-     public deleteFlag: number;
- 
-     /**
-      * Created By
-      */
-     @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
-     public createdBy: string;
- 
-     /**
-      * Created Date
-      */
-     @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
-     public createdDate: string;
- 
-     /**
-      * Last Updated By
-      */
-     @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
-     public lastUpdatedBy: string;
- 
-     @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
-     public siteId: string;
-     /**
-      * Update Date
-      */
-     @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-     public lastUpdateDate: string;
+    @Column({ name: 'description', type: 'longtext', nullable: true })
+    public description: string;
+
+    /**
+     * Delete Flag
+     */
+    @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
+    public deleteFlag: number;
+
+    /**
+     * Created By
+     */
+    @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
+    public createdBy: string;
+
+    /**
+     * Created Date
+     */
+    @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
+    public createdDate: string;
+
+    /**
+     * Last Updated By
+     */
+    @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
+    public lastUpdatedBy: string;
+
+    @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
+    public siteId: string;
+    /**
+     * Update Date
+     */
+    @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+    public lastUpdateDate: string;
 
 }
 
