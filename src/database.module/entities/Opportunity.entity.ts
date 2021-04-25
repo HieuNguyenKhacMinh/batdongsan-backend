@@ -1,5 +1,5 @@
 import { UserEntity } from 'src/database.module/entities/User.entity';
-import { CommentEntity } from 'src/database.module/entities';
+import { CommentEntity, NotificationEntity } from 'src/database.module/entities';
 import { PipelineEntity } from './pipeline.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { OrganizationEntity } from "./organization.entity";
@@ -68,6 +68,9 @@ export class OpportunityEntity {
 
     @OneToMany(() => CommentEntity, c => c.opportunity, { eager: true })
     comments: CommentEntity[];
+
+    @OneToMany(() => NotificationEntity, a => a.opportunity)
+    notifications: NotificationEntity[]
 
 
     // @ManyToOne(()=> CompanyEntity, o => o.opportunities)

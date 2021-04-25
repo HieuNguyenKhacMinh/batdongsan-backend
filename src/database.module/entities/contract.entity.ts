@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { LeadEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
 @Entity()
 export class ContractEntity {
@@ -14,6 +15,8 @@ export class ContractEntity {
 
     @Column({ name: "contract_approval", type: "varchar", length: 100 })
     contractAproval: string;
+
+   
 
    // /**
     //  * Name

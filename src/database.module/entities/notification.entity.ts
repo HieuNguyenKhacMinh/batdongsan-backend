@@ -1,5 +1,15 @@
+import { OrganizationEntity } from './organization.entity';
+import { CommentEntity } from './comment.entity';
+import { WishlistEntity } from './wishlist.entity';
+import { OpportunityEntity } from './opportunity.entity';
+import { LeadEntity } from './lead.entity';
+import { ProjectEntity } from './project.entity';
+import { ContactEntity } from './contact.entity';
+import { ProductEntity } from './product.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { NotificationTypeEntity } from "./notification_type.entity";
+import { PostEntity } from '.';
+import { UserEntity } from './User.entity';
 
 @Entity()
 export class NotificationEntity {
@@ -16,12 +26,81 @@ export class NotificationEntity {
      * 1: 
      * 2: 
      */
-    @Column({ name: "notification_type_id", type: "uuid" })
+    @Column({ name: "notification_type_id", type: "uuid",nullable:true })
     notificationTypeId: string;
  
     @ManyToOne(() => NotificationTypeEntity, d => d.notifications)
     @JoinColumn({name: "notification_type_id"})
     notificationType: NotificationTypeEntity;
+
+    @Column({ name: "user_id", type: "uuid",nullable:true })
+    userId: string;
+
+    @ManyToOne(() => UserEntity, d => d.leads)
+    @JoinColumn({name: "user_id"})
+    user: UserEntity;
+
+    
+    @Column({ name: "post_id", type: "uuid",nullable:true  })
+    postId: string;
+
+    @ManyToOne(() => PostEntity, d => d.leads)
+    @JoinColumn({name: "post_id"})
+    post: PostEntity;
+
+
+    @Column({ name: "product_id", type: "uuid",nullable:true  })
+    productId: string;
+
+    @ManyToOne(() => ProductEntity, d => d.notifications)
+    @JoinColumn({name: "product_id"})
+    product: ProductEntity;
+
+    @Column({ name: "project_id", type: "uuid",nullable:true })
+    projectId: string;
+
+    @ManyToOne(() => ProductEntity, d => d.notifications)
+    @JoinColumn({name: "project_id"})
+    project: ProjectEntity;
+
+    @Column({ name: "contact_id", type: "uuid",nullable:true  })
+    contactId: string;
+
+    @ManyToOne(() => ContactEntity, d => d.notifications)
+    @JoinColumn({name: "contact_id"})
+    contact: ContactEntity;
+
+
+    @Column({ name: "lead_id", type: "uuid",nullable:true  })
+    leadId: string;
+
+    @ManyToOne(() => LeadEntity, d => d.notifications)
+    @JoinColumn({name: "lead_id"})
+    lead: LeadEntity;
+
+    @Column({ name: "opportunity_id", type: "uuid",nullable:true  })
+    opportunityId: string;
+
+    @ManyToOne(() => OpportunityEntity, d => d.notifications)
+    @JoinColumn({name: "opportunity_id"})
+    opportunity: OpportunityEntity;
+
+
+    @Column({ name: "wishlist_id", type: "uuid",nullable:true  })
+    wishlistId: string;
+
+    @ManyToOne(() => WishlistEntity, d => d.notifications)
+    @JoinColumn({name: "wishlist_id"})
+    wishlist: WishlistEntity;
+
+    @Column({ name: "organization_id", type: "uuid",nullable:true  })
+    organizationId: string;
+
+
+    @ManyToOne(()=> OrganizationEntity, o => o.notifications)
+    @JoinColumn({name: "organization_id"})
+    organization: OrganizationEntity;
+
     /**
      * Description
      */

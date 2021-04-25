@@ -1,8 +1,10 @@
+import { LeadEntity } from 'src/database.module/entities';
 import { WishlistEntity } from './wishlist.entity';
 import { OrganizationEntity } from './organization.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { OrderEntity } from './order.entity';
 import { OpportunityEntity } from './opportunity.entity';
+import { NotificationEntity } from './notification.entity';
 
 @Entity()
 export class UserEntity {
@@ -11,24 +13,12 @@ export class UserEntity {
     id: string;
 
     @Column({ name: "full_name", type: "varchar", length: 100 })
-    full_name: string;
-
-    @Column({ name: "gender", type: "varchar", length: 25 })
-    gender: string;
-
-    @Column({ name: "birthday", type: "date", nullable: true })
-    birthday: Date;
-
-    @Column({ name: "phone_number", type: "int" })
-    phone_number: string;
+    fullName: string;
 
     @Column({ name: "email", type: "varchar", length: 100 })
     email: string;
 
-    @Column({ name: "user_name", type: "varchar", length: 100 })
-    user_name: string;
-
-    @Column({ name: "password", type: "varchar", length: 100 })
+    @Column({ name: "password", type: "varchar", length: 255 })
     password: string;
 
     @Column({ name: "organizition_id", type: "varchar", length: 100 })
@@ -38,6 +28,18 @@ export class UserEntity {
     @JoinColumn({ name: "organizition_id" })
     organization: OrganizationEntity;
 
+    @Column({ name: "gender", type: "varchar", length: 25, nullable: true  })
+    gender: string;
+
+    @Column({ name: "birthday", type: "date", nullable: true })
+    birthday: Date;
+
+    @Column({ name: "phone_number", type: "int", nullable: true  })
+    phoneNumber: string;
+
+    @Column({ name: "user_name", type: "varchar", length: 100, nullable: true  })
+    userName: string;
+
     @OneToMany(() => OrderEntity, p => p.user)
     orders: OrderEntity[];
 
@@ -46,6 +48,12 @@ export class UserEntity {
 
     @OneToMany(() => OpportunityEntity, l => l.assignee)
     opportunities: OpportunityEntity[]
+
+    @OneToMany(() => LeadEntity, l => l.user)
+    leads: LeadEntity[]
+
+    @OneToMany(() => NotificationEntity, l => l.user)
+    notifications: NotificationEntity[]
 
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;

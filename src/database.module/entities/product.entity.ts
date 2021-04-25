@@ -2,7 +2,7 @@ import { WishlistEntity } from './wishlist.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, TreeLevelColumn } from "typeorm";
-import { AddressEntity, FileEntity, ProductTypeEntity } from ".";
+import { AddressEntity, FileEntity, LeadEntity, NotificationEntity, ProductTypeEntity } from ".";
 import { BalconydirectionEntity } from "./balcony_direction.entity";
 import { CityEntity } from "./city.entity";
 import { DistrictEntity } from "./district.entity";
@@ -164,7 +164,11 @@ export class ProductEntity {
     @Column({ name: "street", type: "varchar", nullable: true })
     street: string;
 
+    @OneToMany(() => LeadEntity, l => l.product)
+    leads: LeadEntity[]
 
+    @OneToMany(() => NotificationEntity, l => l.product)
+    notifications: NotificationEntity[]
     /**
      * Description
      */

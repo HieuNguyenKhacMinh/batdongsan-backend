@@ -1,4 +1,4 @@
-import { UserMapper } from 'src/crm/user/dto/mapper';
+import { UserMapper } from 'src/identity/user/dto/mapper';
 import { OrderEntity } from './../../../database.module/entities/order.entity';
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { OrderReqDto } from "./req-dto";

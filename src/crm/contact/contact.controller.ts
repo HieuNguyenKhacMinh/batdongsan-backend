@@ -27,11 +27,7 @@ export class ContactController {
 
     @Get()
     async findAll() {
-        const condition = {
-            relations: [
-                "wards", "address",
-                , "city", "district","country"], where: { } 
-        };
+        const condition: any = { relations: ["wards", "city","district","country"], where: { } };
         return this.service.findOne(condition);
     }
 

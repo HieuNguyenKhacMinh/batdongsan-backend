@@ -1,4 +1,4 @@
-import { UserResDto } from './../../../crm/user/dto/res-dto';
+import { UserResDto } from '../../../identity/user/dto/res-dto';
 import { ProductResDto } from 'src/cms/product/dto/res-dto';
 
 export class OrderResDto {

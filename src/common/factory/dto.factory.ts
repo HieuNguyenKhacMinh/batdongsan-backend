@@ -35,7 +35,7 @@ import { MessageReqDto } from "src/cms/message/dto/req-dto";
 import { ProjectReqDto } from "src/cms/project/dto/req-dto";
 import { OpportunityReqDto } from "src/crm/opportunity/dto/req-dto";
 import { ContactReqDto } from "src/crm/contact/dto/req-dto";
-import { UserReqDto } from 'src/crm/user/dto/req-dto';
+import { UserReqDto } from 'src/identity/user/dto/req-dto';
 
 export class DtoFactory {
     static getDto<TDto>(type: ObjectType<TDto>): IReqDtoFactory {

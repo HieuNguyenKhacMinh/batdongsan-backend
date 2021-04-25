@@ -31,5 +31,6 @@ export class ProjectResDto {
     project_type_id: string;
     projectType: ProjectTypeResDto;
     description: string;
+    product_id:string;
     products: ProductResDto[];
 }

@@ -1,4 +1,4 @@
-import { UserResDto } from './../../../crm/user/dto/res-dto';
+import { UserResDto } from '../../../identity/user/dto/res-dto';
 import { ProductResDto } from "src/cms/product/dto/res-dto";
 import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
 import { DistrictResDto } from "src/master-data/district/dto/res-dto";

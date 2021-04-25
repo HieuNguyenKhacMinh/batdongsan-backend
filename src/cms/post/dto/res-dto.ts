@@ -1,3 +1,4 @@
+import { OrganizationResDto } from './../../../crm/organization/dto/res-dto';
 import { CategoryReqDto } from "src/cms/category/dto/req-dto";
 import { CategoryResDto } from "src/cms/category/dto/res-dto";
 import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
@@ -17,4 +18,6 @@ export class PostResDto {
     page_id: string;
     hashtags: HashtagResDto[];
     sub_content: string;
+    organization_id: string;
+    organization:OrganizationResDto;
 }

@@ -4,7 +4,7 @@ import { GenericService } from 'src/common/generic.service';
 import { NotificationEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
 import { NotificationMapper } from './dto/mapper';
-import { NotificationReqDto} from './dto/req-dto';
+import { NotificationReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/Notification")
 @Controller('cms/notification')
@@ -12,16 +12,20 @@ export class NotificationController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, NotificationMapper, NotificationReqDto, NotificationEntity);
-     }
+    }
 
     @Post()
-    async create(@Body() dto:NotificationReqDto) {
+    async create(@Body() dto: NotificationReqDto) {
         return this.service.create(dto);
     }
 
     @Get()
     async findAll() {
-        const condition = { relations: ["notificationType"], where: {} };
+        const condition = {
+            relations: ["organization", "user", "product", "project",
+                "post", "contact", "notification_type", "lead", "opportunity",
+                "wishlist", "organization"], where: {}
+        };
         return this.service.findAll(condition);
     }
 
@@ -34,4 +38,4 @@ export class NotificationController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

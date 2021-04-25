@@ -1,6 +1,7 @@
+import { AuthModule } from './identity/auth/auth.module';
 import { PipelineModule } from './crm/pipeline/pipeline.module';
 import { WishlistModule } from './master-data/wishlist/wishlist.module';
-import { UserModule } from './crm/user/user.module';
+import { UserModule } from './identity/user/user.module';
 import { ProjectTypeModule } from './master-data/project_type/project_type.module';
 
 import { PostStatusModule } from './master-data/post_status/post_status.module';
@@ -41,11 +42,12 @@ import { OrderModule } from './cms/order/order.module';
 
 @Module({
   imports: [
+    DatabaseModule,
+    AuthModule,
     CategoryModule,
     PostStatusModule,
     PostModule,
     CommentModule,
-    DatabaseModule,
     DistrictModule,
     BalconydirectionTypeModule,
     FileModule,

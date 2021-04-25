@@ -1,3 +1,4 @@
+import { LeadEntity, NotificationEntity, OrganizationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable, PrimaryColumn } from "typeorm";
 import { CategoryEntity } from "./category.entity";
 import { CommentEntity } from "./comment.entity";
@@ -56,6 +57,22 @@ export class PostEntity {
 
     @OneToMany(() => CommentEntity, c => c.post)
     comments: CommentEntity[];
+
+    @OneToMany(() => LeadEntity, l => l.post)
+    leads: LeadEntity[]
+
+    @OneToMany(() => NotificationEntity, l => l.post)
+    notifications: NotificationEntity[]
+
+    
+    @Column({ name: "organization_id", type: "uuid",nullable:true  })
+    organizationId: string;
+
+    @ManyToOne(() => OrganizationEntity, o => o.posts)
+    @JoinColumn({ name: "organization_id" })
+    organization: OrganizationEntity;
+
+
     // /**
     //  * Name
     //  */

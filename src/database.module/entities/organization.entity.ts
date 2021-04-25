@@ -1,3 +1,4 @@
+import { PostController } from './../../cms/post/post.controller';
 import { PipelineEntity } from './pipeline.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
@@ -5,6 +6,7 @@ import { AddressEntity } from "./address.entity";
 import { ContactEntity } from './contact.entity';
 import { LeadEntity } from "./lead.entity";
 import { OpportunityEntity } from "./opportunity.entity";
+import { NotificationEntity, PostEntity } from '.';
 
 @Entity()
 export class OrganizationEntity {
@@ -46,6 +48,12 @@ export class OrganizationEntity {
 
     @OneToMany(() => PipelineEntity, l => l.organization)
     pipelines: PipelineEntity[]
+    
+    @OneToMany(() => NotificationEntity, a => a.organization)
+    notifications: NotificationEntity[]
+
+    @OneToMany(() => PostEntity, a => a.organization)
+    posts: NotificationEntity[]
     // /**
     //  * Name
     //  */

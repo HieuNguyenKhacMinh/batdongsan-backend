@@ -17,6 +17,16 @@ export class LeadReqDto implements IReqDtoFactory {
     otherdetails: string;
     @ApiProperty()
     organization_id: string;
+    @ApiProperty()
+    user_id:string;
+    @ApiProperty()
+    product_id:string;
+    @ApiProperty()
+    project_id:string;
+    @ApiProperty()
+    post_id:string;
+    @ApiProperty()
+    contact_id:string;
     validate(dto: LeadReqDto) {
         var errors = [];
         if (!dto.firsname || dto.firsname.length == 0) {

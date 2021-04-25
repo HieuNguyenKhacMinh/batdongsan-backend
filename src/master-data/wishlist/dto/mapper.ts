@@ -1,5 +1,5 @@
 import { WishlistEntity } from './../../../database.module/entities/wishlist.entity';
-import { UserMapper } from './../../../crm/user/dto/mapper';
+import { UserMapper } from '../../../identity/user/dto/mapper';
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { WishlistReqDto } from "./req-dto";
 import { WishlistResDto } from "./res-dto";

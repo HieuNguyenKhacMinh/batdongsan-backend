@@ -7,7 +7,7 @@ export class NotificationTypeEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "name", type: "varchar", length: 50 })
+    @Column({ name: "name", type: "varchar", length: 50 ,nullable:true})
     name: string;
 
     @OneToMany(() => NotificationEntity, a => a.notificationType)

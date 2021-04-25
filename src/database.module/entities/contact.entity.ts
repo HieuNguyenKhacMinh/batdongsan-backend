@@ -1,6 +1,6 @@
 import { CountryEntity } from 'src/database.module/entities/country.entity';
-import { AddressEntity, OrganizationEntity, DistrictEntity, WardsEntity, CityEntity } from 'src/database.module/entities';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { AddressEntity, OrganizationEntity, DistrictEntity, WardsEntity, CityEntity, LeadEntity, NotificationEntity } from 'src/database.module/entities';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class ContactEntity {
@@ -8,16 +8,16 @@ export class ContactEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "contact_account", type: "varchar", length: 100 })
+    @Column({ name: "contact_account", type: "varchar", length: 100 , nullable: true })
     contactAccount: string;
 
-    @Column({ name: "name", type: "varchar", length: 100 })
+    @Column({ name: "name", type: "varchar", length: 100, nullable: true  })
     name: string;
 
-    @Column({ name: "phone_number", type: "varchar", length: 100 })
+    @Column({ name: "phone_number", type: "varchar", length: 100, nullable: true  })
     phoneNumber: string;
 
-    @Column({ name: "email", type: "varchar", length: 100 })
+    @Column({ name: "email", type: "varchar", length: 100, nullable: true  })
     email: string;
 
     @Column({ name: "address_id", type: "uuid", nullable: true })
@@ -56,29 +56,33 @@ export class ContactEntity {
     city: CityEntity;
 
 
-    @Column({ name: "otherdetails", type: "varchar", length: 100,nullable: true })
+    @Column({ name: "otherdetails", type: "varchar", length: 100, nullable: true })
     otherDetails: string;
 
-    @Column({ name: "contact_details", type: "varchar", length: 100})
+    @Column({ name: "contact_details", type: "varchar", length: 100, nullable: true  })
     contactDetails: string;
 
     // @Column({ name: "company_id", type: "uuid",nullable: true })
     // companyId: string;
 
-    @Column({ name: "organization_id", type: "uuid",nullable: true })
+    @Column({ name: "organization_id", type: "uuid", nullable: true })
     organizationId: string;
 
     // @ManyToOne(()=> CompanyEntity, o => o.contacts)
     // @JoinColumn({name: "company_id"})
     // company: CompanyEntity;
 
-    @ManyToOne(()=> OrganizationEntity, o => o.contacts)
-    @JoinColumn({name: "company_id"})
+    @ManyToOne(() => OrganizationEntity, o => o.contacts)
+    @JoinColumn({ name: "company_id" })
     organization: OrganizationEntity;
 
+    @OneToMany(() => LeadEntity, l => l.contact)
+    leads: LeadEntity[]
 
-   
-   // /**
+
+    @OneToMany(() => NotificationEntity, l => l.contact)
+    notifications: NotificationEntity[]
+    // /**
     //  * Name
     //  */
     // @Column({ name: 'name', type: 'varchar', length: 255, nullable: true })
@@ -87,40 +91,40 @@ export class ContactEntity {
     /**
      * Description
      */
-     @Column({ name: 'description', type: 'longtext', nullable: true })
-     public description: string;
- 
-     /**
-      * Delete Flag
-      */
-     @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
-     public deleteFlag: number;
- 
-     /**
-      * Created By
-      */
-     @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
-     public createdBy: string;
- 
-     /**
-      * Created Date
-      */
-     @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
-     public createdDate: string;
- 
-     /**
-      * Last Updated By
-      */
-     @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
-     public lastUpdatedBy: string;
- 
-     @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
-     public siteId: string;
-     /**
-      * Update Date
-      */
-     @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-     public lastUpdateDate: string;
+    @Column({ name: 'description', type: 'longtext', nullable: true })
+    public description: string;
+
+    /**
+     * Delete Flag
+     */
+    @Column({ name: 'delete_flag', type: 'tinyint', nullable: true, default: 0 })
+    public deleteFlag: number;
+
+    /**
+     * Created By
+     */
+    @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
+    public createdBy: string;
+
+    /**
+     * Created Date
+     */
+    @Column({ name: 'created_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP' })
+    public createdDate: string;
+
+    /**
+     * Last Updated By
+     */
+    @Column({ name: 'last_updated_by', type: 'char', length: 64, nullable: true })
+    public lastUpdatedBy: string;
+
+    @Column({ name: 'SiteId', type: 'char', length: 64, nullable: true })
+    public siteId: string;
+    /**
+     * Update Date
+     */
+    @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+    public lastUpdateDate: string;
 }
 
 

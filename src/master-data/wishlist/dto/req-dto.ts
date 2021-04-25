@@ -10,6 +10,7 @@ export enum Fields {
 export class WishlistReqDto implements IReqDtoFactory {
     @ApiProperty()
     id: string;
+    @ApiProperty()
     product_id: string;
     @ApiProperty()
     user_id: string;

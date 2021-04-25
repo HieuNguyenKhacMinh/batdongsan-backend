@@ -22,7 +22,7 @@ export class PostController {
 
     @Post('all')
     async findAll(@Body() dto: ConditionDto) {
-        const condition: any = { relations: ["category", "status"], where: {} };
+        const condition: any = { relations: ["category", "status","organizatin"], where: {} };
         if (dto.category_id) condition.where.categoryId = dto.category_id;
         if (dto.status) condition.where.statusId = dto.status;
         return this.service.findAll(condition);
@@ -30,7 +30,7 @@ export class PostController {
 
     @Get(":id")
     async findOne(@Param("id") id: string) {
-        const condition: any = { relations: ["category", "status"], where: { id } };
+        const condition: any = { relations: ["category", "status","organization"], where: { id } };
         return this.service.findOne(condition);
     }
 

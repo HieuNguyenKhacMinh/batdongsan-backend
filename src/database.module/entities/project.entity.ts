@@ -1,6 +1,6 @@
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
-import { DistrictEntity, WardsEntity, AddressEntity } from 'src/database.module/entities';
+import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
@@ -65,6 +65,7 @@ export class ProjectEntity {
     @Column({ name: "p_country_id", type: "uuid" })
     countryId: string;
 
+
     @ManyToOne(() => CountryEntity, f => f.projects)
     @JoinColumn({ name: "p_country_id" })
     country: CountryEntity;
@@ -98,6 +99,11 @@ export class ProjectEntity {
     @OneToMany(() => OpportunityEntity, l => l.project)
     opportunities: OpportunityEntity[]
 
+    @OneToMany(() => LeadEntity, l => l.project)
+    leads: LeadEntity[]
+
+    @OneToMany(() => NotificationEntity, l => l.project)
+    notifications: NotificationEntity[]
 
     /**
      * Description
