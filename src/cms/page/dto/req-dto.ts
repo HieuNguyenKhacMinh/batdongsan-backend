@@ -12,6 +12,8 @@ export class PageReqDto implements IReqDtoFactory {
     @ApiProperty()
     name: string;
     @ApiProperty()
+    slug: string;
+    @ApiProperty()
     description: string;
     validate(dto: PageReqDto) {
         var errors = [];

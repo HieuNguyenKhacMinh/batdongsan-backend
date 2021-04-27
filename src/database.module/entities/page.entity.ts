@@ -7,9 +7,12 @@ export class PageEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "name", type: "varchar", length: 50 })
+    @Column({ name: "name", type: "varchar", length: 250 })
     name: string;
-
+ 
+    @Column({ name: "slug", type: "varchar", length: 50 })
+    slug: string;
+ 
     // @OneToMany(() => PostEntity, p => p.page)
     // posts: PostEntity[];
 

@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 @Module({
     imports: [],
     controllers: [
-       PageController, ],
+        PageController,],
     providers: [],
 })
-export class PageModule {}
+export class PageModule { }

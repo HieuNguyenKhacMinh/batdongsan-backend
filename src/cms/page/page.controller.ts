@@ -12,7 +12,7 @@ export class PageController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, PageMapper, PageReqDto, PageEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: PageReqDto) {
@@ -24,6 +24,11 @@ export class PageController {
         return this.service.findAll();
     }
 
+    @Get(":slug")
+    async getOne(@Param("slug") slug: string) {
+        const condition = { where: { slug } }
+        return this.service.findOne(condition);
+    }
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: PageReqDto) {
         return this.service.update(id, dto);
@@ -33,4 +38,4 @@ export class PageController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

@@ -10,6 +10,5 @@ export class UserResDto {
     user_name: string;
     organization_id: string;
     organization:OrganizationResDto;
-    password:string;
     role:number;
 }
