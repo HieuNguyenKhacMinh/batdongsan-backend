@@ -29,11 +29,17 @@ export class OrganizationEntity {
     @Column({ name: "address_id", type: "uuid" })
     addressId:string;
 
+    @Column({ name: "owner_id", type: "uuid" })
+    ownerId:string;
+
+    @OneToOne(() => UserEntity, f => f.organizationOwner)
+    @JoinColumn({ name: "owner_id" })
+    owner: UserEntity;
+
     @OneToOne(() => AddressEntity, a => a.organization)
     @JoinColumn({name: "address_id"})
     address: AddressEntity;
     
-
     @OneToMany(() => LeadEntity, l => l.organization)
     leads: LeadEntity[];
 

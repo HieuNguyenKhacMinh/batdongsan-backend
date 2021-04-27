@@ -15,6 +15,7 @@ export class UserMapper implements IMapperFactory {
         entity.userName = req.user_name;
         entity.password = req.password;
         entity.phoneNumber = req.phone_number;
+        entity.role = req.role;
         return entity;
     }
     mapRes(res: UserResDto, entity: UserEntity) {
@@ -28,6 +29,7 @@ export class UserMapper implements IMapperFactory {
         res.birthday = entity.birthday;
         res.phone_number = res.phone_number;
         res.password = entity.password;
+        res.role = entity.role;
         res.organization_id = entity.organizationId;
         res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization): undefined;
         return res;

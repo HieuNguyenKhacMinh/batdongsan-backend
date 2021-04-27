@@ -22,7 +22,7 @@ export class AuthService {
             // check exist email 
             let user = await this.usersRepository.findOne({ email: dto.email });
             if (user) {
-                throw new Error("User existing");
+                return Error("User existing");
             }
 
             // if domain exist -> get company
@@ -31,7 +31,7 @@ export class AuthService {
                 org = await this.organizationRepository.findOne({ where: { domain: dto.domain } });
 
                 if (!org) {
-                    return new Error("org not found");
+                    return Error("org not found");
                 }
             }
             // if create a new company
@@ -61,8 +61,7 @@ export class AuthService {
 
         } catch (error) {
             console.log(error);
-            return error
-
+            return Error(error)
         }
     }
 
@@ -71,7 +70,7 @@ export class AuthService {
 
         let user = await this.usersRepository.findOne({ email: dto.email });
         if (!user) {
-            throw new Error("User does not exist");
+            return Error("User does not exist");
         }
         // Creating a unique salt for a particular user 
         const salt = "123456789";
@@ -80,7 +79,7 @@ export class AuthService {
         const hashPassword = crypto.pbkdf2Sync(dto.password, salt, 1000, 64, `sha512`).toString(`hex`);
 
         if (user.password !== hashPassword) {
-            throw new Error("Email or password wrong");
+            return Error("Email or password wrong");
         }
 
         //  return token

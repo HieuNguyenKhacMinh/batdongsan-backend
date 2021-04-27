@@ -27,6 +27,8 @@ export class UserReqDto implements IReqDtoFactory {
     user_name: string;
     @ApiProperty()
     password: string;
+    @ApiProperty()
+    role:number;
     validate(dto: UserReqDto) {
         var errors = [];
         if (!dto.full_name || dto.full_name.length == 0) {
