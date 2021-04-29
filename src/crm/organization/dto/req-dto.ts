@@ -21,7 +21,8 @@ export class OrganizationReqDto implements IReqDtoFactory {
     domain: string;
     @ApiProperty()
     address_id: string;
-
+    @ApiProperty()
+    home_number:string;
     validate(dto: OrganizationReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

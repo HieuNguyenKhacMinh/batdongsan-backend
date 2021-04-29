@@ -16,6 +16,7 @@ export class OrganizationMapper implements IMapperFactory {
         entity.phoneNumber = req.phone_number;
         entity.description = req.description;
         entity.addressId = req.address_id;
+        entity.address.homeNumber = req.home_number;
         return entity;
     }
     mapRes(res: OrganizationResDto, entity: OrganizationEntity) {

@@ -41,7 +41,8 @@ export class OrganizationController {
     }
 
     @Put(':id')
-    put(@Param("id") id: string, @Body() dto: OrganizationReqDto) {
+    async put(@Param("id") id: string, @Body() dto: OrganizationReqDto, @Body() addressDto: AddressReqDto) {
+        const address = await this.addressService.update(dto.address_id,addressDto);
         return this.service.update(id, dto);
     }
 
