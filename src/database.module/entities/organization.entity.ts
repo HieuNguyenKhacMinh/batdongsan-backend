@@ -7,6 +7,7 @@ import { ContactEntity } from './contact.entity';
 import { LeadEntity } from "./lead.entity";
 import { OpportunityEntity } from "./opportunity.entity";
 import { NotificationEntity, PostEntity } from '.';
+import { ProductEntity } from './product.entity';
 
 @Entity()
 export class OrganizationEntity {
@@ -42,6 +43,9 @@ export class OrganizationEntity {
     
     @OneToMany(() => LeadEntity, l => l.organization)
     leads: LeadEntity[];
+
+    @OneToMany(() => ProductEntity, f => f.organization)
+    products: ProductEntity[];
 
     @OneToMany(() => OpportunityEntity, l => l.organization)
     opportunities: OpportunityEntity[]

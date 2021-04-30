@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { CategoryEntity } from 'src/database.module/entities/category.entity';
@@ -20,9 +20,18 @@ export class CategoryController {
     }
 
     @Get()
-    async findAll() {
-        return this.service.findAll();
+    async findAll(@Req() req: any) {
+
+        const organizationId = req.headers["organization_id"];
+    
+        const categories = await this.service.findAll();
+        if(!organizationId) return categories;
+        return categories.map(c=>{
+            c.posts = c.posts.filter(p => p.organization_id === organizationId)
+            return c;
+        });
     }
+
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: CategoryReqDto) {

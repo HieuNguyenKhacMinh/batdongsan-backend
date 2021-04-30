@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { UserEntity } from 'src/database.module/entities/User.entity';
@@ -9,10 +9,10 @@ import { UserReqDto } from './dto/req-dto';
 @ApiTags("CMS/User")
 @Controller('cms/user')
 export class UserController {
-    service
+    service: GenericService
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, UserMapper, UserReqDto, UserEntity);
-     }
+    }
 
     @Post()
     async create(@Body() dto: UserReqDto) {
@@ -20,10 +20,22 @@ export class UserController {
     }
 
     @Get()
-    async findAll() {
+    async findAll(@Req() req: any) {
+        const organizationId = req.headers["organization_id"];
         const condition = { relations: ["organization"], where: {} };
-        return this.service.findAll(condition);
+        const users = await this.service.findAll(condition);
+        return users.filter(p => p.organization_id === organizationId);
     }
+
+    @Get(':id')
+    async findOne(@Param("id") id: string) {
+        const condition = {
+            relations: ["organization"],
+            where: { id }
+        };
+        return this.service.findOne(condition);
+    }
+
 
     @Put(':id')
     put(@Param("id") id: string, @Body() dto: UserReqDto) {
@@ -34,4 +46,13 @@ export class UserController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+
+    @Delete(':id')
+    deactive(@Param("id") id: string) {
+        return this.connection.createQueryBuilder()
+            .update(UserEntity)
+            .set({ deleteFlag: 1 })
+            .where("id = :id", { id })
+            .execute();
+    }
+}

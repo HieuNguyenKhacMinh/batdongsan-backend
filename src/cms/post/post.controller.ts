@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { PostEntity } from 'src/database.module/entities';
@@ -21,8 +21,14 @@ export class PostController {
     }
 
     @Post('all')
-    async findAll(@Body() dto: ConditionDto) {
-        const condition: any = { relations: ["category", "status","organization"], where: {} };
+
+    async findAll(@Body() dto: ConditionDto, @Req() req: any) {
+        const organizationId = req.headers["organization_id"];
+
+        const condition: any = { relations: ["category", "status", "organization"], where: {} };
+        if (organizationId) {
+            condition.where = { organizationId };
+        }
         if (dto.category_id) condition.where.categoryId = dto.category_id;
         if (dto.status) condition.where.statusId = dto.status;
         return this.service.findAll(condition);
@@ -30,7 +36,7 @@ export class PostController {
 
     @Get(":id")
     async findOne(@Param("id") id: string) {
-        const condition: any = { relations: ["category", "status","organization"], where: { id } };
+        const condition: any = { relations: ["category", "status", "organization"], where: { id } };
         return this.service.findOne(condition);
     }
 

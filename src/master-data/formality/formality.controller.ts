@@ -26,8 +26,8 @@ export class FormalityController {
             const isBuyHire = isBuy == 1 ? 1 : 0;
             condition.where = { isBuyHire }
         }
-        console.log(isBuy);
-        console.log(condition);
+        // console.log(isBuy);
+        // console.log(condition);
         
         return this.service.findAll(condition);
     }

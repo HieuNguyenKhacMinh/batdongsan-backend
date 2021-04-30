@@ -1,3 +1,4 @@
+import { OrganizationEntity } from './organization.entity';
 import { WishlistEntity } from './wishlist.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
@@ -32,6 +33,10 @@ export class ProductEntity {
     @Column({ name: "price", type: "varchar", nullable: true })
     price: string;
 
+    @Column({ name: "organization_id", type: "varchar", nullable: true })
+    orgabizationId: string;
+
+
     @Column({ name: "is_buy_hire", type: "int", default: 0, nullable: true })
     isBuyHire: number;
 
@@ -50,6 +55,11 @@ export class ProductEntity {
     @ManyToOne(() => FormalityEntity, f => f.products)
     @JoinColumn({ name: "formality_id" })
     formality: FormalityEntity;
+
+    @ManyToOne(() => OrganizationEntity, f => f.products)
+    @JoinColumn({name: "organization_id" })
+    organization: OrganizationEntity;
+
 
     @Column({ name: "address_id", type: "uuid", nullable: true })
     addressId: string;

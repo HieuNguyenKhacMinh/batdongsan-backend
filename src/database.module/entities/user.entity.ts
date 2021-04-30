@@ -13,16 +13,16 @@ export class UserEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "full_name", type: "varchar", length: 100 })
+    @Column({ name: "full_name", type: "varchar", length: 100 ,nullable:true})
     fullName: string;
 
-    @Column({ name: "email", type: "varchar", length: 100 })
+    @Column({ name: "email", type: "varchar", length: 100 ,nullable:true})
     email: string;
 
-    @Column({ name: "password", type: "varchar", length: 255 })
+    @Column({ name: "password", type: "varchar", length: 255, nullable:true})
     password: string;
 
-    @Column({ name: "organizition_id", type: "varchar", length: 100 })
+    @Column({ name: "organizition_id", type: "varchar", length: 100,nullable:true })
     organizationId: string;
 
     @ManyToOne(() => OrganizationEntity, o => o.users)

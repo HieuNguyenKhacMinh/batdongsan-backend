@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { AddressEntity, ProductEntity } from 'src/database.module/entities';
@@ -26,8 +26,8 @@ export class ProductController {
     }
 
     @Get("all/:isBuy")
-    async findAll(@Param("isBuy") isBuy: number) {
-
+    async findAll(@Param("isBuy") isBuy: number,@Req() req: any) {
+        const organizationId = req.headers["organization_id"];
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
@@ -36,8 +36,9 @@ export class ProductController {
         if (isBuy != 2) {
             const isBuyHire = isBuy || 0;
             condition.where = { isBuyHire };
-        }
-        return this.service.findAll(condition);
+        }        
+        const products = await this.service.findAll(condition);
+        return products.filter(p => p.organization_id === organizationId);
     }
 
 

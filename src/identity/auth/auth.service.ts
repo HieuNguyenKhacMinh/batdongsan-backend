@@ -38,7 +38,8 @@ export class AuthService {
             else {
                 org = new OrganizationEntity();
                 org.name = dto.company_name;
-                org.domain = dto.company_name.replace(/[.*+?^${}()|[\]\\]/g, '');
+                // xóa ký tự đặc biệt => ''
+                org.domain = dto.company_name.replace(/[.*+?^${}()|[\]\\]/g, '').toLowerCase();
                 org = await this.organizationRepository.create(org);
             }
 
@@ -54,13 +55,17 @@ export class AuthService {
             user.email = dto.email;
             user.password = hashPassword;
             user.organizationId = org.id;
+            // console.log(hashPassword);
+
+            // console.log(user);
+
 
             await this.usersRepository.save(user);
 
             return "Registered successfully";
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return Error(error)
         }
     }
@@ -98,7 +103,7 @@ export class AuthService {
             access_token: token,
             user_id: user.id,
             organization_id: user.organizationId,
-            role:user.role
+            role: user.role
         }
     }
 }

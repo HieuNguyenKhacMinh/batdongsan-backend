@@ -64,8 +64,8 @@ export class PostEntity {
     @OneToMany(() => NotificationEntity, l => l.post)
     notifications: NotificationEntity[]
 
-    
-    @Column({ name: "organization_id", type: "uuid",nullable:true  })
+
+    @Column({ name: "organization_id", type: "uuid", nullable: true })
     organizationId: string;
 
     @ManyToOne(() => OrganizationEntity, o => o.posts)
