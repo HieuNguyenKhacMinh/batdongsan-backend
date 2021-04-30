@@ -97,7 +97,8 @@ export class AuthService {
         return {
             access_token: token,
             user_id: user.id,
-            organization_id: user.organizationId
+            organization_id: user.organizationId,
+            role:user.role
         }
     }
 }

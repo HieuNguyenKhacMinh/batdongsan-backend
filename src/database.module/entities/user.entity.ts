@@ -41,7 +41,7 @@ export class UserEntity {
     @Column({ name: "user_name", type: "varchar", length: 100, nullable: true })
     userName: string;
 
-    @Column({ name: "role", type: "int",nullable: true })
+    @Column({ name: "role", type: "int",nullable: true ,default:1})
     role: number;
 
     @OneToMany(() => OrderEntity, u => u.user)
