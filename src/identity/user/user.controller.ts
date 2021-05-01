@@ -47,11 +47,20 @@ export class UserController {
         return this.service.delete(id);
     }
 
-    @Delete(':id')
+    @Delete('deactive/:id')
     deactive(@Param("id") id: string) {
         return this.connection.createQueryBuilder()
             .update(UserEntity)
-            .set({ deleteFlag: 1 })
+            .set({ deactive: 1 })
+            .where("id = :id", { id })
+            .execute();
+    }
+
+    @Put('active/:id')
+    active(@Param("id") id: string) {
+        return this.connection.createQueryBuilder()
+            .update(UserEntity)
+            .set({ deactive: 0 })
             .where("id = :id", { id })
             .execute();
     }

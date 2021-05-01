@@ -3,7 +3,7 @@ import { WishlistEntity } from './wishlist.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, TreeLevelColumn } from "typeorm";
-import { AddressEntity, FileEntity, LeadEntity, NotificationEntity, ProductTypeEntity } from ".";
+import { AddressEntity, FileEntity, LeadEntity, NotificationEntity, PostEntity, ProductTypeEntity } from ".";
 import { BalconydirectionEntity } from "./balcony_direction.entity";
 import { CityEntity } from "./city.entity";
 import { DistrictEntity } from "./district.entity";
@@ -179,6 +179,9 @@ export class ProductEntity {
 
     @OneToMany(() => NotificationEntity, l => l.product)
     notifications: NotificationEntity[]
+
+    @OneToMany(() => PostEntity, l => l.product)
+    posts: PostEntity[]
     /**
      * Description
      */

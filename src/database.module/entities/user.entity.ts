@@ -13,16 +13,16 @@ export class UserEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "full_name", type: "varchar", length: 100 ,nullable:true})
+    @Column({ name: "full_name", type: "varchar", length: 100, nullable: true })
     fullName: string;
 
-    @Column({ name: "email", type: "varchar", length: 100 ,nullable:true})
+    @Column({ name: "email", type: "varchar", length: 100, nullable: true })
     email: string;
 
-    @Column({ name: "password", type: "varchar", length: 255, nullable:true})
+    @Column({ name: "password", type: "varchar", length: 255, nullable: true })
     password: string;
 
-    @Column({ name: "organizition_id", type: "varchar", length: 100,nullable:true })
+    @Column({ name: "organizition_id", type: "varchar", length: 100, nullable: true })
     organizationId: string;
 
     @ManyToOne(() => OrganizationEntity, o => o.users)
@@ -41,8 +41,11 @@ export class UserEntity {
     @Column({ name: "user_name", type: "varchar", length: 100, nullable: true })
     userName: string;
 
-    @Column({ name: "role", type: "int",nullable: true ,default:1})
+    @Column({ name: "role", type: "int", nullable: true, default: 1 })
     role: number;
+
+    @Column({ name: "deactive", type: "int", nullable: true, default: 0 })
+    deactive: number;
 
     @OneToMany(() => OrderEntity, u => u.user)
     orders: OrderEntity[];

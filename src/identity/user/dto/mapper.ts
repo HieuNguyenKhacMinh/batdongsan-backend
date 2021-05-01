@@ -29,6 +29,7 @@ export class UserMapper implements IMapperFactory {
         res.birthday = entity.birthday;
         res.phone_number = res.phone_number;
         res.role = entity.role;
+        res.deactive = entity.deactive;
         res.organization_id = entity.organizationId;
         res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization): undefined;
         return res;

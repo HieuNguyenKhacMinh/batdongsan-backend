@@ -11,4 +11,5 @@ export class UserResDto {
     organization_id: string;
     organization:OrganizationResDto;
     role:number;
+    deactive: number;
 }

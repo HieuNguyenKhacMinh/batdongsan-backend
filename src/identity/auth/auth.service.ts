@@ -87,6 +87,14 @@ export class AuthService {
             return Error("Email or password wrong");
         }
 
+
+        if (user.deleteFlag === 1) {
+            return Error("Tài khoản của bạn đã bị xóa xin vui lòng liên hệ admin");
+        }
+
+        if (user.deactive === 1) {
+            return Error("Tài khoản của bạn đã bị khóa xin vui lòng liên hệ manager");
+        }
         //  return token
         const tokenData = {
             id: user.id,

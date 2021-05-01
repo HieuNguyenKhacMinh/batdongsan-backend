@@ -4,6 +4,7 @@ import { CategoryEntity } from "./category.entity";
 import { CommentEntity } from "./comment.entity";
 import { HashtagEntity } from "./hashtag.entity";
 import { PostStatusEntity } from "./post_status.entity";
+import { ProductEntity } from './product.entity';
 
 @Entity()
 export class PostEntity {
@@ -72,6 +73,14 @@ export class PostEntity {
     @JoinColumn({ name: "organization_id" })
     organization: OrganizationEntity;
 
+
+    @Column({ name: "product_id", type: "uuid", nullable: true })
+    productId: string;
+
+
+    @ManyToOne(() => ProductEntity, o => o.posts)
+    @JoinColumn({ name: "product_id" })
+    product: ProductEntity;
 
     // /**
     //  * Name
