@@ -47,7 +47,7 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType", "comments"], where: { id }
+                "balconyDirection", "city", "productType", "comments", "comments.children", "comments.createdByUser"], where: { id }
         };
         return this.service.findOne(condition);
     }
