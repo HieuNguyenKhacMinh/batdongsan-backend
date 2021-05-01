@@ -1,6 +1,6 @@
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
-import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity } from 'src/database.module/entities';
+import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
@@ -104,6 +104,9 @@ export class ProjectEntity {
 
     @OneToMany(() => NotificationEntity, l => l.project)
     notifications: NotificationEntity[]
+
+    @OneToMany(() => CommentEntity, c => c.projects)
+    comments: CommentEntity[];
 
     /**
      * Description

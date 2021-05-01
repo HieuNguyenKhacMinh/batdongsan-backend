@@ -26,18 +26,23 @@ export class ProductController {
     }
 
     @Get("all/:isBuy")
-    async findAll(@Param("isBuy") isBuy: number,@Req() req: any) {
+    async findAll(@Param("isBuy") isBuy: number, @Req() req: any) {
         const organizationId = req.headers["organization_id"];
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
                 "balconyDirection", "city", "productType"], where: {}
         };
+        
         if (isBuy != 2) {
             const isBuyHire = isBuy || 0;
             condition.where = { isBuyHire };
-        }        
-        const products = await this.service.findAll(condition);
+        }
+       
+        const products = await this.service.findAll(condition); 
+        if (!organizationId) {
+           return products;
+        }
         return products.filter(p => p.organization_id === organizationId);
     }
 

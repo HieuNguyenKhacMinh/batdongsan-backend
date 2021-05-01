@@ -7,6 +7,7 @@ import { PostEntity } from "src/database.module/entities";
 import { PostReqDto } from "./req-dto";
 import { PostResDto } from "./res-dto";
 import { OrganizationMapper } from "src/crm/organization/dto/mapper";
+import { CommentMapper } from "src/cms/comment/dto/mapper";
 
 export class PostMapper implements IMapperFactory {
     mapReq(entity: PostEntity, req: PostReqDto) {
@@ -39,7 +40,10 @@ export class PostMapper implements IMapperFactory {
         res.hashtags = entity.hashtags ? entity.hashtags.map(tag => {
             return new HashtagMapper().mapRes(undefined, tag)
         }) : [];
-      
+        res.comments = entity.comments ? entity.comments.map(comment =>
+            new CommentMapper().mapRes(undefined, comment)
+        ) : [];
+
         return res;
     }
 

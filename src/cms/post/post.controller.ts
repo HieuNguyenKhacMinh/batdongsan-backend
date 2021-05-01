@@ -36,7 +36,7 @@ export class PostController {
 
     @Get(":id")
     async findOne(@Param("id") id: string) {
-        const condition: any = { relations: ["category", "status", "organization"], where: { id } };
+        const condition: any = { relations: ["category", "status", "organization", "comments", "comments.children", "comments.createdByUser"], where: { id } };
         return this.service.findOne(condition);
     }
 

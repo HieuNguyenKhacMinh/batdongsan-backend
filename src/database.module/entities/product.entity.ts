@@ -34,7 +34,7 @@ export class ProductEntity {
     price: string;
 
     @Column({ name: "organization_id", type: "varchar", nullable: true })
-    orgabizationId: string;
+    organizationId: string;
 
 
     @Column({ name: "is_buy_hire", type: "int", default: 0, nullable: true })

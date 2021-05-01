@@ -9,5 +9,5 @@ export class CommentResDto {
     children: CommentResDto[];
     created_by: string;
     created_by_user: UserResDto;
-
+    project_id : string;
 }

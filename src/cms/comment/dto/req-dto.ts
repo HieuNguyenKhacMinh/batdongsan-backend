@@ -23,6 +23,10 @@ export class CommentReqDto implements IReqDtoFactory {
     @ApiProperty({ required: false })
     parent_id: string;
 
+    @ApiProperty({ required: false })
+    project_id: string;
+
+
     // không cần request lên từ frontend
     created_by: string
 

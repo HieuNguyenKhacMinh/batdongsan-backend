@@ -75,6 +75,9 @@ export class ProductReqDto implements IReqDtoFactory {
     email: string;
     @ApiProperty()
     is_buy_hire:number;
+    @ApiProperty()
+    organization_id:string;
+
 
     validate(dto: ProductReqDto) {
         var errors = [];

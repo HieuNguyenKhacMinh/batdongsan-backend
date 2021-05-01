@@ -56,7 +56,7 @@ export class PostEntity {
     // @ManyToOne(() => PageEntity, f => f.posts)
     // page: PageEntity;
 
-    @OneToMany(() => CommentEntity, c => c.post)
+    @OneToMany(() => CommentEntity, c => c.posts)
     comments: CommentEntity[];
 
     @OneToMany(() => LeadEntity, l => l.post)
@@ -81,6 +81,7 @@ export class PostEntity {
     @ManyToOne(() => ProductEntity, o => o.posts)
     @JoinColumn({ name: "product_id" })
     product: ProductEntity;
+
 
     // /**
     //  * Name

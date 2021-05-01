@@ -5,6 +5,7 @@ import { HashtagReqDto } from "src/cms/hashtag/dto/req-dto";
 import { HashtagResDto } from "src/cms/hashtag/dto/res-dto";
 import { CountryResDto } from "src/master-data/country/dto/res-dto";
 import { StatusResDto } from "src/master-data/post_status/dto/res-dto";
+import { CommentResDto } from 'src/cms/comment/dto/res-dto';
 
 export class PostResDto {
     id: string;
@@ -20,4 +21,5 @@ export class PostResDto {
     sub_content: string;
     organization_id: string;
     organization:OrganizationResDto;
+    comments: CommentResDto[];
 }

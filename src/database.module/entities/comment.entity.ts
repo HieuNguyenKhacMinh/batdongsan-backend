@@ -3,6 +3,7 @@ import { OpportunityEntity } from 'src/database.module/entities/opportunity.enti
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, Tree, TreeParent, TreeChildren } from "typeorm";
 import { PostEntity } from "./post.entity";
 import { ProductEntity } from './product.entity';
+import { ProjectEntity } from '.';
 
 @Entity()
 export class CommentEntity {
@@ -13,19 +14,28 @@ export class CommentEntity {
     @Column({ name: "content", type: "varchar", length: 1000 })
     content: string;
 
+    @Column({ name: "project_id", type: "uuid", nullable: true })
+    projectId: string;
+
     @Column({ name: "post_id", type: "uuid", nullable: true })
     postId: string;
 
     @ManyToOne(() => PostEntity, f => f.comments, { eager: false })
     @JoinColumn({ name: "post_id" })
-    post: PostEntity;
+    posts: PostEntity;
+
+    @ManyToOne(() => ProjectEntity, f => f.comments, { eager: false })
+    @JoinColumn({ name: "project_id" })
+    projects: ProjectEntity;
 
     @Column({ name: "product_id", type: "uuid", nullable: true })
     productId: string;
 
+
     @ManyToOne(() => ProductEntity, f => f.comments, { eager: false })
     @JoinColumn({ name: "product_id" })
     product: ProductEntity;
+
 
     @Column({ name: "opportunity_id", type: "uuid", nullable: true })
     opportunityId: string;

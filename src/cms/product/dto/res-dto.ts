@@ -9,6 +9,7 @@ import { ProductUnitResDto } from "src/master-data/product_unit/dto/res-dto";
 import { ProjectResDto } from "src/cms/project/dto/res-dto";
 import { WardsResDto } from "src/master-data/wards/dto/res-dto";
 import { CountryResDto } from "src/master-data/country/dto/res-dto";
+import { OrganizationResDto } from 'src/crm/organization/dto/res-dto';
 
 
 export class ProductResDto {
@@ -54,5 +55,7 @@ export class ProductResDto {
     home_number: string;
     is_buy_hire:number;
     comments: CommentResDto[];
-    
+    organization_id: string;
+    organization:OrganizationResDto;
+   
 }

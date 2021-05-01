@@ -1,3 +1,4 @@
+import { CommentMapper } from './../../comment/dto/mapper';
 import { AddressMapper } from './../../../master-data/address/dto/mapper';
 import { DistrictMapper } from 'src/master-data/district/dto/mapper';
 import { ProvinceCityMapper } from "src/master-data/city/dto/mapper";
@@ -61,6 +62,10 @@ export class ProjectMapper implements IMapperFactory {
         res.infrastructure_design = entity.infrastructureDesign;
         res.products = entity.products ? entity.products.map(p =>
             new ProductMapper().mapRes(undefined, p)) : undefined;
+        res.comments = entity.comments ? entity.comments.map(comment =>
+            new CommentMapper().mapRes(undefined, comment)
+        ) : [];
+
         return res;
     }
 
