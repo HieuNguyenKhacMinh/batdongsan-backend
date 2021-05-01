@@ -1,5 +1,5 @@
 import { UserController } from './../../identity/user/user.controller';
-import { LeadEntity } from 'src/database.module/entities';
+import { LeadEntity, CommentEntity } from 'src/database.module/entities';
 import { WishlistEntity } from './wishlist.entity';
 import { OrganizationEntity } from './organization.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, OneToOne } from "typeorm";
@@ -64,6 +64,9 @@ export class UserEntity {
 
     @OneToMany(() => NotificationEntity, u => u.user)
     notifications: NotificationEntity[]
+
+    @OneToMany(() => CommentEntity, u => u.createdByUser)
+    comments: CommentEntity[];
 
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;

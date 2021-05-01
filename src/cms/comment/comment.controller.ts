@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { CommentEntity } from 'src/database.module/entities';
@@ -9,13 +9,15 @@ import { CommentReqDto } from './dto/req-dto';
 @ApiTags("CMS/Comment")
 @Controller('cms/comment')
 export class CommentController {
-    service
+    service: GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, CommentMapper, CommentReqDto, CommentEntity);
     }
 
     @Post()
-    async create(@Body() dto: CommentReqDto) {
+    async create(@Body() dto: CommentReqDto, @Req() req: any) {
+        const userId = req.headers["user_id"];
+        dto.created_by = userId;
         return this.service.create(dto);
     }
 

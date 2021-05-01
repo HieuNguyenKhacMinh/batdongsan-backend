@@ -1,3 +1,4 @@
+import { CommentResDto } from './../../comment/dto/res-dto';
 import { AddressResDto } from "src/master-data/address/dto/res-dto";
 import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
 import { DistrictResDto } from "src/master-data/district/dto/res-dto";
@@ -52,5 +53,6 @@ export class ProductResDto {
     street: string;
     home_number: string;
     is_buy_hire:number;
+    comments: CommentResDto[];
     
 }

@@ -1,6 +1,8 @@
+import { UserEntity } from 'src/database.module/entities/User.entity';
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, Tree, TreeParent, TreeChildren } from "typeorm";
 import { PostEntity } from "./post.entity";
+import { ProductEntity } from './product.entity';
 
 @Entity()
 export class CommentEntity {
@@ -21,6 +23,9 @@ export class CommentEntity {
     @Column({ name: "product_id", type: "uuid", nullable: true })
     productId: string;
 
+    @ManyToOne(() => ProductEntity, f => f.comments, { eager: false })
+    @JoinColumn({ name: "product_id" })
+    product: ProductEntity;
 
     @Column({ name: "opportunity_id", type: "uuid", nullable: true })
     opportunityId: string;
@@ -55,6 +60,11 @@ export class CommentEntity {
      */
     @Column({ name: 'created_by', type: 'char', length: 64, nullable: true })
     public createdBy: string;
+
+
+    @ManyToOne(() => UserEntity, f => f.comments)
+    @JoinColumn({ name: "created_by" })
+    createdByUser: UserEntity;
 
     /**
      * Created Date

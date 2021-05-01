@@ -23,6 +23,10 @@ export class CommentReqDto implements IReqDtoFactory {
     @ApiProperty({ required: false })
     parent_id: string;
 
+    // không cần request lên từ frontend
+    created_by: string
+
+
     validate(dto: CommentReqDto) {
         var errors = [];
         if (!dto.content || dto.content.length == 0) {
@@ -31,12 +35,7 @@ export class CommentReqDto implements IReqDtoFactory {
                 message: messageRequired(Fields.content)
             });
         }
-        if (!dto.post_id || dto.post_id.length == 0) {
-            errors.push({
-                field: Fields.post_id,
-                message: messageRequired(Fields.post_id)
-            });
-        }
+       
         return errors.length > 0 ? errors : undefined;
     }
 

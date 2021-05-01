@@ -1,3 +1,4 @@
+import { UserMapper } from 'src/identity/user/dto/mapper';
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";
 import { CommentEntity } from "src/database.module/entities";
 import { CommentReqDto } from "./req-dto";
@@ -9,6 +10,7 @@ export class CommentMapper implements IMapperFactory {
         entity.postId = req.post_id;
         entity.content = req.content;
         entity.parentId = req.parent_id;
+        entity.createdBy = req.created_by;
         entity.productId = req.product_id;
         
         return entity;
@@ -22,6 +24,8 @@ export class CommentMapper implements IMapperFactory {
         res.post_id = entity.postId;
         res.created_date = entity.createdDate;
         res.product_id = entity.productId;
+        res.created_by = entity.createdBy;
+        res.created_by_user = entity.createdByUser ? new UserMapper().mapRes(undefined, entity.createdByUser): undefined;
         res.children = entity.children ? entity.children.map(c => new CommentMapper().mapRes(undefined, c)) : undefined;
         return res;
     }
