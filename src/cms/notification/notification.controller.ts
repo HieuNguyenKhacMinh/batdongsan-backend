@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Req, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { NotificationEntity } from 'src/database.module/entities';
@@ -9,7 +9,7 @@ import { NotificationReqDto } from './dto/req-dto';
 @ApiTags("CMS/Notification")
 @Controller('cms/notification')
 export class NotificationController {
-    service
+    service: GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, NotificationMapper, NotificationReqDto, NotificationEntity);
     }
@@ -20,11 +20,12 @@ export class NotificationController {
     }
 
     @Get()
-    async findAll() {
+    async findAll(@Req() req: any) {
+        const organizationId = req.headers["organization_id"];
         const condition = {
             relations: ["organization", "user", "product", "project",
-                "post", "contact", "notification_type", "lead", "opportunity",
-                "wishlist", "organization"], where: {}
+                "post", "contact", "lead", "opportunity",
+                "wishlist"], where: { organizationId },
         };
         return this.service.findAll(condition);
     }

@@ -1,5 +1,5 @@
 import { OrganizationResDto } from './../../../crm/organization/dto/res-dto';
-import { WishlistResDto } from './../../../master-data/wishlist/dto/res-dto';
+import { WishlistResDto } from '../../wishlist/dto/res-dto';
 import { WishlistEntity } from './../../../database.module/entities/wishlist.entity';
 import { OpportunityResDto } from './../../../crm/opportunity/dto/res-dto';
 import { LeadResDto } from './../../../crm/lead/dto/res-dto';
@@ -13,9 +13,9 @@ import { ContactResDto } from 'src/crm/contact/dto/res-dto';
 export class NotificationResDto {
     id: string;
     name: string;
+    created_date: string;
     description: string;
-    notification_type_id: string;
-    notification_type: NotificationTypeResDto;
+    notification_type: number;
     user_id:string;
     user:UserResDto;
     product_id:string;

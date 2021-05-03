@@ -4,6 +4,7 @@ import { PipelineEntity } from './pipeline.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { OrganizationEntity } from "./organization.entity";
 import { ProductEntity, ProjectEntity } from '.';
+import { ContactEntity } from './contact.entity';
 
 @Entity()
 export class OpportunityEntity {
@@ -47,7 +48,6 @@ export class OpportunityEntity {
     assignee: UserEntity;
 
 
-
     @Column({ name: "project_id", type: "uuid", nullable: true })
     projectId: string;
 
@@ -72,6 +72,13 @@ export class OpportunityEntity {
     @OneToMany(() => NotificationEntity, a => a.opportunity)
     notifications: NotificationEntity[]
 
+
+    @Column({ name: "contact_id", type: "uuid", nullable: true })
+    contactId: string;
+
+    @ManyToOne(() => ContactEntity, f => f.opportunities)
+    @JoinColumn({ name: "contact_id" })
+    contact: ContactEntity;
 
     // @ManyToOne(()=> CompanyEntity, o => o.opportunities)
     // @JoinColumn({name: "company_id"})

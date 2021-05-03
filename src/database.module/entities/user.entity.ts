@@ -6,6 +6,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMan
 import { OrderEntity } from './order.entity';
 import { OpportunityEntity } from './opportunity.entity';
 import { NotificationEntity } from './notification.entity';
+import { ContactEntity } from './contact.entity';
 
 @Entity()
 export class UserEntity {
@@ -68,6 +69,10 @@ export class UserEntity {
     @OneToMany(() => CommentEntity, u => u.createdByUser)
     comments: CommentEntity[];
 
+    
+
+    @OneToMany(() => ContactEntity, u => u.user)
+    contacts: ContactEntity[];
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;
 

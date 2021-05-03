@@ -1,3 +1,4 @@
+import { WishlistResDto } from './../../../cms/wishlist/dto/res-dto';
 import { OrganizationResDto } from './../../../crm/organization/dto/res-dto';
 import { CategoryReqDto } from "src/cms/category/dto/req-dto";
 import { CategoryResDto } from "src/cms/category/dto/res-dto";
@@ -22,4 +23,6 @@ export class PostResDto {
     organization_id: string;
     organization:OrganizationResDto;
     comments: CommentResDto[];
+    wishlists: WishlistResDto[];
+    
 }

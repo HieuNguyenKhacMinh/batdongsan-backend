@@ -1,10 +1,11 @@
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
-import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity } from 'src/database.module/entities';
+import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity, OrganizationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
 import { ProjectTypeEntity } from "./project_type.entity";
+import { WishlistEntity } from './wishlist.entity';
 
 @Entity()
 export class ProjectEntity {
@@ -82,6 +83,14 @@ export class ProjectEntity {
     @JoinColumn({ name: "p_district_id" })
     district: DistrictEntity;
 
+    @Column({ name: "organization_id", type: "uuid", nullable: true })
+    organizationId: string;
+
+    @ManyToOne(() => OrganizationEntity, o => o.projects)
+    @JoinColumn({ name: "organization_id" })
+    organization: OrganizationEntity;
+
+
     @ManyToOne(() => AddressEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "p_address_id" })
     address: AddressEntity;
@@ -107,6 +116,10 @@ export class ProjectEntity {
 
     @OneToMany(() => CommentEntity, c => c.projects)
     comments: CommentEntity[];
+
+    @OneToMany(() => WishlistEntity, p => p.project, { eager: true })
+    wishlists: WishlistEntity[];
+
 
     /**
      * Description

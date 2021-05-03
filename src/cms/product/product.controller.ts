@@ -19,7 +19,10 @@ export class ProductController {
     }
 
     @Post()
-    async create(@Body() dto: ProductReqDto, @Body() addressDto: AddressReqDto) {
+    async create(@Body() dto: ProductReqDto, @Body() addressDto: AddressReqDto, @Req() req: any) {
+        const orgId = req.headers["organizaiton_id"];
+        const userId = req.headers["user_id"];
+        dto.organization_id = orgId;
         const address = await this.addressService.create(addressDto);
         dto.address_id = address.id;
         return this.service.create(dto);
@@ -31,17 +34,24 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType"], where: {}
+                "balconyDirection", "city", "productType", "wishlists"], where: {}
         };
-        
+
         if (isBuy != 2) {
             const isBuyHire = isBuy || 0;
             condition.where = { isBuyHire };
         }
-       
-        const products = await this.service.findAll(condition); 
+
+        let products = await this.service.findAll(condition);
+
+        // filter wishlist deleteFlag=  1
+        products = products.map(p => {
+            p.wishlists = p.wishlists.filter(w => w.delete_flag === 0);
+            return p;
+        })
+
         if (!organizationId) {
-           return products;
+            return products;
         }
         return products.filter(p => p.organization_id === organizationId);
     }
@@ -52,7 +62,9 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType", "comments", "comments.children", "comments.createdByUser"], where: { id }
+                "balconyDirection", "city", "productType",
+                "comments", "comments.createdByUser",
+                "comments.children", "comments.children.createdByUser", "wishlists"], where: { id }
         };
         return this.service.findOne(condition);
     }

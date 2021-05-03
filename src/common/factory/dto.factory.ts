@@ -1,5 +1,5 @@
 import { PipelineReqDto } from './../../crm/pipeline/dto/req-dto';
-import { WishlistReqDto } from './../../master-data/wishlist/dto/req-dto';
+import { WishlistReqDto } from '../../cms/wishlist/dto/req-dto';
 import { OrderReqDto } from './../../cms/order/dto/req-dto';
 import { ProjectTypeReqDto } from './../../master-data/project_type/dto/req-dto';
 import { AddressReqDto } from "src/master-data/address/dto/req-dto";

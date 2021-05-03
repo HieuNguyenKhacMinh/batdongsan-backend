@@ -1,6 +1,8 @@
+import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { AddressEntity, OrganizationEntity, DistrictEntity, WardsEntity, CityEntity, LeadEntity, NotificationEntity } from 'src/database.module/entities';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { UserEntity } from './user.entity';
 
 @Entity()
 export class ContactEntity {
@@ -8,16 +10,16 @@ export class ContactEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "contact_account", type: "varchar", length: 100 , nullable: true })
+    @Column({ name: "contact_account", type: "varchar", length: 100, nullable: true })
     contactAccount: string;
 
-    @Column({ name: "name", type: "varchar", length: 100, nullable: true  })
+    @Column({ name: "name", type: "varchar", length: 100, nullable: true })
     name: string;
 
-    @Column({ name: "phone_number", type: "varchar", length: 100, nullable: true  })
+    @Column({ name: "phone_number", type: "varchar", length: 100, nullable: true })
     phoneNumber: string;
 
-    @Column({ name: "email", type: "varchar", length: 100, nullable: true  })
+    @Column({ name: "email", type: "varchar", length: 100, nullable: true })
     email: string;
 
     @Column({ name: "address_id", type: "uuid", nullable: true })
@@ -59,7 +61,7 @@ export class ContactEntity {
     @Column({ name: "otherdetails", type: "varchar", length: 100, nullable: true })
     otherDetails: string;
 
-    @Column({ name: "contact_details", type: "varchar", length: 100, nullable: true  })
+    @Column({ name: "contact_details", type: "varchar", length: 100, nullable: true })
     contactDetails: string;
 
     // @Column({ name: "company_id", type: "uuid",nullable: true })
@@ -87,6 +89,18 @@ export class ContactEntity {
     //  */
     // @Column({ name: 'name', type: 'varchar', length: 255, nullable: true })
     // public Name: string;
+
+
+    @OneToMany(() => OpportunityEntity, l => l.contact)
+    opportunities: OpportunityEntity[]
+
+
+    @Column({ name: "user_id", type: "uuid", nullable: true })
+    userId: string;
+
+    @ManyToOne(() => UserEntity, f => f.contacts)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
 
     /**
      * Description

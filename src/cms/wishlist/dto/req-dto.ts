@@ -14,6 +14,11 @@ export class WishlistReqDto implements IReqDtoFactory {
     product_id: string;
     @ApiProperty()
     user_id: string;
+    @ApiProperty()
+    post_id: string;
+    @ApiProperty()
+    project_id:string;
+    delete_flag: number;
     validate(dto: WishlistReqDto) {
         
         

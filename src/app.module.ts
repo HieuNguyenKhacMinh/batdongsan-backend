@@ -1,6 +1,6 @@
 import { AuthModule } from './identity/auth/auth.module';
 import { PipelineModule } from './crm/pipeline/pipeline.module';
-import { WishlistModule } from './master-data/wishlist/wishlist.module';
+import { WishlistModule } from './cms/wishlist/wishlist.module';
 import { UserModule } from './identity/user/user.module';
 import { ProjectTypeModule } from './master-data/project_type/project_type.module';
 

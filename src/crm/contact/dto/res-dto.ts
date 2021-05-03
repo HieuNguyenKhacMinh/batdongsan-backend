@@ -1,3 +1,4 @@
+import { UserResDto } from 'src/identity/user/dto/res-dto';
 import { DistrictResDto } from 'src/master-data/district/dto/res-dto';
 import { ProvinceCityResDto } from 'src/master-data/city/dto/res-dto';
 import { CityEntity } from 'src/database.module/entities';
@@ -24,4 +25,6 @@ export class ContactResDto {
     city: ProvinceCityResDto;
     district:DistrictResDto;
     wards: WardsResDto;
+    user_id: string;
+    user: UserResDto;
 }

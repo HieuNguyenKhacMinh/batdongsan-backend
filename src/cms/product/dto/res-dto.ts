@@ -1,3 +1,4 @@
+
 import { CommentResDto } from './../../comment/dto/res-dto';
 import { AddressResDto } from "src/master-data/address/dto/res-dto";
 import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
@@ -10,6 +11,7 @@ import { ProjectResDto } from "src/cms/project/dto/res-dto";
 import { WardsResDto } from "src/master-data/wards/dto/res-dto";
 import { CountryResDto } from "src/master-data/country/dto/res-dto";
 import { OrganizationResDto } from 'src/crm/organization/dto/res-dto';
+import { WishlistResDto } from 'src/cms/wishlist/dto/res-dto';
 
 
 export class ProductResDto {
@@ -57,5 +59,5 @@ export class ProductResDto {
     comments: CommentResDto[];
     organization_id: string;
     organization:OrganizationResDto;
-   
+    wishlists: WishlistResDto[];
 }

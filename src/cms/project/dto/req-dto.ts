@@ -45,6 +45,7 @@ export class ProjectReqDto implements IReqDtoFactory {
     project_type_id: string;
     @ApiProperty()
     description: string;
+    
     validate(dto: ProjectReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

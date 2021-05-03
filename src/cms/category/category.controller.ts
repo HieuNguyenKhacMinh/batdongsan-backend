@@ -23,10 +23,10 @@ export class CategoryController {
     async findAll(@Req() req: any) {
 
         const organizationId = req.headers["organization_id"];
-    
-        const categories = await this.service.findAll();
-        if(!organizationId) return categories;
-        return categories.map(c=>{
+        const condition = { relations: ["posts", "posts.wishlists"], where: {} }
+        const categories = await this.service.findAll(condition);
+        if (!organizationId) return categories;
+        return categories.map(c => {
             c.posts = c.posts.filter(p => p.organization_id === organizationId)
             return c;
         });

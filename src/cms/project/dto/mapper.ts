@@ -11,6 +11,7 @@ import { CountryMapper } from 'src/master-data/country/dto/mapper';
 import { WardsMapper } from 'src/master-data/wards/dto/mapper';
 import { ProjectTypeMapper } from 'src/master-data/project_type/dto/mapper';
 import { ProductMapper } from 'src/cms/product/dto/mapper';
+import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
 
 export class ProjectMapper implements IMapperFactory {
     mapReq(entity: ProjectEntity, req: ProjectReqDto) {
@@ -31,6 +32,7 @@ export class ProjectMapper implements IMapperFactory {
         entity.infrastructureLocation = req.infrastructure_location; // Vị trí mặt bằng
         entity.latitude = req.latitude;
         entity.longitude = req.longitude;
+        // entity.organizationId = req.organization_id;
         entity.infrastructureDesign = req.infrastructure_design;
         return entity;
     }
@@ -59,6 +61,8 @@ export class ProjectMapper implements IMapperFactory {
         res.infrastructure_location = entity.infrastructureLocation; // Vị trí mặt bằng
         res.latitude = entity.latitude;
         res.longitude = entity.longitude;
+        // res.organization_id = entity.organizationId;
+        // res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
         res.infrastructure_design = entity.infrastructureDesign;
         res.products = entity.products ? entity.products.map(p =>
             new ProductMapper().mapRes(undefined, p)) : undefined;

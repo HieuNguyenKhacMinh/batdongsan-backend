@@ -1,3 +1,4 @@
+import { WishlistEntity } from './wishlist.entity';
 import { LeadEntity, NotificationEntity, OrganizationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable, PrimaryColumn } from "typeorm";
 import { CategoryEntity } from "./category.entity";
@@ -81,6 +82,10 @@ export class PostEntity {
     @ManyToOne(() => ProductEntity, o => o.posts)
     @JoinColumn({ name: "product_id" })
     product: ProductEntity;
+
+
+    @OneToMany(() => WishlistEntity, p => p.post, { eager: true })
+    wishlists: WishlistEntity[];
 
 
     // /**

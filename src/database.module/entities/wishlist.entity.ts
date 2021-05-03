@@ -1,5 +1,5 @@
 import { UserEntity } from 'src/database.module/entities/User.entity';
-import { ProductEntity, NotificationEntity } from 'src/database.module/entities';
+import { ProductEntity, NotificationEntity, ProjectEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { PostEntity } from ".";
 
@@ -21,6 +21,20 @@ export class WishlistEntity {
     @ManyToOne(() => ProductEntity, f => f.wishlists)
     @JoinColumn({ name: "product_id" })
     product: ProductEntity;
+
+    @Column({ name: "post_id", type: "uuid", nullable: true })
+    postId: string;
+
+    @Column({ name: "project_id", type: "uuid", nullable: true })
+    projectId: string;
+
+    @ManyToOne(() => PostEntity, f => f.wishlists)
+    @JoinColumn({ name: "post_id" })
+    post: PostEntity;
+
+    @ManyToOne(() => ProjectEntity, f => f.wishlists)
+    @JoinColumn({ name: "project_id" })
+    project: ProjectEntity;
 
     @ManyToOne(() => UserEntity, f => f.wishlists)
     @JoinColumn({ name: "user_id" })

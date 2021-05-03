@@ -75,4 +75,15 @@ export class GenericService {
             .findOne({ relations: condition.relations, where: condition.where, });
         return entity ? Mapper.getMapper(this.TMapper).mapRes(undefined, entity) : undefined;
     }
+
+    async findOneWithoutDeleteFlag(condition?: any) {
+        if (!condition) {
+            condition = { relations: [], where: {} };
+        }
+        // console.log(condition)
+        const entity: any = await this.connection.manager.getRepository(this.TEntity)
+            .findOne({ relations: condition.relations, where: condition.where, });
+        return entity ? Mapper.getMapper(this.TMapper).mapRes(undefined, entity) : undefined;
+    }
+
 }

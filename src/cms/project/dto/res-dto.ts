@@ -1,3 +1,4 @@
+import { OrganizationResDto } from 'src/crm/organization/dto/res-dto';
 import { CountryResDto } from 'src/master-data/country/dto/res-dto';
 import { ProvinceCityResDto } from "src/master-data/city/dto/res-dto";
 import { DistrictResDto } from "src/master-data/district/dto/res-dto";
@@ -33,6 +34,8 @@ export class ProjectResDto {
     projectType: ProjectTypeResDto;
     description: string;
     product_id:string;
+    // organization_id: string;
+    // organization:OrganizationResDto;
     products: ProductResDto[];
     comments: CommentResDto[];
 }

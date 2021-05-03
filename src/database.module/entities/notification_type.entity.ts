@@ -10,8 +10,8 @@ export class NotificationTypeEntity {
     @Column({ name: "name", type: "varchar", length: 50 ,nullable:true})
     name: string;
 
-    @OneToMany(() => NotificationEntity, a => a.notificationType)
-    notifications: NotificationEntity[]
+    // @OneToMany(() => NotificationEntity, a => a.notificationType)
+    // notifications: NotificationEntity[]
 
     // /**
     //  * Name

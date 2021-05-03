@@ -27,6 +27,8 @@ export class OpportunityReqDto implements IReqDtoFactory {
     product_id: string;
     @ApiProperty()
     project_id: string;
+    @ApiProperty()
+    contact_id: string;
     
     validate(dto: OpportunityReqDto) {
         var errors = [];

@@ -1,3 +1,4 @@
+import { UserMapper } from 'src/identity/user/dto/mapper';
 import { WardsMapper } from 'src/master-data/wards/dto/mapper';
 import { DistrictMapper } from 'src/master-data/district/dto/mapper';
 import { DistrictResDto } from 'src/master-data/district/dto/res-dto';
@@ -24,6 +25,7 @@ export class ContactMapper implements IMapperFactory {
         entity.cityId = req.city_id;
         entity.districtId = req.district_id;
         entity.wardsId = req.wards_id;
+        entity.userId = req.user_id;
         return entity;
     }
     mapRes(res:ContactResDto, entity: ContactEntity) {
@@ -44,6 +46,8 @@ export class ContactMapper implements IMapperFactory {
         res.district = entity.district ? new DistrictMapper().mapRes(undefined, entity.district): undefined;
         res.wards_id = entity.wardsId;
         res.wards = entity.wards ? new WardsMapper().mapRes(undefined, entity.wards): undefined;
+         res.user_id = entity.userId;
+        res.user = entity.user ? new UserMapper().mapRes(undefined, entity.user): undefined;
         return res;
     }
 

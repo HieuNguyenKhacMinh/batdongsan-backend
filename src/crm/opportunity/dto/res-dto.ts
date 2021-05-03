@@ -3,6 +3,7 @@ import { CommentResDto } from './../../../cms/comment/dto/res-dto';
 import { ProductResDto } from "src/cms/product/dto/res-dto";
 import { ProjectResDto } from "src/cms/project/dto/res-dto";
 import { OrganizationResDto } from "src/crm/organization/dto/res-dto";
+import { ContactResDto } from 'src/crm/contact/dto/res-dto';
 
 export class OpportunityResDto {
     id: string;
@@ -21,5 +22,7 @@ export class OpportunityResDto {
     product: ProductResDto;
     project_id: string;
     project: ProjectResDto;
+    contact_id: string;
+    contact: ContactResDto;
     comments: CommentResDto[];
 }

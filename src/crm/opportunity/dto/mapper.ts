@@ -7,6 +7,7 @@ import { OpportunityReqDto } from "./req-dto";
 import { OpportunityResDto } from "./res-dto";
 import { ProductMapper } from "src/cms/product/dto/mapper";
 import { PipelineMapper } from 'src/crm/pipeline/dto/mapper';
+import { ContactMapper } from 'src/crm/contact/dto/mapper';
 
 export class OpportunityMapper implements IMapperFactory {
     mapReq(entity: OpportunityEntity, req: OpportunityReqDto) {
@@ -20,6 +21,7 @@ export class OpportunityMapper implements IMapperFactory {
         entity.pipelineId = req.pipeline_id;
         entity.productId = req.product_id;
         entity.projectId = req.project_id;
+        entity.contactId = req.contact_id;
         return entity;
 
     }
@@ -43,6 +45,8 @@ export class OpportunityMapper implements IMapperFactory {
 
         res.project_id = entity.projectId;
         res.project = entity.project ? new ProjectMapper().mapRes(undefined, entity.project) : undefined;
+        res.contact_id = entity.contactId;
+        res.contact = entity.contact ? new ContactMapper().mapRes(undefined, entity.contact) : undefined;
 
         res.comments = entity.comments ? entity.comments.map(comment =>
             new CommentMapper().mapRes(undefined, comment)) : undefined;

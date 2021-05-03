@@ -111,7 +111,8 @@ export class AuthService {
             access_token: token,
             user_id: user.id,
             organization_id: user.organizationId,
-            role: user.role
+            role: user.role, 
+            fullname: user.fullName
         }
     }
 }

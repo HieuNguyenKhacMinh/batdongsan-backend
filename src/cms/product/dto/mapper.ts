@@ -18,6 +18,7 @@ import { ProductReqDto } from "./req-dto";
 import { ProductResDto } from "./res-dto";
 import { reverse } from 'dns';
 import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
+import { WishlistMapper } from 'src/cms/wishlist/dto/mapper';
 
 export class ProductMapper implements IMapperFactory {
     mapReq(entity: ProductEntity, req: ProductReqDto) {
@@ -101,6 +102,9 @@ export class ProductMapper implements IMapperFactory {
         res.home_number = entity.homeNumber;
         res.is_buy_hire = entity.isBuyHire;
         res.organization_id = entity.organizationId;
+        res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
+            new WishlistMapper().mapRes(undefined, wishlist)
+        ) : [];
         res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
         res.comments = entity.comments ? entity.comments.map(comment =>
             new CommentMapper().mapRes(undefined, comment)

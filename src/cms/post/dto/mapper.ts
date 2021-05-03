@@ -1,3 +1,4 @@
+import { WishlistMapper } from './../../../cms/wishlist/dto/mapper';
 import { CategoryMapper } from "src/cms/category/dto/mapper";
 import { CategoryResDto } from "src/cms/category/dto/res-dto";
 import { HashtagMapper } from "src/cms/hashtag/dto/mapper";
@@ -43,6 +44,13 @@ export class PostMapper implements IMapperFactory {
         res.comments = entity.comments ? entity.comments.map(comment =>
             new CommentMapper().mapRes(undefined, comment)
         ) : [];
+
+        console.log(entity.wishlists);
+        
+        res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
+            new WishlistMapper().mapRes(undefined, wishlist)
+        ) : [];
+
 
         return res;
     }

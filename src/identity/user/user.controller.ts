@@ -24,6 +24,7 @@ export class UserController {
         const organizationId = req.headers["organization_id"];
         const condition = { relations: ["organization"], where: {} };
         const users = await this.service.findAll(condition);
+        if(!organizationId) return users;
         return users.filter(p => p.organization_id === organizationId);
     }
 

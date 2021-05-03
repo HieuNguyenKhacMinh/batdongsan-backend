@@ -1,5 +1,5 @@
 import { UserEntity } from 'src/database.module/entities/User.entity';
-import { WishlistEntity } from './../../database.module/entities/wishlist.entity';
+import { WishlistEntity } from '../../database.module/entities/wishlist.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WishlistController } from './wishlist.controller';
 import { Module } from '@nestjs/common';

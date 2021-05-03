@@ -16,6 +16,8 @@ export class CategoryMapper implements IMapperFactory {
         res.id = entity.id;
         res.name = entity.name;
         res.description = entity.description;
+        console.log(entity.posts);
+        
         res.posts = entity.posts ? entity.posts.map(p => new PostMapper().mapRes(undefined, p)): undefined;
         return res;
     }

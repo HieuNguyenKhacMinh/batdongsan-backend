@@ -11,8 +11,8 @@ import { ContactReqDto } from './dto/req-dto';
 @ApiTags("CMS/Contact")
 @Controller('cms/contact')
 export class ContactController {
-    service:GenericService;
-    addressService:GenericService;
+    service: GenericService;
+    addressService: GenericService;
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, ContactMapper, ContactReqDto, ContactEntity);
         this.addressService = new GenericService(this.connection, AddressMapper, AddressReqDto, AddressEntity);
@@ -27,8 +27,8 @@ export class ContactController {
 
     @Get()
     async findAll() {
-        const condition: any = { relations: ["wards", "city","district","country"], where: { } };
-        return this.service.findOne(condition);
+        const condition: any = { relations: ["wards", "city", "district", "country", "user"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')
@@ -40,4 +40,4 @@ export class ContactController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

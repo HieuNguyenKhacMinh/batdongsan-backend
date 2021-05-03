@@ -1,4 +1,4 @@
-import { WishlistMapper } from './../../master-data/wishlist/dto/mapper';
+import { WishlistMapper } from '../../cms/wishlist/dto/mapper';
 import { ProjectTypeMapper } from './../../master-data/project_type/dto/mapper';
 
 import { PostStatusMapper } from 'src/master-data/post_status/dto/mapper';
