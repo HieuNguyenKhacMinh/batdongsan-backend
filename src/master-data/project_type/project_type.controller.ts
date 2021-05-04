@@ -4,7 +4,7 @@ import { GenericService } from 'src/common/generic.service';
 import { ProjectTypeEntity } from 'src/database.module/entities/project_type.entity';
 import { Connection } from 'typeorm';
 import { ProjectTypeMapper } from './dto/mapper';
-import { ProjectTypeReqDto} from './dto/req-dto';
+import { ProjectTypeReqDto } from './dto/req-dto';
 
 @ApiTags("CMS/ProjectType")
 @Controller('cms/project-type')
@@ -12,17 +12,28 @@ export class ProjectTypeController {
     service
     constructor(private connection: Connection) {
         this.service = new GenericService(this.connection, ProjectTypeMapper, ProjectTypeReqDto, ProjectTypeEntity);
-     }
+    }
 
     @Post()
-    async create(@Body() dto:ProjectTypeReqDto) {
+    async create(@Body() dto: ProjectTypeReqDto) {
         return this.service.create(dto);
     }
 
     @Get()
     async findAll() {
-        const condition = { relations: ["projects"], where: {} };
-        return this.service.findAll(condition);
+        const condition = { relations: ["projects", "projects.wishlists"], where: {} };
+        let projectTypes = await this.service.findAll(condition);
+
+        // filter wishlist deleteFlag=  1
+        projectTypes = projectTypes.map(pt => {
+            pt.projects = pt.projects.map(p => {
+                p.wishlists = p.wishlists.filter(w => w.delete_flag === 0);
+                return p;
+            });
+            return pt;
+        })
+
+        return projectTypes;
     }
 
     @Put(':id')
@@ -34,4 +45,4 @@ export class ProjectTypeController {
     delete(@Param("id") id: string) {
         return this.service.delete(id);
     }
- }
+}

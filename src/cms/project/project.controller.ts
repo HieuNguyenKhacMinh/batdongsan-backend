@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
 import { ProjectEntity } from 'src/database.module/entities';
@@ -20,19 +20,32 @@ export class ProjectController {
     }
 
     @Get()
-    async findAll() {
+    async findAll(@Req() req: any) {
+        const organizationId = req.headers["organization_id"];
         const condition = {
             relations: ["city", "country", "district", "wards", "address"
                 , "projectType"], where: {}
         };
-        return this.service.findAll(condition);
+        let projects = await this.service.findAll(condition);
+
+        // filter wishlist deleteFlag=  1
+        projects = projects.map(p => {
+            p.wishlists = p.wishlists.filter(w => w.delete_flag === 0);
+            return p;
+        })
+
+        if (!organizationId) {
+            return projects;
+        }
+        return projects.filter(p => p.organization_id === organizationId);
     }
 
 
     @Get(":id")
     async findOne(@Param("id") id: string) {
-        const condition = { relations:[ "comments", "comments.createdByUser",
-        "comments.children", "comments.children.createdByUser"],
+        const condition = {
+            relations: ["comments", "comments.createdByUser",
+                "comments.children", "comments.children.createdByUser"],
             where: { id }
         };
         return this.service.findOne(condition);

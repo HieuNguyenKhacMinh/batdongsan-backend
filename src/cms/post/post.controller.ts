@@ -21,7 +21,6 @@ export class PostController {
     }
 
     @Post('all')
-
     async findAll(@Body() dto: ConditionDto, @Req() req: any) {
         const organizationId = req.headers["organization_id"];
 
@@ -31,13 +30,23 @@ export class PostController {
         }
         if (dto.category_id) condition.where.categoryId = dto.category_id;
         if (dto.status) condition.where.statusId = dto.status;
-        return this.service.findAll(condition);
+        let posts = await this.service.findAll(condition);
+        // filter wishlist deleteFlag=  1
+        posts = posts.map(p => {
+            p.wishlists = p.wishlists.filter(w => w.delete_flag === 0);
+            return p;
+        })
+
+        return posts;
+
     }
 
     @Get(":id")
     async findOne(@Param("id") id: string) {
-        const condition: any = { relations: ["category", "status", "organization",  "comments", "comments.createdByUser",
-        "comments.children", "comments.children.createdByUser"], where: { id } };
+        const condition: any = {
+            relations: ["category", "status", "organization", "comments", "comments.createdByUser",
+                "comments.children", "comments.children.createdByUser"], where: { id }
+        };
         return this.service.findOne(condition);
     }
 

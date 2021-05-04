@@ -111,7 +111,7 @@ export class ProjectEntity {
     @OneToMany(() => LeadEntity, l => l.project)
     leads: LeadEntity[]
 
-    @OneToMany(() => NotificationEntity, l => l.project)
+    @OneToMany(() => NotificationEntity, l => l.project, { eager: true })
     notifications: NotificationEntity[]
 
     @OneToMany(() => CommentEntity, c => c.projects)

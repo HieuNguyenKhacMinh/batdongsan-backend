@@ -13,7 +13,7 @@ export class WishlistMapper implements IMapperFactory {
         if (!entity) entity = new WishlistEntity();
         entity.userId = req.user_id
         entity.productId = req.product_id;
-        entity.postId =  req.post_id;
+        entity.postId = req.post_id;
         entity.deleteFlag = req.delete_flag;
         entity.projectId = req.project_id;
         return entity;
@@ -27,7 +27,7 @@ export class WishlistMapper implements IMapperFactory {
         res.product = entity.product ? new ProductMapper().mapRes(undefined, entity.product) : undefined;
         res.post_id = entity.postId;
         res.post = entity.post ? new PostMapper().mapRes(undefined, entity.post) : undefined;
-        res.project_id = entity.productId;
+        res.project_id = entity.projectId;
         res.project = entity.project ? new ProjectMapper().mapRes(undefined, entity.project) : undefined;
         return res;
     }

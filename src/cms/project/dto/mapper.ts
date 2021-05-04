@@ -12,6 +12,7 @@ import { WardsMapper } from 'src/master-data/wards/dto/mapper';
 import { ProjectTypeMapper } from 'src/master-data/project_type/dto/mapper';
 import { ProductMapper } from 'src/cms/product/dto/mapper';
 import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
+import { WishlistMapper } from 'src/cms/wishlist/dto/mapper';
 
 export class ProjectMapper implements IMapperFactory {
     mapReq(entity: ProjectEntity, req: ProjectReqDto) {
@@ -61,15 +62,17 @@ export class ProjectMapper implements IMapperFactory {
         res.infrastructure_location = entity.infrastructureLocation; // Vị trí mặt bằng
         res.latitude = entity.latitude;
         res.longitude = entity.longitude;
-        // res.organization_id = entity.organizationId;
-        // res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
+        res.organization_id = entity.organizationId;
+        res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
         res.infrastructure_design = entity.infrastructureDesign;
         res.products = entity.products ? entity.products.map(p =>
             new ProductMapper().mapRes(undefined, p)) : undefined;
         res.comments = entity.comments ? entity.comments.map(comment =>
             new CommentMapper().mapRes(undefined, comment)
         ) : [];
-
+        res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
+            new WishlistMapper().mapRes(undefined, wishlist)
+        ) : [];
         return res;
     }
 

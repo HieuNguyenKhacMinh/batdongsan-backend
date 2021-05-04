@@ -62,7 +62,7 @@ export class NotificationEntity {
     @Column({ name: "project_id", type: "uuid", nullable: true })
     projectId: string;
 
-    @ManyToOne(() => ProductEntity, d => d.notifications)
+    @ManyToOne(() => ProjectEntity, d => d.notifications)
     @JoinColumn({ name: "project_id" })
     project: ProjectEntity;
 
