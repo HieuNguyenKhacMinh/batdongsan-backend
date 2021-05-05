@@ -1,6 +1,6 @@
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
-import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity, OrganizationEntity } from 'src/database.module/entities';
+import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity, OrganizationEntity, FileEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinTable, JoinColumn } from "typeorm";
 import { ProductEntity } from ".";
 import { CityEntity } from "./city.entity";
@@ -120,6 +120,9 @@ export class ProjectEntity {
     @OneToMany(() => WishlistEntity, p => p.project, { eager: true })
     wishlists: WishlistEntity[];
 
+
+    @OneToMany(() => FileEntity, f => f.project, {eager: true})
+    files: FileEntity[];
 
     /**
      * Description

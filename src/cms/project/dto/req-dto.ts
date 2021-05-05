@@ -68,6 +68,10 @@ export class ProjectReqDto implements IReqDtoFactory {
     @ApiProperty()
     organization_id: string;
     
+    
+    @ApiProperty()
+    file_id: string;
+    
     validate(dto: ProjectReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

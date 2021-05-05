@@ -1,5 +1,5 @@
 import { WishlistEntity } from './wishlist.entity';
-import { LeadEntity, NotificationEntity, OrganizationEntity } from 'src/database.module/entities';
+import { FileEntity, LeadEntity, NotificationEntity, OrganizationEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable, PrimaryColumn } from "typeorm";
 import { CategoryEntity } from "./category.entity";
 import { CommentEntity } from "./comment.entity";
@@ -88,6 +88,10 @@ export class PostEntity {
     wishlists: WishlistEntity[];
 
 
+    @OneToMany(() => FileEntity, f => f.post, {eager: true})
+    files: FileEntity[];
+
+   
     // /**
     //  * Name
     //  */

@@ -9,6 +9,7 @@ import { PostReqDto } from "./req-dto";
 import { PostResDto } from "./res-dto";
 import { OrganizationMapper } from "src/crm/organization/dto/mapper";
 import { CommentMapper } from "src/cms/comment/dto/mapper";
+import { FileMapper } from 'src/cms/file/dto/mapper';
 
 export class PostMapper implements IMapperFactory {
     mapReq(entity: PostEntity, req: PostReqDto) {
@@ -45,12 +46,15 @@ export class PostMapper implements IMapperFactory {
             new CommentMapper().mapRes(undefined, comment)
         ) : [];
 
-        console.log(entity.wishlists);
+        // console.log(entity.wishlists);
         
         res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
             new WishlistMapper().mapRes(undefined, wishlist)
         ) : [];
 
+        res.files = entity.files ? entity.files.map(f =>
+            new FileMapper().mapRes(undefined, f)
+        ) : [];
 
         return res;
     }

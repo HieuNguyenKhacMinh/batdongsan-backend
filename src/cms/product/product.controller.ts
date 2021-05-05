@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { AddressEntity, ProductEntity } from 'src/database.module/entities';
+import { AddressEntity, ProductEntity, FileEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
 import { AddressMapper } from '../../master-data/address/dto/mapper';
 import { AddressReqDto } from '../../master-data/address/dto/req-dto';
@@ -25,7 +25,12 @@ export class ProductController {
         dto.organization_id = orgId;
         const address = await this.addressService.create(addressDto);
         dto.address_id = address.id;
-        return this.service.create(dto);
+
+        const product = await this.service.create(dto);
+
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { productId: product.id });
+        return product;
     }
 
     @Get("all/:isBuy")
@@ -34,7 +39,7 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType", "wishlists"], where: {}
+                "balconyDirection", "city", "productType", "wishlists", "files"], where: {}
         };
 
         if (isBuy != 2) {
@@ -64,14 +69,18 @@ export class ProductController {
                 "productUnitType", "project", "wards", "address",
                 "balconyDirection", "city", "productType",
                 "comments", "comments.createdByUser",
-                "comments.children", "comments.children.createdByUser", "wishlists"], where: { id }
+                "comments.children", "comments.children.createdByUser", "wishlists", "files"], where: { id }
         };
         return this.service.findOne(condition);
     }
 
     @Put(':id')
-    put(@Param("id") id: string, @Body() dto: ProductReqDto) {
-        return this.service.update(id, dto);
+    async put(@Param("id") id: string, @Body() dto: ProductReqDto) {
+        const product: any = await this.service.update(id, dto);
+
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { productId: product.id });
+        return product;
     }
 
     @Delete(':id')

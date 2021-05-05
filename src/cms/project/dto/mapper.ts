@@ -13,6 +13,7 @@ import { ProjectTypeMapper } from 'src/master-data/project_type/dto/mapper';
 import { ProductMapper } from 'src/cms/product/dto/mapper';
 import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
 import { WishlistMapper } from 'src/cms/wishlist/dto/mapper';
+import { FileMapper } from 'src/cms/file/dto/mapper';
 
 export class ProjectMapper implements IMapperFactory {
     mapReq(entity: ProjectEntity, req: ProjectReqDto) {
@@ -72,6 +73,9 @@ export class ProjectMapper implements IMapperFactory {
         ) : [];
         res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
             new WishlistMapper().mapRes(undefined, wishlist)
+        ) : [];
+        res.files = entity.files ? entity.files.map(f =>
+            new FileMapper().mapRes(undefined, f)
         ) : [];
         return res;
     }

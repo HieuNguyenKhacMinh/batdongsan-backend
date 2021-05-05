@@ -3,17 +3,16 @@ import { WishlistEntity } from './wishlist.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, TreeLevelColumn } from "typeorm";
-import { AddressEntity, CommentEntity, FileEntity, LeadEntity, NotificationEntity, PostEntity, ProductTypeEntity } from ".";
+import { AddressEntity, CommentEntity, FileEntity, LeadEntity, NotificationEntity, PostEntity, ProductTypeEntity, ProjectEntity } from ".";
 import { BalconydirectionEntity } from "./balcony_direction.entity";
 import { CityEntity } from "./city.entity";
 import { DistrictEntity } from "./district.entity";
 import { FormalityEntity } from "./fomality.entity";
 import { HouseDirestionEntity } from "./house_direstion.entity";
-import { ProductUnitTypeEntity } from "./product_unit_type,.entity";
-import { ProjectEntity } from "./project.entity";
 import { WardsEntity } from "./wards.entity";
 import { OrderEntity } from './order.entity';
 import { OpportunityEntity } from './opportunity.entity';
+import { ProductUnitTypeEntity } from './product_unit_type.entity';
 
 @Entity()
 export class ProductEntity {
@@ -43,11 +42,8 @@ export class ProductEntity {
     @OneToMany(() => OpportunityEntity, l => l.product)
     opportunities: OpportunityEntity[]
 
-    @OneToMany(() => FileEntity, f => f.productFile)
+    @OneToMany(() => FileEntity, f => f.product, {eager: true})
     files: FileEntity[];
-
-    @OneToMany(() => FileEntity, f => f.productVideo)
-    videos: FileEntity[];
 
     @Column({ name: "formality_id", type: "uuid", nullable: true })
     formalityId: string;

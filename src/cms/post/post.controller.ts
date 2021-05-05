@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { PostEntity } from 'src/database.module/entities';
+import { FileEntity, PostEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
 import { ConditionDto } from './dto/condition.dto';
 import { PostMapper } from './dto/mapper';
@@ -17,14 +17,17 @@ export class PostController {
 
     @Post()
     async create(@Body() dto: PostReqDto) {
-        return this.service.create(dto);
+        const post = await this.service.create(dto);
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { postId: post.id });
+        return post;
     }
 
     @Post('all')
     async findAll(@Body() dto: ConditionDto, @Req() req: any) {
         const organizationId = req.headers["organization_id"];
 
-        const condition: any = { relations: ["category", "status", "organization"], where: {} };
+        const condition: any = { relations: ["category", "status", "organization", "files"], where: {} };
         if (organizationId) {
             condition.where = { organizationId };
         }
@@ -45,14 +48,17 @@ export class PostController {
     async findOne(@Param("id") id: string) {
         const condition: any = {
             relations: ["category", "status", "organization", "comments", "comments.createdByUser",
-                "comments.children", "comments.children.createdByUser"], where: { id }
+                "comments.children", "comments.children.createdByUser", "files"], where: { id }
         };
         return this.service.findOne(condition);
     }
 
     @Put(':id')
-    put(@Param("id") id: string, @Body() dto: PostReqDto) {
-        return this.service.update(id, dto);
+    async put(@Param("id") id: string, @Body() dto: PostReqDto) {
+        const post: any = await this.service.update(id, dto);
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { postId: post.id });
+        return post;
     }
 
     @Delete(':id')

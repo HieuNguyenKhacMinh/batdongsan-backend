@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { ProductUnitTypeEntity } from 'src/database.module/entities/product_unit_type,.entity';
+import { ProductUnitTypeEntity } from 'src/database.module/entities/product_unit_type.entity';
 import { Connection } from 'typeorm';
 import { ProductUnitMapper } from './dto/mapper';
 import { ProductUnitReqDto } from './dto/req-dto';

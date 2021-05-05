@@ -59,7 +59,7 @@ export class WishlistController {
             const wistlistResDto: any = await this.service.findOneWithoutDeleteFlag({
                 where: { userId, projectId: dto.project_id }
             })
-            console.log(wistlistResDto);
+            // console.log(wistlistResDto);
 
             if (wistlistResDto) {
                 wistlistResDto.delete_flag = wistlistResDto.delete_flag === 1 ? 0 : 1;
@@ -67,7 +67,7 @@ export class WishlistController {
                 await this.service.update(wistlistResDto.id, dto);
                 return wistlistResDto;
             } else {
-                console.log("created");
+                // console.log("created");
 
                 const wishlist = await this.service.create(dto);
 
@@ -86,7 +86,7 @@ export class WishlistController {
                 notification.name = '';
 
                 const notify = await this.connection.getRepository(NotificationEntity).save(notification);
-                console.log(notify);
+                // console.log(notify);
 
                 return wishlist;
             }

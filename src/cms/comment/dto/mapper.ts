@@ -16,7 +16,7 @@ export class CommentMapper implements IMapperFactory {
         return entity;
     }
     mapRes(res: CommentResDto, entity: CommentEntity) {
-        // console.log(entity);
+        // // console.log(entity);
 
         if (!res) res = new CommentResDto();
         res.id = entity.id;

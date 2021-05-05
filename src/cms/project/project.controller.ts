@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GenericService } from 'src/common/generic.service';
-import { ProjectEntity } from 'src/database.module/entities';
+import { FileEntity, ProjectEntity } from 'src/database.module/entities';
 import { Connection } from 'typeorm';
 import { ProjectMapper } from './dto/mapper';
 import { ProjectReqDto } from './dto/req-dto';
@@ -16,7 +16,11 @@ export class ProjectController {
 
     @Post()
     async create(@Body() dto: ProjectReqDto) {
-        return this.service.create(dto);
+        const project = await this.service.create(dto);
+
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { projectId: project.id });
+        return project;
     }
 
     @Get()
@@ -52,8 +56,12 @@ export class ProjectController {
     }
 
     @Put(':id')
-    put(@Param("id") id: string, @Body() dto: ProjectReqDto) {
-        return this.service.update(id, dto);
+    async put(@Param("id") id: string, @Body() dto: ProjectReqDto) {
+        const project: any = await this.service.update(id, dto);
+
+        await this.connection.getRepository(FileEntity).update({ id: dto.file_id },
+            { projectId: project.id });
+        return project;
     }
 
     @Delete(':id')

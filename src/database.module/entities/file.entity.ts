@@ -1,5 +1,6 @@
+import { ProjectEntity } from 'src/database.module/entities';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { ProductEntity } from ".";
+import { PostEntity, ProductEntity } from ".";
 
 @Entity()
 export class FileEntity {
@@ -13,16 +14,32 @@ export class FileEntity {
     @Column({ name: "path", type: "varchar", length: 100 })
     path: string;
 
-    @Column({ name: "product_id", type: "varchar", length: 100 })
+    @Column({ name: "product_id", type: "varchar", length: 100, nullable: true })
     productId: string;
 
     @ManyToOne(() => ProductEntity, p => p.files)
     @JoinColumn({name: "product_id"})
-    productFile: ProductEntity;
+    product: ProductEntity;
 
-    @ManyToOne(() => ProductEntity, p => p.videos)
-    @JoinColumn({name: "product_id"})
-    productVideo: ProductEntity;
+    @Column({ name: "project_id", type: "varchar", length: 100, nullable: true })
+    projectId: string;
+
+    @Column({ name: "type", type: "int", default:0, nullable: true })
+    type: number;
+
+    @ManyToOne(() => ProjectEntity, p => p.files)
+    @JoinColumn({name: "project_id"})
+    project: ProjectEntity;
+
+
+    @Column({ name: "post_id", type: "varchar", length: 100, nullable: true })
+    postId: string;
+
+    @ManyToOne(() => PostEntity, p => p.files)
+    @JoinColumn({name: "post_id"})
+    post: PostEntity;
+
+    
 
     // /**
     //  * Name

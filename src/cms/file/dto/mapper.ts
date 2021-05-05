@@ -11,6 +11,7 @@ export class FileMapper implements IMapperFactory {
         entity.description = req.description;
         entity.path = req.path;
         entity.productId = req.product_id;
+        entity.productId = req.product_id;
         return entity;
     }
     mapRes(res:FileResDto, entity: FileEntity) {
@@ -20,8 +21,8 @@ export class FileMapper implements IMapperFactory {
         res.description = entity.description;
         res.path = entity.path;
         res.product_id = entity.productId;
-        res.productFiles = entity.productFile? new ProductMapper().mapRes(undefined, entity.productFile): undefined;
-        res.productVideos = entity.productVideo? new ProductMapper().mapRes(undefined, entity.productVideo): undefined;
+        res.product_id = entity.productId;
+        res.productFiles = entity.product? new ProductMapper().mapRes(undefined, entity.product): undefined;
         return res;
     }
 

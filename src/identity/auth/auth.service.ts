@@ -55,9 +55,9 @@ export class AuthService {
             user.email = dto.email;
             user.password = hashPassword;
             user.organizationId = org.id;
-            // console.log(hashPassword);
+            // // console.log(hashPassword);
 
-            // console.log(user);
+            // // console.log(user);
 
 
             await this.usersRepository.save(user);
@@ -65,7 +65,7 @@ export class AuthService {
             return "Registered successfully";
 
         } catch (error) {
-            // console.log(error);
+            // // console.log(error);
             return Error(error)
         }
     }

@@ -19,6 +19,7 @@ import { ProductResDto } from "./res-dto";
 import { reverse } from 'dns';
 import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
 import { WishlistMapper } from 'src/cms/wishlist/dto/mapper';
+import { FileMapper } from 'src/cms/file/dto/mapper';
 
 export class ProductMapper implements IMapperFactory {
     mapReq(entity: ProductEntity, req: ProductReqDto) {
@@ -109,7 +110,9 @@ export class ProductMapper implements IMapperFactory {
         res.comments = entity.comments ? entity.comments.map(comment =>
             new CommentMapper().mapRes(undefined, comment)
         ) : [];
-
+        res.files = entity.files ? entity.files.map(f =>
+            new FileMapper().mapRes(undefined, f)
+        ) : [];
         return res;
     }
 

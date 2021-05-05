@@ -8,6 +8,7 @@ import { AddressResDto } from 'src/master-data/address/dto/res-dto';
 import { ProjectTypeResDto } from 'src/master-data/project_type/dto/res-dto';
 import { ProductResDto } from 'src/cms/product/dto/res-dto';
 import { CommentResDto } from 'src/cms/comment/dto/res-dto';
+import { FileResDto } from 'src/cms/file/dto/res-dto';
 
 export class ProjectResDto {
     id: string;
@@ -40,4 +41,5 @@ export class ProjectResDto {
     products: ProductResDto[];
     comments: CommentResDto[];
     wishlists: WishlistResDto[];
+    files: FileResDto[];
 }

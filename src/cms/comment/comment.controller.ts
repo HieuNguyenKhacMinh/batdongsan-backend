@@ -23,7 +23,7 @@ export class CommentController {
 
         const comment = await this.service.create(dto);
 
-        console.log(dto);
+        // console.log(dto);
         if (dto.parent_id) {
             const comment = await this.connection.getRepository(CommentEntity).findOne(dto.parent_id);
             dto.product_id = comment.productId;
@@ -44,7 +44,7 @@ export class CommentController {
             notification.userId = userId;
             notification.name = comment.content;
 
-            console.log(notification);
+            // console.log(notification);
 
             await this.connection.getRepository(NotificationEntity).save(notification);
         }

@@ -21,7 +21,7 @@ export class GenericService {
         }
         let entity: any = Mapper.getMapper(this.TMapper).mapReq(undefined, dto)
         const res = await this.connection.manager.getRepository(this.TEntity).save(entity);
-        // console.log(res);
+        // // console.log(res);
         return Mapper.getMapper(this.TMapper).mapRes(undefined, res)
     }
 
@@ -34,7 +34,7 @@ export class GenericService {
             }
             let entity: any = await this.connection.manager.getRepository(this.TEntity).findOne({ id: id })
             entity = Mapper.getMapper(this.TMapper).mapReq(entity, dto);
-            // console.log(entity);
+            // // console.log(entity);
 
             await this.connection.manager.getRepository(this.TEntity).save(entity);
             return Mapper.getMapper(this.TMapper).mapRes(undefined, entity)
@@ -58,7 +58,7 @@ export class GenericService {
         } else {
             condition.where.deleteFlag = 0;
         }
-        // console.log(condition)
+        // // console.log(condition)
         const entities: any = await this.connection.manager.getRepository(this.TEntity)
             .find({ relations: condition.relations, where: condition.where, });
         return entities.map(entity => Mapper.getMapper(this.TMapper).mapRes(undefined, entity))
@@ -70,7 +70,7 @@ export class GenericService {
         } else {
             condition.where.deleteFlag = 0;
         }
-        // console.log(condition)
+        // // console.log(condition)
         const entity: any = await this.connection.manager.getRepository(this.TEntity)
             .findOne({ relations: condition.relations, where: condition.where, });
         return entity ? Mapper.getMapper(this.TMapper).mapRes(undefined, entity) : undefined;
@@ -80,7 +80,7 @@ export class GenericService {
         if (!condition) {
             condition = { relations: [], where: {} };
         }
-        // console.log(condition)
+        // // console.log(condition)
         const entity: any = await this.connection.manager.getRepository(this.TEntity)
             .findOne({ relations: condition.relations, where: condition.where, });
         return entity ? Mapper.getMapper(this.TMapper).mapRes(undefined, entity) : undefined;

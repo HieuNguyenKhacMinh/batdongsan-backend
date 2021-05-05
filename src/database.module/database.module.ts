@@ -17,7 +17,7 @@ async function DatabaseOrmModule(): Promise<DynamicModule> {
         process.env[key] = envConfig[key];
     });
 
-    // console.log(__dirname)
+    // // console.log(__dirname)
     return TypeOrmModule.forRoot({
         type: 'mysql',
         replication: {

@@ -39,6 +39,8 @@ import { CountryModule } from './master-data/country/country.module';
 import { OpportunityModule } from './crm/opportunity/opportunity.module';
 import { ContactModule } from './crm/contact/contact.module';
 import { OrderModule } from './cms/order/order.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -84,9 +86,10 @@ import { OrderModule } from './cms/order/order.module';
     OrderModule,
     WishlistModule,
     PipelineModule,
-  ],
-  controllers: [
-    ],
+    MulterModule.register({
+      dest: './files',
+    })],
+    controllers: [AppController],
   providers: [],
 })
 export class AppModule { }

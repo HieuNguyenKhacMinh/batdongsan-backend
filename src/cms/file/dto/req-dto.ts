@@ -16,7 +16,9 @@ export class FileReqDto implements IReqDtoFactory {
     @ApiProperty()
     description: string;
     @ApiProperty()
-    product_id: string;
+    product_file_id: string;
+    @ApiProperty()
+    product_video_id: string;
     validate(dto: FileReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

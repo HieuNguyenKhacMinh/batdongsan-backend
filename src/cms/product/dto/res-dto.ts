@@ -1,3 +1,4 @@
+import { FileResDto } from './../../file/dto/res-dto';
 
 import { CommentResDto } from './../../comment/dto/res-dto';
 import { AddressResDto } from "src/master-data/address/dto/res-dto";
@@ -60,4 +61,5 @@ export class ProductResDto {
     organization_id: string;
     organization:OrganizationResDto;
     wishlists: WishlistResDto[];
+    files: FileResDto[];
 }

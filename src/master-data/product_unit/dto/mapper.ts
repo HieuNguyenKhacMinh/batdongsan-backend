@@ -1,5 +1,5 @@
 import { IMapperFactory } from "src/common/interfaces/mapper.interface";;
-import { ProductUnitTypeEntity } from "src/database.module/entities/product_unit_type,.entity";
+import { ProductUnitTypeEntity } from "src/database.module/entities/product_unit_type.entity";
 import { ProductUnitReqDto } from "./req-dto";
 import { ProductUnitResDto } from "./res-dto";
 

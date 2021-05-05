@@ -37,6 +37,8 @@ export class PostReqDto implements IReqDtoFactory {
     sub_content: string;
     @ApiProperty()
     organization_id: string;
+    @ApiProperty()
+    file_id: string;
     public hashtags: HashtagReqDto[]
 
     validate(dto: PostReqDto) {
