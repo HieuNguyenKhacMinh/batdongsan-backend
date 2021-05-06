@@ -17,6 +17,16 @@ export class AuthService {
         private usersRepository: Repository<UserEntity>,
     ) { }
 
+    makeid(length) {
+        var result = [];
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result.push(characters.charAt(Math.floor(Math.random() *
+                charactersLength)));
+        }
+        return result.join('');
+    }
     async register(dto: RegisterReqDto) {
         try {
             // check exist email 
@@ -36,6 +46,9 @@ export class AuthService {
             }
             // if create a new company
             else {
+                if (!dto.company_name) {
+                    org.name = this.makeid(20)
+                }
                 org = new OrganizationEntity();
                 org.name = dto.company_name;
                 // xóa ký tự đặc biệt => ''
@@ -55,6 +68,11 @@ export class AuthService {
             user.email = dto.email;
             user.password = hashPassword;
             user.organizationId = org.id;
+            // admin => 2
+            // exist domain => nhân viên => 1
+            // exist company_name => owner => 0
+            
+            user.role = dto.domain ? 1 : 0;
             // // console.log(hashPassword);
 
             // // console.log(user);
@@ -111,7 +129,7 @@ export class AuthService {
             access_token: token,
             user_id: user.id,
             organization_id: user.organizationId,
-            role: user.role, 
+            role: user.role,
             fullname: user.fullName
         }
     }
