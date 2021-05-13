@@ -1,3 +1,4 @@
+import { WidgetEntity } from 'src/database.module/entities/Widget.entity';
 import { PostController } from './../../cms/post/post.controller';
 import { PipelineEntity } from './pipeline.entity';
 import { UserEntity } from 'src/database.module/entities/User.entity';
@@ -67,6 +68,9 @@ export class OrganizationEntity {
 
     @OneToMany(() => ProjectEntity, a => a.organization)
     projects: ProjectEntity[]
+
+    @OneToMany(() => WidgetEntity, a => a.organization)
+    widgets: ProjectEntity[]
     // /**
     //  * Name
     //  */

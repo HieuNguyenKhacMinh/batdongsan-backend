@@ -13,6 +13,8 @@ export class WidgetReqDto implements IReqDtoFactory {
     name: string;
     @ApiProperty()
     description: string;
+    @ApiProperty()
+    organization_id:string;
     validate(dto: WidgetReqDto) {
         var errors = [];
         if (!dto.name || dto.name.length == 0) {

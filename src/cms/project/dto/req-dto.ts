@@ -68,6 +68,8 @@ export class ProjectReqDto implements IReqDtoFactory {
     @ApiProperty()
     organization_id: string;
     
+    @ApiProperty()
+    user_id: string;
     
     @ApiProperty()
     file_id: string;

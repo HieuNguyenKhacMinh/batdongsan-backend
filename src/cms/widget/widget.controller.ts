@@ -21,7 +21,8 @@ export class WidgetController {
 
     @Get()
     async findAll() {
-        return this.service.findAll();
+        const condition: any = { relations: ["organization"], where: {} };
+        return this.service.findAll(condition);
     }
 
     @Put(':id')

@@ -1,5 +1,5 @@
 import { UserController } from './../../identity/user/user.controller';
-import { LeadEntity, CommentEntity } from 'src/database.module/entities';
+import { LeadEntity, CommentEntity, ProjectEntity, PostEntity } from 'src/database.module/entities';
 import { WishlistEntity } from './wishlist.entity';
 import { OrganizationEntity } from './organization.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany, OneToOne } from "typeorm";
@@ -7,6 +7,7 @@ import { OrderEntity } from './order.entity';
 import { OpportunityEntity } from './opportunity.entity';
 import { NotificationEntity } from './notification.entity';
 import { ContactEntity } from './contact.entity';
+import { ProductEntity } from './product.entity';
 
 @Entity()
 export class UserEntity {
@@ -73,6 +74,15 @@ export class UserEntity {
 
     @OneToMany(() => ContactEntity, u => u.user)
     contacts: ContactEntity[];
+
+    @OneToMany(() => ProjectEntity, u => u.user)
+    projects: ProjectEntity[]
+
+    @OneToMany(() => ProductEntity, u => u.user)
+    products: ProductEntity[]
+
+    @OneToMany(() => PostEntity, u => u.user)
+    posts: PostEntity[]
     // @Column({ name: "company_id", type: "uuid" })
     // companyId: string;
 

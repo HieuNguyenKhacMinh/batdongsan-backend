@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, ManyToOne } from "typeorm";
+import { OrganizationEntity } from ".";
 import { PostEntity } from "./post.entity";
 
 @Entity()
@@ -7,8 +8,15 @@ export class WidgetEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ name: "Subject", type: "varchar", length: 1000 })
+    @Column({ name: "Subject", type: "varchar", length: 1000,nullable: true  })
     name: string;
+    
+    @Column({ name: "organization_id", type: "uuid", nullable: true })
+    organizationId: string;
+
+    @ManyToOne(() => OrganizationEntity, o => o.widgets)
+    @JoinColumn({ name: "organization_id" })
+    organization: OrganizationEntity;
 
 
     // @OneToMany(() => PostEntity, post => post.widget)
@@ -57,4 +65,6 @@ export class WidgetEntity {
       */
      @Column({ name: 'last_update_date', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
      public lastUpdateDate: string;
+
+
 }

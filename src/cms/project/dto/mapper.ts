@@ -14,6 +14,7 @@ import { ProductMapper } from 'src/cms/product/dto/mapper';
 import { OrganizationMapper } from 'src/crm/organization/dto/mapper';
 import { WishlistMapper } from 'src/cms/wishlist/dto/mapper';
 import { FileMapper } from 'src/cms/file/dto/mapper';
+import { UserMapper } from 'src/identity/user/dto/mapper';
 
 export class ProjectMapper implements IMapperFactory {
     mapReq(entity: ProjectEntity, req: ProjectReqDto) {
@@ -34,6 +35,7 @@ export class ProjectMapper implements IMapperFactory {
         entity.infrastructureLocation = req.infrastructure_location; // Vị trí mặt bằng
         entity.latitude = req.latitude;
         entity.longitude = req.longitude;
+        entity.userId = req.user_id;
         // entity.organizationId = req.organization_id;
         entity.infrastructureDesign = req.infrastructure_design;
         return entity;
@@ -65,6 +67,8 @@ export class ProjectMapper implements IMapperFactory {
         res.longitude = entity.longitude;
         res.organization_id = entity.organizationId;
         res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
+        res.user_id = entity.userId;
+        res.user = entity.user ? new UserMapper().mapRes(undefined, entity.user) : undefined;
         res.infrastructure_design = entity.infrastructureDesign;
         res.products = entity.products ? entity.products.map(p =>
             new ProductMapper().mapRes(undefined, p)) : undefined;

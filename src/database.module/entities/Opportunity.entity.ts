@@ -24,6 +24,9 @@ export class OpportunityEntity {
     @Column({ name: "unit", type: "int", default: 0 })
     unit: number;
 
+    @Column({ name: "win", type: "int", default: 0 })
+    win: number;
+
 
     @Column({ name: "organization_id", type: "uuid" })
     organizationId: string;

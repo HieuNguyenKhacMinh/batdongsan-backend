@@ -1,3 +1,4 @@
+import { UserResDto } from './../../../identity/user/dto/res-dto';
 import { WishlistResDto } from './../../../cms/wishlist/dto/res-dto';
 import { OrganizationResDto } from 'src/crm/organization/dto/res-dto';
 import { CountryResDto } from 'src/master-data/country/dto/res-dto';
@@ -42,4 +43,6 @@ export class ProjectResDto {
     comments: CommentResDto[];
     wishlists: WishlistResDto[];
     files: FileResDto[];
+    user_id: string;
+    user:UserResDto;
 }

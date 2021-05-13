@@ -19,6 +19,17 @@ export class FormalityController {
         return this.service.create(dto);
     }
 
+    @Get()
+    async find() {
+        const condition = { where: {} };
+      
+        // // console.log(isBuy);
+        // // console.log(condition);
+        
+        return this.service.findAll(condition);
+    }
+
+
     @Get(":isBuy")
     async findAll(@Param("isBuy") isBuy: number) {
         const condition = { where: {} };

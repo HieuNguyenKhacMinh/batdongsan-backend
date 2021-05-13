@@ -24,10 +24,12 @@ export class PostController {
     }
 
     @Post('all')
-    async findAll(@Body() dto: ConditionDto, @Req() req: any) {
+    async findAll(@Body() dto: PostReqDto, @Req() req: any) {
         const organizationId = req.headers["organization_id"];
-
-        const condition: any = { relations: ["category", "status", "organization", "files"], where: {} };
+        const uerId = req.header["user_id"];
+        dto.organization_id = organizationId;
+        dto.user_id = uerId;
+        const condition: any = { relations: ["category", "status", "organization", "files","user"], where: {} };
         if (organizationId) {
             condition.where = { organizationId };
         }

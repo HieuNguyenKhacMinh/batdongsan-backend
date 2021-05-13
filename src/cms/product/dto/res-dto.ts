@@ -1,3 +1,4 @@
+import { UserResDto } from './../../../identity/user/dto/res-dto';
 import { FileResDto } from './../../file/dto/res-dto';
 
 import { CommentResDto } from './../../comment/dto/res-dto';
@@ -62,4 +63,6 @@ export class ProductResDto {
     organization:OrganizationResDto;
     wishlists: WishlistResDto[];
     files: FileResDto[];
+    user_id: string;
+    user: UserResDto;
 }

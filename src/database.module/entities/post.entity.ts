@@ -6,6 +6,7 @@ import { CommentEntity } from "./comment.entity";
 import { HashtagEntity } from "./hashtag.entity";
 import { PostStatusEntity } from "./post_status.entity";
 import { ProductEntity } from './product.entity';
+import { UserEntity } from './User.entity';
 
 @Entity()
 export class PostEntity {
@@ -91,7 +92,12 @@ export class PostEntity {
     @OneToMany(() => FileEntity, f => f.post, {eager: true})
     files: FileEntity[];
 
-   
+    @Column({ name: "user_id", type: "uuid", nullable: true })
+    userId: string;
+
+    @ManyToOne(() => UserEntity, o => o.posts)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
     // /**
     //  * Name
     //  */

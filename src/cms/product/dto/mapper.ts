@@ -1,3 +1,4 @@
+import { UserMapper } from './../../../identity/user/dto/mapper';
 import { CommentMapper } from 'src/cms/comment/dto/mapper';
 import { CountryMapper } from 'src/master-data/country/dto/mapper';
 import { Req } from "@nestjs/common";
@@ -55,6 +56,7 @@ export class ProductMapper implements IMapperFactory {
         entity.street = req.street;
         entity.isBuyHire = req.is_buy_hire;
         entity.organizationId = req.organization_id;
+        entity.userId = req.user_id;
         return entity;
     }
     mapRes(res: ProductResDto, entity: ProductEntity) {
@@ -103,6 +105,8 @@ export class ProductMapper implements IMapperFactory {
         res.home_number = entity.homeNumber;
         res.is_buy_hire = entity.isBuyHire;
         res.organization_id = entity.organizationId;
+        res.user_id = entity.userId;
+        res.user = entity.user ? new UserMapper().mapRes(undefined, entity.user) : undefined;
         res.wishlists = entity.wishlists ? entity.wishlists.map(wishlist =>
             new WishlistMapper().mapRes(undefined, wishlist)
         ) : [];

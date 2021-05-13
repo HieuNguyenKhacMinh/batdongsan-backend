@@ -20,9 +20,10 @@ export class ProductController {
 
     @Post()
     async create(@Body() dto: ProductReqDto, @Body() addressDto: AddressReqDto, @Req() req: any) {
-        const orgId = req.headers["organizaiton_id"];
+        const orgId = req.headers["organization_id"];
         const userId = req.headers["user_id"];
         dto.organization_id = orgId;
+        dto.user_id= userId;
         const address = await this.addressService.create(addressDto);
         dto.address_id = address.id;
 
@@ -39,7 +40,7 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType", "wishlists", "files"], where: {}
+                "balconyDirection", "city", "productType", "wishlists", "files","user","organization"], where: {}
         };
 
         if (isBuy != 2) {
@@ -58,6 +59,7 @@ export class ProductController {
         if (!organizationId) {
             return products;
         }
+        
         return products.filter(p => p.organization_id === organizationId);
     }
 
@@ -76,6 +78,8 @@ export class ProductController {
 
     @Put(':id')
     async put(@Param("id") id: string, @Body() dto: ProductReqDto) {
+        console.log(dto.title);
+        
         const product: any = await this.service.update(id, dto);
 
         await this.connection.getRepository(FileEntity).update({ id: dto.file_id },

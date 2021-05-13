@@ -1,3 +1,4 @@
+import { UserEntity } from './user.entity';
 import { OpportunityEntity } from 'src/database.module/entities/opportunity.entity';
 import { CountryEntity } from 'src/database.module/entities/country.entity';
 import { DistrictEntity, WardsEntity, AddressEntity, LeadEntity, NotificationEntity, CommentEntity, OrganizationEntity, FileEntity } from 'src/database.module/entities';
@@ -90,6 +91,12 @@ export class ProjectEntity {
     @JoinColumn({ name: "organization_id" })
     organization: OrganizationEntity;
 
+    @Column({ name: "user_id", type: "uuid", nullable: true })
+    userId: string;
+
+    @ManyToOne(() => UserEntity, o => o.projects)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
 
     @ManyToOne(() => AddressEntity, f => f.projects, { eager: true })
     @JoinColumn({ name: "p_address_id" })

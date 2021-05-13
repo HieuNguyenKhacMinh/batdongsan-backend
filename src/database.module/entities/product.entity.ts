@@ -182,6 +182,13 @@ export class ProductEntity {
     
     @OneToMany(() => CommentEntity, l => l.product)
     comments: CommentEntity[]
+
+    @Column({ name: "user_id", type: "uuid", nullable: true })
+    userId: string;
+
+    @ManyToOne(() => UserEntity, o => o.products)
+    @JoinColumn({ name: "user_id" })
+    user: UserEntity;
     /**
      * Description
      */

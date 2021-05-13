@@ -46,11 +46,11 @@ export class AuthService {
             }
             // if create a new company
             else {
+                org = new OrganizationEntity();
                 if (!dto.company_name) {
                     org.name = this.makeid(20)
                 }
-                org = new OrganizationEntity();
-                org.name = dto.company_name;
+               dto.company_name =  org.name ;
                 // xóa ký tự đặc biệt => ''
                 org.domain = dto.company_name.replace(/[.*+?^${}()|[\]\\]/g, '').toLowerCase();
                 org = await this.organizationRepository.create(org);

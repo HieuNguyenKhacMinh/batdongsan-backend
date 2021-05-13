@@ -10,6 +10,7 @@ import { PostResDto } from "./res-dto";
 import { OrganizationMapper } from "src/crm/organization/dto/mapper";
 import { CommentMapper } from "src/cms/comment/dto/mapper";
 import { FileMapper } from 'src/cms/file/dto/mapper';
+import { UserMapper } from 'src/identity/user/dto/mapper';
 
 export class PostMapper implements IMapperFactory {
     mapReq(entity: PostEntity, req: PostReqDto) {
@@ -22,6 +23,7 @@ export class PostMapper implements IMapperFactory {
         entity.pageId = req.page_id;
         entity.subContent = req.sub_content;
         entity.organizationId = req.organization_id;
+        entity.userId = req.user_id;
         entity.hashtags = req.hashtags ? req.hashtags.map(tag => {
             return new HashtagMapper().mapReq(undefined, tag)
         }) : [];
@@ -39,6 +41,8 @@ export class PostMapper implements IMapperFactory {
         res.organization_id = entity.organizationId;
         res.organization = entity.organization ? new OrganizationMapper().mapRes(undefined, entity.organization) : undefined;
         res.status = entity.status ? new PostStatusMapper().mapRes(undefined, entity.status) : undefined;
+        res.user_id = entity.userId;
+        res.user = entity.user ? new UserMapper().mapRes(undefined, entity.user) : undefined;
         res.hashtags = entity.hashtags ? entity.hashtags.map(tag => {
             return new HashtagMapper().mapRes(undefined, tag)
         }) : [];

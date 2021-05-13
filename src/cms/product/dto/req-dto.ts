@@ -77,15 +77,14 @@ export class ProductReqDto implements IReqDtoFactory {
     is_buy_hire:number;
     @ApiProperty()
     organization_id:string;
-
     @ApiProperty()
     wishlist_id: string;
-
-    
+    @ApiProperty()
+    day_submit: Date;
     @ApiProperty()
     file_id: string;
-
-
+    @ApiProperty()
+    user_id: string;
     validate(dto: ProductReqDto) {
         var errors = [];
         if (!dto.title || dto.title.length == 0) {

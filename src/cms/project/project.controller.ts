@@ -49,7 +49,7 @@ export class ProjectController {
     async findOne(@Param("id") id: string) {
         const condition = {
             relations: ["comments", "comments.createdByUser",
-                "comments.children", "comments.children.createdByUser"],
+                "comments.children", "comments.children.createdByUser","user"],
             where: { id }
         };
         return this.service.findOne(condition);

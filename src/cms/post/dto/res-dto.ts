@@ -1,3 +1,4 @@
+import { UserResDto } from './../../../identity/user/dto/res-dto';
 import { WishlistResDto } from './../../../cms/wishlist/dto/res-dto';
 import { OrganizationResDto } from './../../../crm/organization/dto/res-dto';
 import { CategoryReqDto } from "src/cms/category/dto/req-dto";
@@ -26,4 +27,6 @@ export class PostResDto {
     comments: CommentResDto[];
     wishlists: WishlistResDto[];
     files: FileResDto[];
+    user_id: string;
+    user: UserResDto;
 }
