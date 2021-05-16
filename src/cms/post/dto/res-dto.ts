@@ -29,4 +29,5 @@ export class PostResDto {
     files: FileResDto[];
     user_id: string;
     user: UserResDto;
+    delete_flag: number;
 }

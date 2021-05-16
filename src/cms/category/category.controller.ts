@@ -24,7 +24,11 @@ export class CategoryController {
 
         const organizationId = req.headers["organization_id"];
         const condition = { relations: ["posts", "posts.wishlists"], where: {} }
-        const categories = await this.service.findAll(condition);
+        let categories = await this.service.findAll(condition);
+        categories = categories.map(p => {
+            p.posts = p.posts.filter(w => w.delete_flag === 0);
+            return p;
+        })
         if (!organizationId) return categories;
         return categories.map(c => {
             c.posts = c.posts.filter(p => p.organization_id === organizationId)

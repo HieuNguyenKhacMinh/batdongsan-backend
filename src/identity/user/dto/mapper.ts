@@ -27,7 +27,7 @@ export class UserMapper implements IMapperFactory {
         res.gender = entity.gender;
         res.user_name = entity.userName;
         res.birthday = entity.birthday;
-        res.phone_number = res.phone_number;
+        res.phone_number = entity.phoneNumber;
         res.role = entity.role;
         res.deactive = entity.deactive;
         res.organization_id = entity.organizationId;

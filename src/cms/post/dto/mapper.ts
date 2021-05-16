@@ -22,6 +22,7 @@ export class PostMapper implements IMapperFactory {
         entity.widgetId = req.widget_id;
         entity.pageId = req.page_id;
         entity.subContent = req.sub_content;
+        entity.deleteFlag = req.delete_flag;
         entity.organizationId = req.organization_id;
         entity.userId = req.user_id;
         entity.hashtags = req.hashtags ? req.hashtags.map(tag => {
@@ -33,6 +34,7 @@ export class PostMapper implements IMapperFactory {
         if (!res) res = new PostResDto();
         res.id = entity.id;
         res.title = entity.title;
+        res.delete_flag = entity.deleteFlag;
         res.content = entity.content;
         res.category_id = entity.categoryId;
         res.category = entity.category ? new CategoryMapper().mapRes(undefined, entity.category) : undefined;

@@ -41,6 +41,8 @@ export class PostReqDto implements IReqDtoFactory {
     file_id: string;
     @ApiProperty()
     user_id: string;
+    @ApiProperty()
+    delete_flag: number;
     @ApiProperty({ required: false })
     status: string;
     public hashtags: HashtagReqDto[]

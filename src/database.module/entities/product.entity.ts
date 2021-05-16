@@ -29,8 +29,8 @@ export class ProductEntity {
     @Column({ name: "sub_description", type: "varchar", length: 500, nullable: true })
     subDescription: string;
 
-    @Column({ name: "price", type: "varchar", nullable: true })
-    price: string;
+    @Column({ name: "price", type: "int",nullable:true})
+    price: number;
 
     @Column({ name: "organization_id", type: "varchar", nullable: true })
     organizationId: string;

@@ -63,8 +63,6 @@ export class LeadEntity {
     contact: ContactEntity;
 
     
-
-    
     
 
     // @Column({ name: "company_id", type: "uuid" })

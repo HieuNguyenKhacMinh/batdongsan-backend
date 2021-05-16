@@ -22,7 +22,7 @@ export class ProductResDto {
     title: string;
     sub_description: string;
     description: string;
-    price: string;
+    price: number;
     formality_id: string;
     formality : FormalityResDto;
     address_id: string;

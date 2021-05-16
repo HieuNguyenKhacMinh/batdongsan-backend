@@ -40,7 +40,8 @@ export class ProductController {
         const condition = {
             relations: ["formality", "houseDirestion",
                 "productUnitType", "project", "wards", "address",
-                "balconyDirection", "city", "productType", "wishlists", "files","user","organization"], where: {}
+                "balconyDirection", "city", "productType", "wishlists", 
+                "files","user","organization"], where: {}
         };
 
         if (isBuy != 2) {
@@ -71,7 +72,7 @@ export class ProductController {
                 "productUnitType", "project", "wards", "address",
                 "balconyDirection", "city", "productType",
                 "comments", "comments.createdByUser",
-                "comments.children", "comments.children.createdByUser", "wishlists", "files"], where: { id }
+                "comments.children", "comments.children.createdByUser", "wishlists", "files", "user"], where: { id }
         };
         return this.service.findOne(condition);
     }

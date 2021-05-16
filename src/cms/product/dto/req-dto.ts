@@ -17,7 +17,7 @@ export class ProductReqDto implements IReqDtoFactory {
     @ApiProperty()
     description: string;
     @ApiProperty()
-    price: string;
+    price: number;
     @ApiProperty()
     files: FileEntity[];
     @ApiProperty()
