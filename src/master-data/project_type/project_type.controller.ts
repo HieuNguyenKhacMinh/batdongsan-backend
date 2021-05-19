@@ -26,7 +26,7 @@ export class ProjectTypeController {
 
         // filter wishlist deleteFlag=  1
         projectTypes = projectTypes.map(pt => {
-            pt.projects = pt.projects.map(p => {
+            pt.projects = pt.projects.filter(w => w.delete_flag === 0).map(p => {
                 p.wishlists = p.wishlists.filter(w => w.delete_flag === 0);
                 return p;
             });

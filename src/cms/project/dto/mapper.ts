@@ -43,6 +43,7 @@ export class ProjectMapper implements IMapperFactory {
     mapRes(res: ProjectResDto, entity: ProjectEntity) {
         if (!res) res = new ProjectResDto();
         res.id = entity.id;
+        res.delete_flag = entity.deleteFlag;
         res.name = entity.name;
         res.description = entity.description;
         res.coutry_id = entity.countryId;
