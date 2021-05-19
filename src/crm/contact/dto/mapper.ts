@@ -26,6 +26,8 @@ export class ContactMapper implements IMapperFactory {
         entity.districtId = req.district_id;
         entity.wardsId = req.wards_id;
         entity.userId = req.user_id;
+        entity.organizationId = req.organization_id;
+        entity.user2Id = req.user2_id;
         return entity;
     }
     mapRes(res:ContactResDto, entity: ContactEntity) {
@@ -46,8 +48,10 @@ export class ContactMapper implements IMapperFactory {
         res.district = entity.district ? new DistrictMapper().mapRes(undefined, entity.district): undefined;
         res.wards_id = entity.wardsId;
         res.wards = entity.wards ? new WardsMapper().mapRes(undefined, entity.wards): undefined;
-         res.user_id = entity.userId;
+        res.user_id = entity.userId;
         res.user = entity.user ? new UserMapper().mapRes(undefined, entity.user): undefined;
+        res.user2_id = entity.user2Id;
+        res.organization_id = entity.organizationId;
         return res;
     }
 

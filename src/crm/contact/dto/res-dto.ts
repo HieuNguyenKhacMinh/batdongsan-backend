@@ -27,4 +27,6 @@ export class ContactResDto {
     wards: WardsResDto;
     user_id: string;
     user: UserResDto;
+    organization_id : string;
+    user2_id: string;
 }

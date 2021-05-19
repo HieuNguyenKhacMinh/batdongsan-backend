@@ -53,6 +53,9 @@ export class ContactEntity {
     @Column({ name: "city_id", type: "uuid", nullable: true })
     cityId: string;
 
+    @Column({ name: "user2_id", type: "uuid", nullable: true })
+    user2Id: string;
+
     @ManyToOne(() => CityEntity, f => f.contacts)
     @JoinColumn({ name: "city_id" })
     city: CityEntity;
